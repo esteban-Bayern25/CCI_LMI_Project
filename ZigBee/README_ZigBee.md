@@ -1,20 +1,15 @@
-# ZigBee Background
+# Zigbee Background
+Zigbee is a low-power alternative to Wi-Fi for IoT devices, focusing on low-power mesh networking.
 
-Zigbee is a low power alternative to WiFi for IoT devices. (low power mesh netowrking)
+IEEE 802.15.4-2003
+Zigbee is a low-power protocol that is ideal for battery-powered devices. It operates as a mesh network whereby any mains-powered Zigbee devices usually act as "routers." This allows devices out of reach of the Home Automation (HA) server to communicate by hopping through other nearby devices.
 
-IEEE
-802.15.4-2003
+Zigbee is characterized as a low-power, low-latency, and low-bandwidth mesh networking protocol. Unlike Wi-Fi, where every device must be within range of a central router, mesh networking only requires a device to be within range of the nearest network node.
 
-Low power protocol that’s handy for battery powered devices. Zigbee also handily works as a mesh network where by any mains powered zigbee devices are usually “routers”. So devices out of reach of the HA server can still talk back via other devices that are
+Access Method: Uses CSMA-CA (Carrier Sense Multiple Access with Collision Avoidance).
 
-Zigbee is a low power, low-latency, low-bandwidth mesh networking protocol. With WiFi, every device has to be within range of the router. With mesh networking each device only has to be in range of the nearest device.
-
-Uses CSMA - CA
-
-
-## Security 
-
-Authentication and Encryption, Freshness (frame counters), and Message Integrity using symmetric keys based upon AES-128
+## Security
+Zigbee provides authentication, encryption, freshness (using frame counters), and message integrity using symmetric keys based on AES-128.
 
 
 ## Vulnerabilities
@@ -31,23 +26,26 @@ Authentication and Encryption, Freshness (frame counters), and Message Integrity
 
 | STRIDE Category  | ZigBee Vulnerability | Technical Impact |
 | ------------- | ------------- | ------------- |
-| Spoofing | Trust Center Spoofing  | |
+| Spoofing | Trust Center Spoofing  |  An attacker can impersonate the Trust Center node to distribute malicious active or secondary Network Keys to joining devices. |
 | Tampering  | Route Table Manipulation  | |
-| Information Disclosure  | Clear-Text Key Interception  | |
-| Denial of Service (DoS)  | Network Collapse (Coordinator Loss) & Hop Limit Exhaustion| |
-| Elevation of Privilege | Trust Center Exploitation | |
+| Information Disclosure  | Clear-Text Key Interception  | Loss of data confidentiality |
+| Denial of Service (DoS)  | Network Collapse (Coordinator Loss) & Hop Limit Exhaustion| Network unavailability, ZigBee Coordinator is lost and the replacement lacks the required address and key tables, the entire network must be restarted, leading to a total loss of availability. Flood the mesh network with packets |
+| Elevation of Privilege | Trust Center Exploitation | Unauthorized administrative access, where attacker gains administrative control over key distribution and device associations across the entire network. |
 
-## Bad Scenario (Loss of Key devices)
+## Failure Scenario: Loss of Key Devices
+Upon the loss of a Zigbee Coordinator, another device may nominate itself as the new coordinator. However, if the original coordinator was the sole "keeper" of critical network tables (address mappings, key assignments, routes, etc.), the network must be taken down and rebuilt from scratch.
 
-Upon the loss of ZigBee coordinator another coordinator will nominate itself the Zigee coordinator. If the “lost” ZigBee Coordinator was the “keeper” of
-the tables used in the ZigBee network such as extended to short address, key
-assignments, routes, etc. then the network would have to be taken down and restarted.
+**Defining "Loss"**
+"Loss" refers to the physical or functional failure of the hardware device (Zigbee Coordinator).
 
-1. What does it mean my loss?
--> Loss of the physical or functionla failure of a hardware device (ZigBee Coordinator)
-Reasonds for these loss: DoS, Hardware Failure, Connectivity Loss (jamming)
+Reasons for loss: DoS attacks, hardware failure, or connectivity loss (e.g., signal jamming).
 
+### Potential Tools
+1. Software [KillerBee](https://github.com/riverloopsec/killerbee)
 
+### Questions
+1. Should we propose specific remedies for these attacks, or is the primary focus on qualitative analysis?
+2. 
 
 ### References
 
