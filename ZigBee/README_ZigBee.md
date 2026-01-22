@@ -29,13 +29,13 @@ Authentication and Encryption, Freshness (frame counters), and Message Integrity
 
 ## STRIDE Threat Model: ZigBee Pro Protocol
 
-| STRIDE Category  | ZigBee Vulnerability | Technical Impact
-| ------------- | ------------- |
-| Spoofing | Trust Center Spoofing  |
-| Tampering  | Route Table Manipulation  |
-| Information Disclosure  | Clear-Text Key Interception  |
-| Denial of Service (DoS)  | Network Collapse (Coordinator Loss) & Hop Limit Exhaustion|
-| Elevation of Privilege | Trust Center Exploitation |
+| STRIDE Category  | ZigBee Vulnerability | Technical Impact |
+| ------------- | ------------- | ------------- |
+| Spoofing | Trust Center Spoofing  | |
+| Tampering  | Route Table Manipulation  | |
+| Information Disclosure  | Clear-Text Key Interception  | |
+| Denial of Service (DoS)  | Network Collapse (Coordinator Loss) & Hop Limit Exhaustion| |
+| Elevation of Privilege | Trust Center Exploitation | |
 
 ## Bad Scenario (Loss of Key devices)
 
