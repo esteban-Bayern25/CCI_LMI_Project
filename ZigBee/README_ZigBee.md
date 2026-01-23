@@ -60,6 +60,6 @@ Reasons for loss: DoS attacks, hardware failure, or connectivity loss (e.g., sig
 
 ### References
 
-[ [1] NIH ZigBee 3.0](https://pmc.ncbi.nlm.nih.gov/articles/PMC12349651/#sec3-sensors-25-04606)
-[ [2] ZigBee Background](https://blackhat.com/docs/us-15/materials/us-15-Zillner-ZigBee-Exploited-The-Good-The-Bad-And-The-Ugly-wp.pdf)
-[ [3] ZigBee Pro vs ZigBee 3.0](https://www.cdebyte.com/news/542) 
+1. [ [1] NIH ZigBee 3.0](https://pmc.ncbi.nlm.nih.gov/articles/PMC12349651/#sec3-sensors-25-04606)
+2. [ [2] ZigBee Background](https://blackhat.com/docs/us-15/materials/us-15-Zillner-ZigBee-Exploited-The-Good-The-Bad-And-The-Ugly-wp.pdf)
+3. [ [3] ZigBee Pro vs ZigBee 3.0](https://www.cdebyte.com/news/542) 
