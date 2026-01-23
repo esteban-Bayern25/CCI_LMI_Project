@@ -3,7 +3,7 @@ Zigbee is a low-power alternative to Wi-Fi for IoT devices, focusing on low-powe
 
 IEEE 802.15.4-2003
 
-A low-power, low-bandwidth mesh protocol designed for ad-hoc, self-forming networks. It utilizes a hop-based architecture where mains-powered devices act as routers, extending range beyond a central hub by passing data through neighboring nodes. This makes it ideal for low-latency communication in battery-constrained environments like building and home automation. [^1]
+A low-power, low-bandwidth mesh protocol designed for ad-hoc, self-forming networks.[^2] It utilizes a hop-based architecture where mains-powered devices act as routers, extending range beyond a central hub by passing data through neighboring nodes.[^3] This makes it ideal for low-latency communication in battery-constrained environments like building and home automation. [^4]
 
 ![Network Topology of ZigBee Protocol](/assets/images/zigBee_network.png)
 
@@ -61,6 +61,8 @@ Reasons for loss: DoS attacks, hardware failure, or connectivity loss (e.g., sig
 ### References
 
 [^1]: [ZigBee Intro](https://www.geeksforgeeks.org/computer-networks/introduction-of-zigbee/)
+
 [^2]: [NIH ZigBee3.0](https://pmc.ncbi.nlm.nih.gov/articles/PMC12349651/#sec3-sensors-25-04606)
-[^3]: [ZigBee Pro vs ZigBee 3.0](https://www.cdebyte.com/news/542)
-[^4]: [korewireless](https://www.korewireless.com/blog/iot-protocols/)
+
+[^3]: [ZigBee Pro Vs ZigBee 3.0](https://www.cdebyte.com/news/542)
+[^4]: [IoT Protocols](https://www.korewireless.com/blog/iot-protocols/)
