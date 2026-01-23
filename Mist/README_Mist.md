@@ -43,3 +43,6 @@ client server relationship
 | Information Disclosure  | Schedule Prediction  | Identifying which of the 128 hardcoded schedules is active allows an attacker to time their sniffing or injection attempts precisely. |
 | Denial of Service (DoS)  | Local Sync Disruption | Desynchronizing neighbor nodes to break the local timing required for TSCH communication. |
 | Elevation of Privilege | "Slow-Down" Abuse | Forcing children to remain attached to a compromised parent node by maliciously increasing the "slow-down" rate. |
+
+
+### References

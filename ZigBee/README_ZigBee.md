@@ -1,16 +1,16 @@
 # Zigbee Background
-Zigbee is a low-power alternative to Wi-Fi for IoT devices, focusing on low-power mesh networking.
+Zigbee is a low-power alternative to Wi-Fi for IoT devices, focusing on low-power mesh networking. [^1]
 
 IEEE 802.15.4-2003
 
-Zigbee is a low-power protocol that is ideal for battery-powered devices. It operates as a mesh network whereby any mains-powered Zigbee devices usually act as "routers." This allows devices out of reach of the Home Automation (HA) server to communicate by hopping through other nearby devices.
+A low-power, low-bandwidth mesh protocol designed for ad-hoc, self-forming networks. It utilizes a hop-based architecture where mains-powered devices act as routers, extending range beyond a central hub by passing data through neighboring nodes. This makes it ideal for low-latency communication in battery-constrained environments like building and home automation. [^1]
 
-Zigbee is characterized as a low-power, low-latency, and low-bandwidth mesh networking protocol. Unlike Wi-Fi, where every device must be within range of a central router, mesh networking only requires a device to be within range of the nearest network node.
+![Network Topology of ZigBee Protocol](/assets/images/zigBee_network.png)
 
 Access Method: Uses CSMA-CA (Carrier Sense Multiple Access with Collision Avoidance).
 
 ## Security
-Zigbee provides authentication, encryption, freshness (using frame counters), and message integrity using symmetric keys based on AES-128.
+Zigbee provides authentication, encryption, freshness (using frame counters), and message integrity using symmetric keys based on AES-128. [^2]
 
 
 ## Vulnerabilities
@@ -60,6 +60,7 @@ Reasons for loss: DoS attacks, hardware failure, or connectivity loss (e.g., sig
 
 ### References
 
-1. [ [1] NIH ZigBee 3.0](https://pmc.ncbi.nlm.nih.gov/articles/PMC12349651/#sec3-sensors-25-04606)
-2. [ [2] ZigBee Background](https://blackhat.com/docs/us-15/materials/us-15-Zillner-ZigBee-Exploited-The-Good-The-Bad-And-The-Ugly-wp.pdf)
-3. [ [3] ZigBee Pro vs ZigBee 3.0](https://www.cdebyte.com/news/542) 
+[^1]: [ZigBee Intro](https://www.geeksforgeeks.org/computer-networks/introduction-of-zigbee/)
+[^2]: [NIH ZigBee3.0](https://pmc.ncbi.nlm.nih.gov/articles/PMC12349651/#sec3-sensors-25-04606)
+[^3]: [ZigBee Pro vs ZigBee 3.0](https://www.cdebyte.com/news/542)
+[^4]: [korewireless](https://www.korewireless.com/blog/iot-protocols/)
