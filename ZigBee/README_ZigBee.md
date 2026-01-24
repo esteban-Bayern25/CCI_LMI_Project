@@ -1,13 +1,18 @@
 # Zigbee Background
 Zigbee is a low-power alternative to Wi-Fi for IoT devices, focusing on low-power mesh networking. [^1]
 
-IEEE 802.15.4-2003
+IEEE Standard 802.15.4-2003 
 
 A low-power, low-bandwidth mesh protocol designed for ad-hoc, self-forming networks.[^2] It utilizes a hop-based architecture where mains-powered devices act as routers, extending range beyond a central hub by passing data through neighboring nodes.[^3] This makes it ideal for low-latency communication in battery-constrained environments like building and home automation. [^4]
 
 ![Network Topology of ZigBee Protocol](/assets/images/zigBee_network.png)
 
 Access Method: Uses CSMA-CA (Carrier Sense Multiple Access with Collision Avoidance).
+
+## Network Architecutre
+![ZigBee Pro](/assets/images/ZigBee_pro.png)[^5]
+
+
 
 ## Security
 Zigbee provides authentication, encryption, freshness (using frame counters), and message integrity using symmetric keys based on AES-128. [^2]
@@ -66,3 +71,5 @@ Reasons for loss: DoS attacks, hardware failure, or connectivity loss (e.g., sig
 
 [^3]: [ZigBee Pro Vs ZigBee 3.0](https://www.cdebyte.com/news/542)
 [^4]: [IoT Protocols](https://www.korewireless.com/blog/iot-protocols/)
+[^5]:[IEEE perfromance on ZigBee Pro](https://ieeexplore.ieee.org/document/6673344/authors#authors)
+[^6]: [ZigBee wireless standard](https://www.digi.com/solutions/by-technology/zigbee-wireless-standard)
