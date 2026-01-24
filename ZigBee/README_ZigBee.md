@@ -17,6 +17,11 @@ Access Method: Uses CSMA-CA (Carrier Sense Multiple Access with Collision Avoida
 ## Security
 Zigbee provides authentication, encryption, freshness (using frame counters), and message integrity using symmetric keys based on AES-128. [^2]
 
+**Strength** depends on Trust Center managing three types of symmetric keys
+1. *Network Key*: Shared on all devices used to encrypt all broadcast traffic and standard data frames
+2. *Link Key*: Unique for paring devices
+3. *Master Key*: High security mode only the dervice link keys via the SKKE protocol, keys never sent over the air
+
 
 ## Vulnerabilities
 
