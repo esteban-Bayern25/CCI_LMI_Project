@@ -29,22 +29,21 @@ Despite their different designs, both protocols share risks inherent to low-powe
 1. Resilience to Coordinator/ Manager Failure
 2. Battery Exhaustion via "Listen Mode" Manipulation
 
+#### Objective
+To quantify the operational resilience and security-depth of Mist compared to Zigbee Pro by simulating high-impact failure and attack scenarios.
 
-The Thesis: ZigBee Pro is fragile because it relies on a central "keeper" of tables; Mist is more reliable because its decentralized schedules prevent a total network collapse.
+### Test 1 Architectural Resilience (Availability)
+**Thesis:** Zigbee is "brittle" due to its Centralized State Model (Trust Center dependency). Mist is "resilient" due to its Decentralized Synchronization (Local State management).
 
-The Experiment: Establish a stable network for both protocols. 2. Simulate a "Loss of Coordinator/Manager" by powering off the central node. 3. Data to Collect: Measure "Time to Recovery" and "Network Availability %."
+ - Experiment: Establish a stable multi-node mesh for both protocols. Simulate a "Critical Failure" by hard-powering off the Central Coordinator (Zigbee) and the Network Manager (Mist).
+ - Key Metrics:
+    - Blast Radius: % of the network that remains operational for local peer-to-peer tasks.
+    - Recovery Time Objective (RTO): Time required to restore full network functionality after replacing the central node.
 
-Why this proves Mist is better: In ZigBee, if the Coordinator with the tables is "lost," the network must be taken down and restarted from scratch. In Mist, because there is no dedicated network manager and nodes use local synchronization, you can demonstrate that a single node failure doesn't result in a total system blackout.
+### Test 2 Defensive Longevity (Battery Exhaustion)
+**Thesis:** Zigbee’s CSMA-CA (Always-Listening) routers are vulnerable to "Energy Depletion" attacks. Mist’s Request-Response (Scheduled-Sleep) model provides a "Temporal Firewall" against RF noise.
 
-Experiment: Battery Exhaustion via "Listen Mode" Manipulation
-The Thesis: ZigBee’s "always-on" routers are a liability for logistics/tracking; Mist’s "don't talk unless spoken to" model protects device longevity.
-
-The Experiment:
-
-Use your protocol analysis harness to measure the "duty cycle" (time spent in active receive/transmit vs. sleep).
-
-Introduce "rogue node" noise—traffic that isn't part of the network but forces nodes to listen or process headers.
-
-Data to Collect: Calculate "Projected Battery Life" based on energy consumption in the "Listen Mode" vs. Mist's "Sleep" states.
-
-Why this proves Mist is better: ZigBee routers must stay active to forward indeterminate messages. Mist clients only respond to their specific server/parent. You can show that in a high-noise environment (like a busy logistics hub), ZigBee devices will die significantly faster than Mist devices due to "unnecessary listening".
+- Experiment: Introduce "Rogue Node" noise—high-volume, non-network traffic meant to trigger the radio's "Listen" state.
+- Key Metrics:
+    - Radio Duty Cycle: Ratio of active RX/TX time vs. deep sleep.
+    - Estimated Battery Lifespan Delta: Calculated reduction in years of life when under a 50% RF-interference load.

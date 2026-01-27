@@ -15,7 +15,7 @@ Access Method: Uses CSMA-CA (Carrier Sense Multiple Access with Collision Avoida
 
 
 ## Security
-Zigbee provides authentication, encryption, freshness (using frame counters), and message integrity using symmetric keys based on AES-128. [^2]
+Zigbee provides authentication, encryption, freshness (using frame counters), and message integrity using symmetric keys based on AES-128. [^2][^7]
 
 **Strength** depends on Trust Center managing three types of symmetric keys
 1. *Network Key*: Shared on all devices used to encrypt all broadcast traffic and standard data frames
@@ -62,11 +62,16 @@ Reasons for loss: DoS attacks, hardware failure, or connectivity loss (e.g., sig
 
 ### Potential Tools
 1. Software [KillerBee](https://github.com/riverloopsec/killerbee)
+    - SECBEE
+    - Z3sec
+    - Python
 2. Hardware: ZigBee stick/ usb?
+    - Bus Pirate
+    - 
 
 ### Questions
 1. Should we propose specific remedies for these attacks, or is the primary focus on qualitative analysis?
-2. 
+2. Regarding the resources required for such an attack: would they be publicly available tools, or would they require proprietary company resources?
 
 ### References
 
@@ -78,3 +83,4 @@ Reasons for loss: DoS attacks, hardware failure, or connectivity loss (e.g., sig
 [^4]: [IoT Protocols](https://www.korewireless.com/blog/iot-protocols/)
 [^5]:[IEEE perfromance on ZigBee Pro](https://ieeexplore.ieee.org/document/6673344/authors#authors)
 [^6]: [ZigBee wireless standard](https://www.digi.com/solutions/by-technology/zigbee-wireless-standard)
+[^7]: [Cross-Layer Security Assessment in IoT Ecosystems: Analyzing Vulnerabilities in the Zigbee Protocol](https://ieeexplore.ieee.org/document/11239104)
