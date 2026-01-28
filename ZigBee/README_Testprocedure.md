@@ -7,7 +7,7 @@
 To quantify the operational resilience and security-depth of Mist compared to Zigbee Pro by simulating high-impact failure and attack scenarios.
 
 ### Test 1 Architectural Resilience (Availability)
-**Thesis:** Zigbee is "brittle" due to its Centralized State Model (Trust Center dependency). Mist is "resilient" due to its Decentralized Synchronization (Local State management).
+**Thesis:** Zigbee is "brittle" due to its Centralized State Model (Trust Center dependency). Mist is "resilient" due to its Decentralized Synchronization (Local State management). [^1]
 
  - Experiment: Establish a stable multi-node mesh for both protocols. Simulate a "Critical Failure" by hard-powering off the Central Coordinator (Zigbee) and the Network Manager (Mist).
  - Key Metrics:
@@ -27,8 +27,10 @@ To quantify the operational resilience and security-depth of Mist compared to Zi
 - ZigBee coordinator ()
 - ZigBee routers
 - ZigBee End Devices (tags/ sensors)
-- nRF Sniffer for 802.15.4
+- nRF Sniffer for 802.15.4 [^2]
     - [nRF52840 Dongle](https://www.digikey.com/en/products/detail/nordic-semiconductor-asa/NRF52840-DONGLE/9491124?utm_source=oemsecrets&utm_medium=aggregator&utm_campaign=buynow) 
+- IoT smart Plug
+
 
 **software/ logger tools**
 - python
@@ -36,6 +38,9 @@ To quantify the operational resilience and security-depth of Mist compared to Zi
 - scapy
 - Zephyr RTOS
 - [API](https://docs.zephyrproject.org/apidoc/latest/structieee802154__radio__api.html) 
+- nRF Connect for Desktop
+- zperf (Zephyr Utility)
+- Pyserial
 
 [^1][Security Assesesment Reference](https://securelist.com/zigbee-protocol-security-assessment/118373/)
 [^2][Setup Dongle Tutorial](https://youtu.be/ptY3lrboV-c?si=IevqJVBHtRSsnEBb)
