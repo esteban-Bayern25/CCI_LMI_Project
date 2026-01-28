@@ -4,9 +4,9 @@
 2. Battery Exhaustion via "Listen Mode" Manipulation
 
 #### Objective
-To quantify the operational resilience and security-depth of Mist compared to Zigbee Pro by simulating high-impact failure and attack scenarios.
+To quantify the operational resilience and security-depth of Mist compared to Zigbee Pro by simulating high-impact failure and attack scenarios.[^1]
 
-This refined plan focuses on the Centralized vs. Decentralized core of your thesis. Instead of battery drain, we are now testing the "Total Network Surrender" that occurs when a Zigbee Trust Center is compromised or lost, versus the Mist architecture's resilience.
+This refined plan focuses on the Centralized vs. Decentralized core of your thesis. Instead of battery drain, we are now testing the "Total Network Surrender" that occurs when a Zigbee Trust Center is compromised or lost, versus the Mist architecture's resilience.[^4]
 
 ### Test 1: Architectural Resilience (Availability + Denial of Service)
 - **Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization.
@@ -67,4 +67,5 @@ The Goal: Prove that once you have the Network Key, you can "Spoof" any command 
 [^3]:[Setup for another ZigBee Coordinator slzb06](https://smlight.tech/global/slzb06)
 [^4]: [Setup for ZigBee network](https://smarthomescene.com/guides/how-to-build-a-stable-and-robust-zigbee-network/)
 [^5]: [ZigBee 4.0 news](https://www.silabs.com/blog/zigbee-4-0-improves-security-commissioning-and-efficiency)
+
 [ZigBee 4.0](https://csa-iot.org/newsroom/the-connectivity-standards-alliance-announces-zigbee-4-0-and-suzi-empowering-the-next-generation-of-secure-interoperable-iot-devices/)
