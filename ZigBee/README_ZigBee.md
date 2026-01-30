@@ -8,18 +8,24 @@ A low-power, low-bandwidth mesh protocol designed for ad-hoc, self-forming netwo
 ![Network Topology of ZigBee Protocol](/assets/images/zigBee_network.png)
 
 Access Method: Uses CSMA-CA (Carrier Sense Multiple Access with Collision Avoidance).
-
+Uses a 16-bit PAN ID
+64-bit Exdended PAN ID
 ## Network Architecutre
 ![ZigBee Pro](/assets/images/ZigBee_pro.png)[^5]
+
 
 
 
 ## Security
 Zigbee provides authentication, encryption, freshness (using frame counters), and message integrity using symmetric keys based on AES-128. [^2][^7]
 
+Symmetric Encryption & Message Authentication (AES-CCM 128 bit)
+Integrity Protection MIC 0-128 bit
+Replay protection frame counter 4 byte
+
 **Strength** depends on Trust Center managing three types of symmetric keys
 1. *Network Key*: Shared on all devices used to encrypt all broadcast traffic and standard data frames
-2. *Link Key*: Unique for paring devices
+2. *Link Key*: Unique for paring devices (only between 2 devices)
 3. *Master Key*: High security mode only the dervice link keys via the SKKE protocol, keys never sent over the air
 
 
@@ -32,6 +38,7 @@ Zigbee provides authentication, encryption, freshness (using frame counters), an
     - Network Collapse (Coordinator Loss): The security of the network relies on the ZigBee Coordinator to maintain tables for address assignments and key management. If a coordinator is lost and its replacement does not have access to these tables, the entire network must be taken down and restarted, creating a significant availability risk.
     - Hop-Limit Limitations: Since the maximum depth is 15 and the maximum number of hops is less than 30, an attacker could potentially flood the mesh with packets that exhaust the hop limit, preventing legitimate traffic from reaching the destination.
 
+**Please look at the README for indpeth test procedure for project** [ZigBee Test](/ZigBee/test/README_Testprocedure.md)
 
 ## STRIDE Threat Model: ZigBee Pro Protocol
 
