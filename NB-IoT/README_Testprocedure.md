@@ -86,6 +86,9 @@ The Goal: quantify NB-IoT's reconnection time, latency during movement, and data
 
 ### References
 [Vulnerability Assessment Reference](https://cora.ucc.ie/bitstreams/74b32367-7e66-4c4b-9669-f16362f2234d/download)
+
 [NB-IoT Energy Consumption Characteristics](https://arxiv.org/pdf/2005.13648)
+
 [Energy Consumption Analysis of LPWAN Technologies](https://pmc.ncbi.nlm.nih.gov/articles/PMC7506725/?utm_source=chatgpt.com)
+
 [NB-IoT vs Alternatives in Mobility and Delay](https://www.zipitwireless.com/blog/nb-iot-explained-is-it-right-for-your-iot-solution?utm_source=chatgpt.com)
