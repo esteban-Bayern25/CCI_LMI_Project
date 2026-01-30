@@ -51,8 +51,8 @@ The Goal: quantify NB-IoT's reconnection time, latency during movement, and data
 
 **Devices**
 - NB-IoT Development Board
-  - Nordic nRF9160 DK (recommended)
-  - Quectel BG95 / BG96 dev kit
+  - [Nordic nRF9160 DK (recommended)](https://www.newark.com/nordic-semiconductor/nrf9160-dk/dev-kit-32bit-arm-cortex-m33/dp/84AC2295?&CMP=KNC-GUSA-GEN-SKU-OPTMYZR-ONBOARD-COMP&gad_source=1&gad_campaignid=22986376236&gbraid=0AAAAAD5U_g0Uyb2Ir5j3ksK9uRmFpIiUE&gclid=Cj0KCQiAyvHLBhDlARIsAHxl6xq1ldrmNJ_5IrvFfNfEnjhyNFgNrL3Pv8d1EqbJSsioiW_EDF1EUzkaAri9EALw_wcB)
+  - [Quectel BG95 / BG96 dev kit](https://www.digikey.com/en/products/detail/iot-botscom/IBT-QTC-AFC-BG95/21411195?gclsrc=aw.ds&gad_source=1&gad_campaignid=20243136172&gbraid=0AAAAADrbLlgOPOK-6qeak9Ou_Pskp5Rzo&gclid=Cj0KCQiAyvHLBhDlARIsAHxl6xrt_1x0DuN96oFvm0olrWfebsF-hE9ZPjgneeebiyzkF4fOuNj37UUaAtSwEALw_wcB)
 - NB-IoT SIM card with private APN access
   - Private APN enabled (test SIMs)
 
@@ -64,7 +64,9 @@ The Goal: quantify NB-IoT's reconnection time, latency during movement, and data
 
 **Host Systems** 
 - Laptop (Linux preferred)
-- USB power meter
+- [USB power meter](https://www.digikey.com/en/products/detail/olimex-ltd/USB-POWER-METER/21661970?gclsrc=aw.ds&gad_source=1&gad_campaignid=20228387720&gbraid=0AAAAADrbLlhDySYOomKA1lOOx0ll19x1R&gclid=Cj0KCQiAyvHLBhDlARIsAHxl6xotYOudvP_TsXhASTgN6QaxfmYkO5G5mWkH6cBvNx_pB2bW2vWzcqsaAiDlEALw_wcB)
+
+
 
 **Company Provided**
 - 1 Mist Gateway 
@@ -84,3 +86,6 @@ The Goal: quantify NB-IoT's reconnection time, latency during movement, and data
 
 ### References
 [Vulnerability Assessment Reference](https://cora.ucc.ie/bitstreams/74b32367-7e66-4c4b-9669-f16362f2234d/download)
+[NB-IoT Energy Consumption Characteristics](https://arxiv.org/pdf/2005.13648)
+[Energy Consumption Analysis of LPWAN Technologies](https://pmc.ncbi.nlm.nih.gov/articles/PMC7506725/?utm_source=chatgpt.com)
+[NB-IoT vs Alternatives in Mobility and Delay](https://www.zipitwireless.com/blog/nb-iot-explained-is-it-right-for-your-iot-solution?utm_source=chatgpt.com)
