@@ -67,14 +67,6 @@ Upon the loss of a Zigbee Coordinator, another device may nominate itself as the
 
 Reasons for loss: DoS attacks, hardware failure, or connectivity loss (e.g., signal jamming).
 
-### Potential Tools
-1. Software [KillerBee](https://github.com/riverloopsec/killerbee)
-    - SECBEE
-    - Z3sec
-    - Python
-2. Hardware: ZigBee stick/ usb?
-    - Bus Pirate
-    - 
 
 ### Questions
 1. Should we propose specific remedies for these attacks, or is the primary focus on qualitative analysis?
