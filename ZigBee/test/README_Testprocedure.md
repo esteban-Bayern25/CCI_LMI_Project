@@ -40,11 +40,12 @@ The Goal: Prove that once you have the Network Key, you can "Spoof" any command 
 ## Notes
 Qualitative methods involve observing and interpreting the impact of attacks through direct observation and network scans. Quantitative methods measure the effect of attacks numerically, such as the number of packets received or dropped during DoS attacks.
 
-[PAN ID](https://docs.digi.com//resources/documentation/digidocs/90002002/concepts/c_zb_pan_id.htm?tocpath=Zigbee%20networks%7CZigbee%20networking%20concepts%7CPAN%20ID%7C_____0)
-[Joining Zigbee Networks](https://docs.digi.com/resources/documentation/digidocs/90001399-13/references/r-create-join-zigbee-network.htm)
+- [PAN ID](https://docs.digi.com//resources/documentation/digidocs/90002002/concepts/c_zb_pan_id.htm?tocpath=Zigbee%20networks%7CZigbee%20networking%20concepts%7CPAN%20ID%7C_____0)
+- [Joining Zigbee Networks](https://docs.digi.com/resources/documentation/digidocs/90001399-13/references/r-create-join-zigbee-network.htm)
 
 - [Network Realignment Attack](https://pmc.ncbi.nlm.nih.gov/articles/PMC12349651/#B9-sensors-25-04606)
 - Spoofing or compromising TC 
+[Home Assistant](https://www.home-assistant.io/integrations/sensor/)
 
 ## Equipement list
 
@@ -52,6 +53,7 @@ Qualitative methods involve observing and interpreting the impact of attacks thr
 | --- | --- | 
 | ZigBee coordinator ([SONOFF ZigBee 3.0 USB DonglePlus](https://sonoff.tech/en-us/products/sonoff-zigbee-3-0-usb-dongle-plus-zbdongle-p?srsltid=AfmBOoq05n5bl2pB1xAz3aOx3RIwYfIqM_I8NbOEmXzF3O2efw0Ij0s7))[^3] & [Another option for Coordinator](https://www.amazon.com/SMLIGHT-SLZB-07-Coordinator-Zigbee2MQTT-Assistant/dp/B0D737SJ5G?dib=eyJ2IjoiMSJ9.ppEgVhHKzbBp2a7RAhwpKX6zOrDh5UNGyvyNEn3H8PcEgEU3sqjH5ArnFaR6rVdX.pkkkl2FxHrIR1luYNXO4iFdPaTO-r5mrSv_TGE252qA&dib_tag=se&keywords=SLZB-07&qid=1741067435&s=electronics&sr=1-1&linkCode=sl1&tag=smarthomescen-20&linkId=2d3a69d903fbd973ba5ec0f5371f7774&language=en_US&ref_=as_li_ss_tl&th=1) | [RaspberryPi 5](https://www.digikey.com/en/products/detail/raspberry-pi/SC1432/21658257) | 
 | ZigBee routers x2-4 (IoT smart Plug/ [Sonoff S31 Lite zb](https://sonoff.tech/en-us/products/sonoff-s31-lite-zb-smart-plug-us-type-zigbee-version?srsltid=AfmBOoouOWD-7qDYsYzVtx6ROJP727KxYbj710cNZLtBlKKkP0D6Rc7Z) or [ZBBridge-P](https://sonoff.tech/en-us/products/sonoff-zigbee-bridge-pro?pr_prod_strat=pinned&pr_rec_id=67b491ac0&pr_rec_pid=8812959826161&pr_ref_pid=8812958646513&pr_seq=uniform)) | [XBee 3 Pro Module](https://www.digi.com/products/embedded-systems/digi-xbee/rf-modules/2-4-ghz-rf-modules/xbee3-zigbee-3) | 
+| |[End devices](https://www.digi.com/products/models/xb3-24z8st) |
 
 **Digi Key Parts**
 - [Digi XBee 3 Zigbee Mesh Kit](https://www.digikey.com/en/products/detail/digi/XK3-Z8S-WZM/8130956?utm_source=ecia&utm_medium=aggregator&utm_campaign=digiintl)
