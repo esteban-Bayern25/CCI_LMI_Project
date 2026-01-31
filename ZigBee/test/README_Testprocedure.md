@@ -9,14 +9,16 @@ To quantify the operational resilience and security-depth of Mist compared to Zi
 This refined plan focuses on the Centralized vs. Decentralized. Testing the "Total Network Surrender" that occurs when a Zigbee Trust Center is compromised or lost, versus the Mist architecture's resilience.[^4]
 
 ### Test 1: Architectural Resilience (Availability + Denial of Service)
-- **Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization. In Zigbee, the Coordinator is a single point of failure not just for power, but for logical authority. By exploiting the protocol's automated self-healing rules (MLME), an attacker can force the legitimate "Source of Truth" to abandon its network, leaving devices orphaned and susceptible to hijack.
+- **Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization. In Zigbee, a single spoofed management frame from the "Source of Truth" can force nodes to abandon the legitimate network, leading to localized or total collapse.
 
-- **The Scenario:** Execute a Logical Neutralization attack. By spoofing a neighboring network with a conflicting PAN ID, you trigger the Coordinator’s mandatory "conflict-resolution" logic. While the legitimate Coordinator is busy "running away" to find a new channel or ID, you step into the vacuum.
+- **The Scenario:** Target a specific router that has several child end-devices attached to it. Rather than jamming the signal, you will issue a "Realignment" command to that router.
 
-- **The Attack:** 
-    1. Conflict Injection: Use the nRF52840 Dongle to broadcast beacons with the target's PAN ID but a different Extended PAN ID (EPID). This forces the real Coordinator to detect a conflict and attempt a network-wide migration.
-    2. Selective Jamming (optional)
-    3. Hijack: Use a second nRF52840 to broadcast a "Shadow Beacon" on the original channel. By incrementing the Network Update ID, signal to the orphaned routers that the node is the authoritative, updated version of the network.
+**The Attack:** 
+1. Recon: Identify the 16-bit Short Address and 64-bit Extended Address of Router_02 and the Coordinator.
+2. The Spoof: Use the nRF52840 Dongle to send a spoofed IEEE 802.15.4 MAC Command: Coordinator Realignment (0x07).
+3. The Payload: The frame will contain a New PAN-ID.
+4. The Result: Router_02 receives the frame, believes it came from its legitimate parent (the Coordinator), and immediately switches its radio to the new PAN-ID.
+5. The Collapse: Because the router has moved, its child end-devices (tags) are suddenly orphaned. They will attempt to "re-join," but since the "join window" on the real network is closed, they remain offline.
 
 - **Goal:** Prove that Zigbee’s centralized logic allows an attacker to "evict" the legitimate owner and take control of the topology, whereas Mist’s Local Survival Mode prevents such shifts because "Trust" is not tied to a single, spoofable PAN ID.
 
