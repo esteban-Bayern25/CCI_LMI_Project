@@ -64,6 +64,7 @@ Qualitative methods involve observing and interpreting the impact of attacks thr
 - [Digi XBee 3 Zigbee Mesh Kit](https://www.digikey.com/en/products/detail/digi/XK3-Z8S-WZM/8130956?utm_source=ecia&utm_medium=aggregator&utm_campaign=digiintl)
 - nRF Sniffer for 802.15.4 [^2]
     - [nRF52840 Dongle](https://www.digikey.com/en/products/detail/nordic-semiconductor-asa/NRF52840-DONGLE/9491124?utm_source=oemsecrets&utm_medium=aggregator&utm_campaign=buynow) 
+- [ZigBee startup kits/ home guide](https://www.youtube.com/watch?v=fHq2Bzrsnr8)
 
 **Company Provided**
 - 1 Mist Gateway (Maybe not we provide our own gateway)
@@ -95,3 +96,4 @@ Qualitative methods involve observing and interpreting the impact of attacks thr
 
 [ZigBee 4.0](https://csa-iot.org/newsroom/the-connectivity-standards-alliance-announces-zigbee-4-0-and-suzi-empowering-the-next-generation-of-secure-interoperable-iot-devices/)
 
+[DigiMesh vs Zigbee Mesh](https://www.digi.com/blog/post/what-are-the-differences-between-digimesh-and-zigb)
