@@ -55,6 +55,11 @@ Qualitative methods involve observing and interpreting the impact of attacks thr
 | ZigBee routers x2-4 (IoT smart Plug/ [Sonoff S31 Lite zb](https://sonoff.tech/en-us/products/sonoff-s31-lite-zb-smart-plug-us-type-zigbee-version?srsltid=AfmBOoouOWD-7qDYsYzVtx6ROJP727KxYbj710cNZLtBlKKkP0D6Rc7Z) or [ZBBridge-P](https://sonoff.tech/en-us/products/sonoff-zigbee-bridge-pro?pr_prod_strat=pinned&pr_rec_id=67b491ac0&pr_rec_pid=8812959826161&pr_ref_pid=8812958646513&pr_seq=uniform)) | [XBee 3 Pro Module](https://www.digi.com/products/embedded-systems/digi-xbee/rf-modules/2-4-ghz-rf-modules/xbee3-zigbee-3) | 
 | |[End devices](https://www.digi.com/products/models/xb3-24z8st) |
 
+**Gateways** 
+-[SONOFF Zigbee Bridge Pro Gateway](https://itead.cc/product/sonoff-zigbee-bridge-pro/?srsltid=AfmBOopXQ3b47qvAfyGV_-eSJeZtgb6j_NytEKZ2EIwDkoR5dRlr4Iu4JOQ)
+- Raspberry-pi-5
+-[Digi IX15 IoT Gateway and Cellular Router](https://www.digi.com/products/embedded-systems/digi-xbee/digi-xbee-gateways/digi-xbee-gateways/digi-ix15-xbee-gateway) **most likely not though**
+
 **Digi Key Parts**
 - [Digi XBee 3 Zigbee Mesh Kit](https://www.digikey.com/en/products/detail/digi/XK3-Z8S-WZM/8130956?utm_source=ecia&utm_medium=aggregator&utm_campaign=digiintl)
 - nRF Sniffer for 802.15.4 [^2]

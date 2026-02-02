@@ -10,6 +10,7 @@ A low-power, low-bandwidth mesh protocol designed for ad-hoc, self-forming netwo
 Access Method: Uses CSMA-CA (Carrier Sense Multiple Access with Collision Avoidance).
 Uses a 16-bit PAN ID
 64-bit Exdended PAN ID
+![ZigBee in a nutshell](https://www.cdebyte.com/news/706)
 ## Network Architecutre
 ![ZigBee Pro](/assets/images/ZigBee_pro.png)[^5]
 
