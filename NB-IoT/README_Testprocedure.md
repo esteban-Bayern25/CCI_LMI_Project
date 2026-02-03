@@ -53,6 +53,11 @@ The Goal: Demonstrate the operational cost of replay exposure: increased battery
 - Local VM on laptop
 - [USB inline power meter](https://www.droking.com/digital-multimeter-usb-2-0-multifunctional-electrical-tester-capacity-voltage-current-power-reader-usb-c-and-usb-a-dual-input-port#:~:text=Features:,the%20chargers%20and%20USB%20cables.)
 
+Misc:
+- [USB-A to USB-C cables (3x)](https://www.digikey.com/en/products/detail/cvilux-usa/DH-20M50054/13177382?gclsrc=aw.ds&gad_source=1&gad_campaignid=20232005509&gbraid=0AAAAADrbLlg5T1Q2dQP73SYy65BOD4Vhz&gclid=CjwKCAiAs4HMBhBJEiwACrfNZSPZqu2MnR8TSom6koHB069SO1e_Z8kbOUpi-lFUHWRvwSf6RaxcERoCbSYQAvD_BwE)
+- [USB-A cables (2x)](https://www.digikey.com/en/products/detail/amphenol-prolabs/USB3EXTAA6-C/18336216)
+- [Ethernet cables (2x)](https://www.digikey.com/en/products/detail/intellinet-network-solutions/342476/25826909)
+
 **Company Provided**
 - 1 Mist Gateway 
 - 1 Mist Extender
