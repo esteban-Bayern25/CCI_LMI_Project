@@ -42,18 +42,18 @@ Goal: Prove you can create false confirmation or silent message loss via replaye
  
 The Goal: Demonstrate the operational cost of replay exposure: increased battery drain → increased maintenance → lower resilience.
 
-Key Metrics:
-- Idle, active, and peak current spikes (mA)
-- Total energy consumed (mWh or mAh)
-- Battery life estimate (days/months)
-- Radio-on time (% duty cycle)
-- CPU active time (%)
-- Retransmissions per message
-- Duplicate packet handling rate
-- Failed ACKs or retries
-- Reporting latency increase
-- Packet loss %
-- Time to recovery after attack stops
+- Key Metrics:
+  - Idle, active, and peak current spikes (mA)
+  - Total energy consumed (mWh or mAh)
+  - Battery life estimate (days/months)
+  - Radio-on time (% duty cycle)
+  - CPU active time (%)
+  - Retransmissions per message
+  - Duplicate packet handling rate
+  - Failed ACKs or retries
+  - Reporting latency increase
+  - Packet loss %
+  - Time to recovery after attack stops
 
 
 
