@@ -25,7 +25,7 @@ A control comparison test on MIST will be run to determine its security posture 
 2. Recon: Capture traffic on the first 10 ACKs and extract dnctr from payload using Wireshark. Identify the ACK message pattern and sequential dnctr values.
 3. ACK Pause: Configure the Gateway Proxy to drop or blackhole server ACKs temporarily: Block downlink packets from Server → UE for a fixed window.
 4. Attack: Allow UE to replay old ACK by sending previously captured ACK back to the UE. Observe whether UE confirms the ACK even though the server never received it.
-5. Result: UE accepts confirmation --> Server missing message --> Silent integrity failutre + state divergence
+5. Result: UE accepts confirmation. The server then interprets the missing message, leading to integrity failure.
 
 Goal: Prove you can create false confirmation or silent message loss via replayed ACKs in NB-IoT, while Mist remains resistant because devices only accept authenticated, session-validated communications and cannot be directly addressed or tricked by replayed messages.
 
