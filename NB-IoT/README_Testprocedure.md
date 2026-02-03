@@ -13,10 +13,10 @@ This plan evaluates “Operational Security” to test how easily NB-IoT's syste
 
 - **The Scenario:** Target a single NB-IoT end device (“UE”) that sends confirmed uplink messages to a server through a gateway/relay path you control.
 Simulate a vulnerable point of access safely by inserting a Gateway Proxy in the IP path that can do the following:
- - drop uplinks
- - delay downlinks
- - record ACK messages
- - relay previously recorded ACKs
+  - drop uplinks
+  - delay downlinks
+  - record ACK messages
+  - relay previously recorded ACKs
 
 A control comparison test on MIST will be run to determine its security posture and confirmation logic strength.
 
