@@ -83,7 +83,7 @@ Misc:
 - Scapy (Python)
 - Linux
 - Python CSV logger
-- Serial logs from dev kit
+- Serial logs from dev kit (minicom)
 
 
 ### References
