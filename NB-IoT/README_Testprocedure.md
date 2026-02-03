@@ -62,7 +62,7 @@ The Goal: Demonstrate the operational cost of replay exposure: increased battery
 **Devices**
 - [NB-IoT Development Kit](https://www.digikey.com/en/products/detail/digi/XK3-C-GM2-UT-W/18648220?utm_source=ecia&utm_medium=aggregator&utm_campaign=digiintl)
 - [Raspberry Pi 5](https://www.digikey.com/en/products/detail/raspberry-pi/SC1431/21658261)
-- Local VM on laptop
+- [Local VM on laptop (Linux)](https://support.broadcom.com/group/ecx/productfiles?subFamily=VMware%20Workstation%20Pro&displayGroup=VMware%20Workstation%20Pro%2017.0%20for%20Linux&release=17.6.3&os=&servicePk=&language=EN&freeDownloads=true)
 - [USB inline power meter](https://www.droking.com/digital-multimeter-usb-2-0-multifunctional-electrical-tester-capacity-voltage-current-power-reader-usb-c-and-usb-a-dual-input-port#:~:text=Features:,the%20chargers%20and%20USB%20cables.)
 
 Misc:
