@@ -77,7 +77,11 @@ Misc:
 ### References
 [Vulnerability Assessment Reference](https://cora.ucc.ie/bitstreams/74b32367-7e66-4c4b-9669-f16362f2234d/download)
 
+[Digi XBee 3 Global LTE-M/NB-IoT Development Kit](https://www.digi.com/products/models/xk3-c-gm2-ut-w)
+
 [NB-IoT Energy Consumption Characteristics](https://arxiv.org/pdf/2005.13648)
+
+[Analyzing Security Threats in NB-IoT](https://www.diva-portal.org/smash/get/diva2:1977314/FULLTEXT01.pdf)
 
 [Energy Consumption Analysis of LPWAN Technologies](https://pmc.ncbi.nlm.nih.gov/articles/PMC7506725/?utm_source=chatgpt.com)
 
