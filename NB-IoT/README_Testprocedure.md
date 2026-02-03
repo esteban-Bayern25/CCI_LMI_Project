@@ -81,7 +81,7 @@ Misc:
 
 [Energy Consumption Analysis of LPWAN Technologies](https://pmc.ncbi.nlm.nih.gov/articles/PMC7506725/?utm_source=chatgpt.com)
 
-[NB-IoT vs Alternatives in Mobility and Delay](https://www.zipitwireless.com/blog/nb-iot-explained-is-it-right-for-your-iot-solution?
+[NB-IoT vs Alternatives in Mobility and Delay](https://www.zipitwireless.com/blog/nb-iot-explained-is-it-right-for-your-iot-solution?)
 
 [ACK Replay attack](https://www.researchgate.net/publication/399082774_An_Efficient_Risk_Impact_and_Vulnerability_Assessment_Framework_for_NB-IoT_Networks_Risk_Impact_and_Vulnerability_Assessment_Framework_for_NB-IoT_Networks)
 
@@ -90,4 +90,3 @@ Misc:
 [Replay protection via counters/nonces](https://rp.os3.nl/2019-2020/p68/report.pdf?)
 
 
-utm_source=chatgpt.com)
