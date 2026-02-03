@@ -6,7 +6,7 @@
 #### Objective
 To quantify the security posture and operational resilience of NB-IoT (vs. Mist) by simulating replay-style attack scenarios.
 
-This plan evaluates “Operational Security” to test how easily NB-IoT's system can be disrupted or compromised without breaking encryption?
+This plan evaluates “Operational Security” to test how easily NB-IoT's system can be disrupted or compromised without breaking encryption.
 
 ### Test 1: ACK Replay Attack (Integrity + Availability + Resource Exhaustion)
 - **Thesis:** Confirmation logic failure in NB-IoT can be compromised by gateway-level ACK replay. This test quantifies whether integrity and delivery guarantees remain valid during relay spoofing.
