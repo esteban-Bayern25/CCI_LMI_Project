@@ -48,13 +48,10 @@ The Goal: Demonstrate the operational cost of replay exposure: increased battery
 ## Equipment List
 
 **Devices**
-- NB-IoT Development Kit
-  - [Nordic nRF9160 DK (recommended)](https://www.newark.com/nordic-semiconductor/nrf9160-dk/dev-kit-32bit-arm-cortex-m33/dp/84AC2295?&CMP=KNC-GUSA-GEN-SKU-OPTMYZR-ONBOARD-COMP&gad_source=1&gad_campaignid=22986376236&gbraid=0AAAAAD5U_g0Uyb2Ir5j3ksK9uRmFpIiUE&gclid=Cj0KCQiAyvHLBhDlARIsAHxl6xq1ldrmNJ_5IrvFfNfEnjhyNFgNrL3Pv8d1EqbJSsioiW_EDF1EUzkaAri9EALw_wcB)
-- SIM with NB-IoT/LTE-M support
-- Raspberry Pi 5 or any Linux laptop
-- LTE hotspot / USB cellular modem (optional)
-- USB inline power meter
-
+- [NB-IoT Development Kit](https://www.digikey.com/en/products/detail/digi/XK3-C-GM2-UT-W/18648220?utm_source=ecia&utm_medium=aggregator&utm_campaign=digiintl)
+- [Raspberry Pi 5](https://www.digikey.com/en/products/detail/raspberry-pi/SC1431/21658261)
+- Local VM on laptop
+- [USB inline power meter](https://www.droking.com/digital-multimeter-usb-2-0-multifunctional-electrical-tester-capacity-voltage-current-power-reader-usb-c-and-usb-a-dual-input-port#:~:text=Features:,the%20chargers%20and%20USB%20cables.)
 
 **Company Provided**
 - 1 Mist Gateway 
@@ -65,8 +62,8 @@ The Goal: Demonstrate the operational cost of replay exposure: increased battery
 **Software/Logger Tools**
 - Wireshark
 - tcpdump
-- tcprelay
-- Python
+- tcpreplay
+- Scapy (Python)
 - Linux
 - Python CSV logger
 - Serial logs from dev kit
