@@ -1,7 +1,7 @@
 # Proposed Course
 
 1. Resilience to Coordinator/ Manager Failure
-2. Battery Exhaustion via "Listen Mode" Manipulation
+2. Denial of Service Attacks
 
 #### Objective
 To quantify the operational resilience and security-depth of Mist compared to Zigbee Pro by simulating high-impact failure and attack scenarios.[^1]
