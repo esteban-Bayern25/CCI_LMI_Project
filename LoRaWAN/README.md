@@ -10,14 +10,13 @@ However, LoRaWAN implementations may be vulnerable to:
 - Credential extraction
 - Device cloning from identical credentials
 - Reusing DevNonce values
+- Malicious gateway
 - Frame counter (FCntUp / FCntDown) reset after power loss
-- Device cloning due to poor key storage
-- Join flooding due to improper retry backoff logic
 
 ## Credential Extraction
 Objective: Extract AppKey and DevEUI if they are stored in plaintext on the end devices with physical access. Determine whether the AppKey is extractable from the firmware or if firmware readout is possible. 
 
-### Setup
+### Setup:
 1. Connect the end device to laptop.
 2. Dump device's flash memory with a tool like esptool.py.
 3. If the dump is successful, find the AppKey and DevEUI.
@@ -25,7 +24,7 @@ Objective: Extract AppKey and DevEUI if they are stored in plaintext on the end 
 ## Device Cloning
 Objective: Ensure that LoRaWAN has protection against cloned identities, specifically devices with the same DevEUI and AppKey. 
 
-### Setup
+### Setup:
 1. Flash identical credentials on two end devices.
 2. Power on both devices.
 3. Attempt to authenticate over the air on both devices.
@@ -34,7 +33,7 @@ Objective: Ensure that LoRaWAN has protection against cloned identities, specifi
 ## DevNonce Handling
 Objective: Make sure that the network server rejects reused DevNonce values during Over The Air Authentication (OTAA). Specifically, demonstrate that LoRaWAN has replay protection to prevent reused DevNonce values.
 
-### Setup
+### Setup:
 In order to target the join procedure between an end-device and the COTS gateway:
 1. Capture the join request through the network server logs, specifically recording DevEUI, DevNonce, and JoinEUI.
 2. Force the device to reboot without incrementing the DevNonce. Modify the firmware to send the same DevNonce as the last join request.
