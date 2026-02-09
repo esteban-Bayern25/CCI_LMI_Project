@@ -57,9 +57,28 @@ Objective: Determine whether the end device persists FCntUp across power cycles,
 3. Restore power.
 4. Observe the next uplink, and whether the server resumes count of the uplink, or resets.
 
+## Join Flooding
+Objective: Evaluate whether the LoRaWAN network (gateway + ChirpStack server) is resilient against excessive or malicious join attempts that attempt to exhaust network resources. Specifically, determine whether repeated OTAA Join Requests can:
+- Degrade network server performance
+- Prevent legitimate devices from successfully joining
+
+### Setup:
+1. Configure one end device to repeatedly send OTAA join requests by modifying its firmware
+2. Have one other end device join legitimately
+3. Observe logs on server to check if the device that was joining legitimately could join, or if the other device prevented it from joining
+
 ## Resilience to Malformed Frames
 Objective: Make sure malformed frames do not crash the gateway or server.
 
 ### Setup:
 1. Modify the end device's firmware to send an invalid MIC or corrupted MAC commands.
 2. Observe how the gateway and server handle the malformed frames, whether they crash or if memory leaks occur. 
+
+## Mapping Vulnerabilities with STRIDE
+| STRIDE Category  | Mist Vulnerability | Technical Impact |
+| ------------- | ------------- | ------------- |
+| Spoofing | Device Cloning | Devices with identical credentials as another authorized device and cause frame counter conflicts or cause DoS through identity collision |
+| Tampering  | Comprimised Gateway | A rogue gateway can interfere with packets that end devices send to the server |
+| Information Disclosure  | Credential Extraction | Through physical access to an end device, the AppKey and DevEUI may potentially be extracted if they are stored in plaintext on the device |
+| Denial of Service (DoS)  | Join Flooding | By transmitting many fake join requests, it prevents authorized devices from joining and sending legitimate traffic |
+| Elevation of Privilege | Network Server/API Misconfiguration | Attacker gains administrative access to the server, which allows them to register devices, modify keys, and disable security checks |
