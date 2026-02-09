@@ -12,6 +12,7 @@ However, LoRaWAN implementations may be vulnerable to:
 - Reusing DevNonce values
 - Malicious gateway
 - Frame counter (FCntUp / FCntDown) reset after power loss
+- Join flooding
 
 ## Credential Extraction
 Objective: Extract AppKey and DevEUI if they are stored in plaintext on the end devices with physical access. Determine whether the AppKey is extractable from the firmware or if firmware readout is possible. 
