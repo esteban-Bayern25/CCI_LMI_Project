@@ -87,7 +87,7 @@ Despite their different designs, both protocols share risks inherent to low-powe
 
 - Symmetric Key Risks: Both protocols utilize AES-128 for encryption and integrity. This means both are vulnerable if an attacker can extract the symmetric keys from a compromised device's memory or intercept them during a weak commissioning phase.
 
-
+![ZigBee Overview](https://multitech.com/iot-wiki/zigbee/)
 
     
 ### References
