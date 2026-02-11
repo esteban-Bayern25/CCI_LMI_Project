@@ -1,7 +1,7 @@
-#Inital Steps
+# Inital Steps
 
 
-##1. Install Linux:
+## 1. Install Linux:
 Prepare the Linux VM (VMware Workstation Pro)
 The Linux VM is the replay station and what performs analysis.
 
@@ -18,7 +18,7 @@ The Linux VM is the replay station and what performs analysis.
 - >sudo apt install wireshark tcpdump minicom python3-pip socat
 
 
-##2. Boot and Configure Raspberry Pi 5 
+## 2. Boot and Configure Raspberry Pi 5 
 Pi 5 is the gateway proxy
 
 1. Install Raspberry Pi 5 OS 
@@ -33,7 +33,7 @@ Install Tools:
 - >sudo apt install tcpdump iptables socat screen
 
 
-##3. Configure the Pi as a proxy relay
+## 3. Configure the Pi as a proxy relay
 Pi 5 should sit between:
 - NB-IoT Modem Connection
 - Remote endpoint
@@ -51,7 +51,7 @@ This allows:
 - replay testing
 
 
-##4. Set Up the Digi XBee NB-IoT Development Kit
+## 4. Set Up the Digi XBee NB-IoT Development Kit
 This is the UE device under test
 
 Kit includes: 
