@@ -1,35 +1,35 @@
 # Proposed Course
 
-1. Resilience to Coordinator/ Manager Failure
+1. Application-Level Attack
 2. Denial of Service Attacks
 
-#### Objective
-To quantify the operational resilience and security-depth of Mist compared to Zigbee Pro by simulating high-impact failure and attack scenarios.[^1]
+## Objective
+To quantify the operational resilience and security-depth of Mist compared to Zigbee Pro by simulating high-impact failure and attack scenarios.[^1] This plan evaluates the "Total Network Surrender" that occurs when a Zigbee Trust Center is compromised or lost, versus the Mist architecture's decentralized resilience.[^4]
 
-This refined plan focuses on the Centralized vs. Decentralized. Testing the "Total Network Surrender" that occurs when a Zigbee Trust Center is compromised or lost, versus the Mist architecture's resilience.[^4]
+## Test 1: Architectural Resilience (Availability + Denial of Service)
+- **Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization. A single spoofed management frame from a rogue coordinator can force nodes to abandon the legitimate network.
 
-### Test 1: Architectural Resilience (Availability + Denial of Service)
-- **Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization. In Zigbee, a single spoofed management frame from the "Source of Truth" can force nodes to abandon the legitimate network, leading to localized or total collapse.
+**The Scenario:** Network Realignment Attack
 
-- **The Scenario:** Target a specific router that has several child end-devices attached to it. Rather than jamming the signal, you will issue a "Realignment" command to that router.
+- **Target:** A specific Router with several child End Devices
 
-**The Attack:** 
-1. Recon: Identify the 16-bit Short Address and 64-bit Extended Address of Router_02 and the Coordinator.
-2. The Spoof: Use the nRF52840 Dongle to send a spoofed IEEE 802.15.4 MAC Command: Coordinator Realignment (0x07).
-3. The Payload: The frame will contain a New PAN-ID.
-4. The Result: Router_02 receives the frame, believes it came from its legitimate parent (the Coordinator), and immediately switches its radio to the new PAN-ID.
-5. The Collapse: Because the router has moved, its child end-devices (tags) are suddenly orphaned. They will attempt to "re-join," but since the "join window" on the real network is closed, they remain offline.
+- **The Attack:** 
+    1. Recon: Identify the 16-bit Short Address and PAN ID of the legitimate network. 
+    2. The Spoof: Use an nRF52840 Dongle (Sniffer/Attacker) to send a spoofed Coordinator Realignment (0x07) command. 
+    3. The Payload: The frame contains a new, rogue PAN ID
 
-- **Goal:** Prove that Zigbee’s centralized logic allows an attacker to "evict" the legitimate owner and take control of the topology, whereas Mist’s Local Survival Mode prevents such shifts because "Trust" is not tied to a single, spoofable PAN ID.
+- **Goal:** Prove that Zigbee’s centralized logic allows an attacker to "evict" the legitimate owner and take control of the topology, whereas Mist’s Local Survival Mode prevents such shifts because "Trust" is not tied to a single, spoofable PAN ID. The Router follows the spoofed command to the new PAN ID, orphaning its child devices and causing a localized Denial of Service (DoS)
 
-### Test 2: Trust Center Compromise (Confidentiality + Integrity)[^5]
-- **Thesis:** Zigbee’s security relies on a single "Master Key" (Link Key) that is often a well-known default; Mist uses identity-based unique keys.
+## Test 2: Trust Center Compromise (Confidentiality + Integrity)[^5]
+- **Thesis:** Zigbee’s security often relies on a "Master Key" (Link Key) that is vulnerable during initial exchange; Mist uses identity-based unique keys.
 
-- **The Attack:** You will use the nRF52840 Sniffer to capture the "Transport Key" during a device join. You will exploit the "ZigBeeAlliance09" default Link Key to decrypt that Transport Key, giving you the Network Key.
+**Scenario:** Key Extraction & Command Injection
+ - Recon: Use the nRF Sniffer to capture the Transport Key during a device join or reconnection event.
+ - The Exploit: Attempt to decrypt the Transport Key using the default "ZigBeeAlliance09" Link Key.
+ - The Payload: Once the Network Key is obtained, use a laptop and Scapy/Python to inject unauthorized application-level commands.
+ - The Goal: Prove that compromised integrity allows an attacker to "Spoof" sensor data or control commands across the entire network
 
-The Goal: Prove that once you have the Network Key, you can "Spoof" any command (e.g., turning a sensor off) because you now have the "Keys to the Kingdom."
-
-### Test Optional Defensive Longevity (Battery Exhaustion) - MAYBE??
+## Test Optional Defensive Longevity (Battery Exhaustion) - MAYBE??
 **Thesis:** Zigbee’s CSMA-CA (Always-Listening) routers are vulnerable to "Energy Depletion" attacks. Mist’s Request-Response (Scheduled-Sleep) model provides a "Temporal Firewall" against RF noise.
 
 - Experiment: Introduce "Rogue Node" noise—high-volume, non-network traffic meant to trigger the radio's "Listen" state.
@@ -47,7 +47,7 @@ Qualitative methods involve observing and interpreting the impact of attacks thr
 - Spoofing or compromising TC 
 [Home Assistant](https://www.home-assistant.io/integrations/sensor/)
 
-## Equipement list
+**Equipement list**
 
 | Commerical | Development Hardware | 
 | --- | --- | 

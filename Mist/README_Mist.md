@@ -45,4 +45,6 @@ client server relationship
 | Elevation of Privilege | "Slow-Down" Abuse | Forcing children to remain attached to a compromised parent node by maliciously increasing the "slow-down" rate. |
 
 
+How we plan to apprach the RSAE Mist refer to [Mist Approach](README_mistApproach.md)
+
 ### References
