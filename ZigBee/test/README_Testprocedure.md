@@ -77,12 +77,14 @@ Qualitative methods involve observing and interpreting the impact of attacks thr
 - wireshark
 - scapy
 - Zephyr RTOS
-- [API](https://docs.zephyrproject.org/apidoc/latest/structieee802154__radio__api.html) 
+- ![API](https://docs.zephyrproject.org/apidoc/latest/structieee802154__radio__api.html) 
 - nRF Connect for Desktop
 - zperf (Zephyr Utility)
 - Pyserial
 - Zigbee2MQTT or Home Assistant (ZHA)
-- [ApiMote](http://apimote.com/)
+- ![ApiMote](http://apimote.com/)
+- ![nRF Sniffer for 802.15.4](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/intro_802154.html)
+
 
 
 ### References
