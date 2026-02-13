@@ -11,13 +11,12 @@ Bring embdeed device to market build working linux to get features you want (emu
 
 **Steps**
 
-1. (Severse Set Identifer) SSID - testlab gateway connects to your network of testing
+1. (Service Set Identifer) SSID - testlab gateway connects to your network of testing
 2. Collector MQTT - IoT device logs
 
 3. SSH
 
 
-rf slient until join (intentional), prejoin admissions are absent before it joins post 
 
 ### Robust Category
 Test 1 - Motion test
@@ -39,6 +38,28 @@ think power outage, backhaul
 data buffer and flushes, reports from, data loss on backhaul outage
 data loss or mmg stores the data, flushing behavior 
 Credability mirors field deplyments 
+
+### Security Category
+
+Test 1 - Secure commisiong
+stable and rejoin only of MMG moves or power cycle  (automatic rejoin)
+
+Test 2 - rf slient until join (intentional), prejoin admissions are absent before it joins post 
+sniffer to see establishment of MMG back to network, maybe tags included 
+
+Test 3 - Over the air encryption -  maybe
+frames are being protected, and plain text rf caputred 
+
+### Latency Category
+Test 1 - latency under Interference
+tag event (motion, dynamic/trigger event) to MMG (Stationary) 
+20 trials (base) time stamp, logs
+
+Test 2 - latency under motion 
+same thing when MMG is moving 
+
+Test 3 - combining both Test 1 and Test 2
+Another interfernece or distrubtion to MMG 
 
 
 
