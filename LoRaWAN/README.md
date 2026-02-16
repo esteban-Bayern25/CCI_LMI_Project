@@ -76,7 +76,7 @@ Objective: Make sure malformed frames do not crash the gateway or server.
 2. Observe how the gateway and server handle the malformed frames, whether they crash or if memory leaks occur. 
 
 ## Mapping Vulnerabilities with STRIDE
-| STRIDE Category  | Mist Vulnerability | Technical Impact |
+| STRIDE Category  | LoRaWAN Vulnerability | Technical Impact |
 | ------------- | ------------- | ------------- |
 | Spoofing | Device Cloning | Devices with identical credentials as another authorized device and cause frame counter conflicts or cause DoS through identity collision |
 | Tampering  | Comprimised Gateway | A rogue gateway can interfere with packets that end devices send to the server |
