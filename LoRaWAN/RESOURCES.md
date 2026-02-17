@@ -1,0 +1,1 @@
+MultiTech Gateway Documentation: https://multitech.com/product/multitech-conduit-mtcdt-247a-915-us-eu-gb/
