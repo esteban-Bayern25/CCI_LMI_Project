@@ -90,5 +90,25 @@ That confirms:
 - network registration
 
 
+## 5. Establish the Test Traffic Path
+Connect the system logically:
+
+XBee NB-IoT Modem
+   ↓ USB serial
+Raspberry Pi proxy
+   ↓ TCP relay
+Linux VM capture tools
+
+The Pi becomes the traffic control point where you can:
+- delay ACKs
+- drop ACKs
+- replay ACKs
+- flood responses
+
+Which aligns directly with the two test scenarios:
+
+- ACK replay via proxy manipulation
+- replay-flood battery exhaustion
 
 
+## 6. USB Inline power Meter setup
