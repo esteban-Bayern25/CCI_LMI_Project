@@ -94,9 +94,13 @@ That confirms:
 Connect the system logically:
 
 XBee NB-IoT Modem
+
    ↓ USB serial
+   
 Raspberry Pi proxy
+
    ↓ TCP relay
+   
 Linux VM capture tools
 
 The Pi becomes the traffic control point where you can:
@@ -112,3 +116,27 @@ Which aligns directly with the two test scenarios:
 
 
 ## 6. USB Inline power Meter setup
+This measures battery/resource exhaustion effects
+
+Connect:
+Power source → USB meter → NB-IoT dev board
+
+Record:
+- idle current
+- transmit current
+- retry-loop current
+
+Gives us:
+- battery drain comparison
+- replay-flood impact data
+
+
+
+## Recap of what Test Environment is Doing:
+We are building a controlled NB-IoT adversarial network simulation lab where:
+- The NB-IoT dev kit behaves as the IoT device
+- The Raspberry Pi behaves as a compromised gateway
+- The Linux VM performs capture + replay
+- The power meter measures physical impact
+
+This environment serves as a protocol-resilience testbed
