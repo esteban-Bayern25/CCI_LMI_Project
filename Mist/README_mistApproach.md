@@ -65,3 +65,5 @@ Another interfernece or distrubtion to MMG
 
 ### Vulnerabilites
     - Access the UI on FMG Dongle 
+
+- [Chip NXP i.MX6UL 696 MHz CPU Vulnerability](https://www.cve.org/CVERecord?id=CVE-2022-45163)
