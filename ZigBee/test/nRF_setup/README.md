@@ -10,3 +10,5 @@
 [For linux VS code](https://docs.nordicsemi.com/bundle/ncs-latest/page/nrf/installation/install_ncs.html#install-ncs)
 
 [Documentation for the XBEE Zigbee Mesh Kit](https://docs.digi.com//resources/documentation/digidocs/90001942-13/#concepts/c_xctu.htm?TocPath=Get%2520started%2520with%2520XBee%2520Zigbee%257C_____2)
+
+[Setting up the home assistant](https://www.home-assistant.io/installation/raspberrypi)
