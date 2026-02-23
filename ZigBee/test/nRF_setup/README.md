@@ -12,3 +12,15 @@
 [Documentation for the XBEE Zigbee Mesh Kit](https://docs.digi.com//resources/documentation/digidocs/90001942-13/#concepts/c_xctu.htm?TocPath=Get%2520started%2520with%2520XBee%2520Zigbee%257C_____2)
 
 [Setting up the home assistant](https://www.home-assistant.io/installation/raspberrypi)
+
+https://github.com/makerdiary/ncs-playground?tab=readme-ov-file
+
+https://wiki.makerdiary.com/nrf52840-mdk-usb-dongle/guides/ncs/setup/#get-the-code
+
+https://wiki.makerdiary.com/nrf52840-mdk-usb-dongle/guides/ncs/samples/zigbee/shell/
+
+https://github.com/kardia-as/zigpy-zboss
+
+https://github.com/ffenix113/zigbee_home/discussions/8
+
+https://shillehtek.com/blogs/news/raspberry-pi-zigbee-dongle-plus-e-zigbee2mqtt
