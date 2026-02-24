@@ -24,3 +24,6 @@ https://github.com/kardia-as/zigpy-zboss
 https://github.com/ffenix113/zigbee_home/discussions/8
 
 https://shillehtek.com/blogs/news/raspberry-pi-zigbee-dongle-plus-e-zigbee2mqtt
+
+
+https://www.youtube.com/watch?v=xvVvBKk9dN4
