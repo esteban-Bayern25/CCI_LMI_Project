@@ -27,3 +27,30 @@ https://shillehtek.com/blogs/news/raspberry-pi-zigbee-dongle-plus-e-zigbee2mqtt
 
 
 https://www.youtube.com/watch?v=xvVvBKk9dN4
+
+#### Want GPS?
+https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/425/109020022_Web.pdf
+https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/109020022/12323450
+https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/110990031/5482557
+
+#### Micropython Programming Approach
+https://docs.digi.com/resources/documentation/digidocs/90002219/#reference/r_syntax.htm?TocPath=Differences%2520between%2520MicroPython%2520and%2520other%2520programming%2520languages%257CSyntax%257C_____0
+
+**https://docs.digi.com/resources/documentation/digidocs/rf-docs/blu/blu-appdev-develop-micropython_t.html**
+https://www.youtube.com/watch?v=ewImad6YckE
+
+### Wireshark comands to filter
+zbee.sec.key_id
+zbee.sec.decryption_key (Allows you to find the Transport Key)
+zbee_nwk.addr == 0xc4e9 (Allows you to narrow the primary device)
+
+Zigbee Cluster Library (ZCL): defines standard clusters and commands so devices can interoperate.
+
+Once we have the relevant keys, the decryption process is straightforward:
+
+
+1 Open the capture in Wireshark.
+2 Go to Edit -> Preferences -> Protocols -> Zigbee.
+3 Add the network key and any link keys in our possession.
+4 Wireshark will then show decrypted APS payloads and higher-level Zigbee packets.
+After successful decryption, packet types and readable application commands will be visible, such as Link Status or on/off cluster commands:
