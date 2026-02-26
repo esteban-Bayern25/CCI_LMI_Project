@@ -4,3 +4,4 @@
 2. Digi Xbee 3 tutorial https://www.youtube.com/watch?v=FfMYobYBWi8&pp=ygUSZGlnaSB4YmVlIDMgbmIgaW90
 3. Raspberry Pi 5 setup https://www.raspberrypi.com/documentation/computers/getting-started.html
 4. DROK USB multimeter tester tutorial https://www.youtube.com/watch?v=sh_WaKZMCK4
+5. VMware Pro Workstation Linux download on Windows tutorial https://www.youtube.com/watch?v=XzD8JIAOk2I&pp=ygUndm13YXJlIHdvcmtzdGF0aW9uIHBybyBsaW51eCBvbiB3aW5kb3dz
