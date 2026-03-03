@@ -50,21 +50,7 @@ https://docs.nordicsemi.com/bundle/ncs-2.9.2/page/nrf/samples/zigbee/shell/READM
 https://forums.digi.com/t/decrypting-encrypted-xbee3-traffic-wireshark/23700
 https://digiblur.com/2021/08/21/zigbee-network-key-sniffing/
 
-### Wireshark comands to filter
-zbee.sec.key_id
-zbee.sec.decryption_key (Allows you to find the Transport Key)
-zbee_nwk.addr == 0xc4e9 (Allows you to narrow the primary device)
 
-Zigbee Cluster Library (ZCL): defines standard clusters and commands so devices can interoperate.
-
-Once we have the relevant keys, the decryption process is straightforward:
-
-
-1 Open the capture in Wireshark.
-2 Go to Edit -> Preferences -> Protocols -> Zigbee.
-3 Add the network key and any link keys in our possession.
-4 Wireshark will then show decrypted APS payloads and higher-level Zigbee packets.
-After successful decryption, packet types and readable application commands will be visible, such as Link Status or on/off cluster commands:
 
 #### Xbee working with Zigbee2MQTT
 https://www.digi.com/support/knowledge-base/can-digi-s-xbee-zb-modules-communicate-with-other

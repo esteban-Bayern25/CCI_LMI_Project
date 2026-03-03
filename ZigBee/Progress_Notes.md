@@ -1,6 +1,6 @@
-# Progress updates for LMI
+# Progress Updates for LMI
 
-#### 02/23/2024
+## 02/23/2024
 Setting up the ZigBee network with a raspberry pi 5 device, ZigBee MQTT mosquito, and a ZigBee Dongle P
 
 ![Image of the Zigbee Setup with Commerical Products](/assets/images/zigbee/progress_zigbee/zigbee_setup_commerical.png)
@@ -24,20 +24,28 @@ In Wireshark you are able to apply filters to get the information you are lookin
 With these filters able to narrow down to which specific packet has the transport key (pkt 31) contains the standard network key transmitted at transport key
 ![Wireshark capture of transport key](/assets/images/zigbee/progress_zigbee/wireshark_capture_transportKey.png)
 
-#### 02/24/2026
+## 02/24/2026
 With the zigbee2MQTT able to see a visualization of the mesh network IRL
 
 ![Zigbee Mesh Network IRL](/assets/images/zigbee/progress_zigbee/zigbee_meshNetwork_IRL.png)
 
-#### 02/25/2026
+## 02/25/2026
 Able to see futher information in wireshark to see who is the communication with and how long they communicated for along with bytes payload 
 
 Note to see further information ``` Statistical → conversations ```
 
 ![Wireshark capture information](/assets/images/zigbee/progress_zigbee/wireshark_statistical_capture.png)
 
-#### 02/26/2026
+## 02/26/2026
 Once keys are obtain you are able to enter them in wireshark (in preference setting, go to protocol, search for zigbee, enter keys)
+
+Here are a list of steps you can take:
+1. Open the capture in Wireshark.
+2. Go to Edit -> Preferences -> Protocols -> Zigbee.
+3. Add the network key and any link keys in our possession.
+4. Wireshark will then show decrypted APS payloads and higher-level Zigbee packets.
+
+After successful decryption, packet types and readable application commands will be visible, such as Link Status or on/off cluster commands
 
 ![Information is Decrypted](/assets/images/zigbee/progress_zigbee/wireshark_keysObtained_InfoUnlocked.png)
 ![Information on end device Door sensor](/assets/images/zigbee/progress_zigbee/commerical_endDevice_info.png)
@@ -46,7 +54,7 @@ Went about setting up the Digi Xbee Zigbee Mesh Kit. For more information regard
 
 ![Digi Xbee setup on XCTU](/assets/images/zigbee/progress_zigbee/DigiXbee_setup_XCTU.png)
 
-#### 02/27/2026
+## 02/27/2026
 Able to configure the device to the end device to join the router
 Following [guide line](https://forums.digi.com/t/force-the-end-device-connect-to-one-of-the-router/16661/5) helped
 
@@ -65,14 +73,14 @@ Side task: Note when working with pycharm to do the Digi Xbee MicroPython config
 
 ![Testing for microPython](/assets/images/zigbee/progress_zigbee/DigiXbee_microPython_example.png)
 
-#### 02/28/2026
+## 02/28/2026
 More messing around in the XCTU via sending packets
 
 ![End device perspective](/assets/images/zigbee/progress_zigbee/DigiXbee_XCTU_messingAround1.png)
 ![Coordinator perspective](/assets/images/zigbee/progress_zigbee/DigiXbee_XCTU_messingAround2.png)
 ![Router perspective](/assets/images/zigbee/progress_zigbee/DigiXbee_XCTU_messingAround3.png)
 
-#### 03/02/2026
+## 03/02/2026
 Tried getting the Xbee module to join the Zigbee2MQTT and it was a success, and it sees it as a router, however having difficulty getting logs or information
 
 Commands to get the Digi Xbee module to join again from the console log are shown below
@@ -82,6 +90,8 @@ Commands to get the Digi Xbee module to join again from the console log are show
 ![Log confirmation of Xbee device joining](/assets/images/zigbee/progress_zigbee/Zigbee2MQTT_log_XbeeDevice_Join.png)
 ![Updated visual network](/assets/images/zigbee/progress_zigbee/zigbee2MQTT_visual_IRL.png)
 
-#### 03/03/2026
+## 03/03/2026
+
+#### Sending spoofed packets via nRR52480
 Setting up the nRF5280 Dongle to perform a WHAD (Wireless Hacking Device) to be able to spoof the end device with butterfly tool
 
