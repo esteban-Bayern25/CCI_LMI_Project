@@ -13,8 +13,8 @@ Information regarding Mist is here: [Mist](Mist/README_Mist.md)
 
 ## LoRaWAN Protocol
 
-Information regarding LoRaWAN is here: [LoRaWAN](LoRaWAN/README.md)
+Information regarding LoRaWAN is here: [LoRaWAN](LoRaWAN/)
 
 ## NB-IOT Protocol
 
-Information regarding NB-IoT is here: [NB-IoT](NB-IoT/README_NB-IoT%20Setup.md)
+Information regarding NB-IoT is here: [NB-IoT](NB-IoT/)
