@@ -39,6 +39,17 @@ https://docs.digi.com/resources/documentation/digidocs/90002219/#reference/r_syn
 **https://docs.digi.com/resources/documentation/digidocs/rf-docs/blu/blu-appdev-develop-micropython_t.html**
 https://www.youtube.com/watch?v=ewImad6YckE
 
+#### Setting up nRF52840 to be able to send pacekts links
+https://www.home-assistant.io/integrations/zha/
+https://github.com/zigpy/zigpy-xbee
+https://pypi.org/project/zigpy-zboss/
+https://github.com/ThomasGerstenberg/blatann
+https://docs.nordicsemi.com/bundle/ncs-latest/page/zephyr/boards/nordic/nrf52840dongle/doc/index.html#nrf52840dongle
+https://docs.zephyrproject.org/latest/boards/nordic/nrf52840dongle/doc/index.html
+https://docs.nordicsemi.com/bundle/ncs-2.9.2/page/nrf/samples/zigbee/shell/README.html
+https://forums.digi.com/t/decrypting-encrypted-xbee3-traffic-wireshark/23700
+https://digiblur.com/2021/08/21/zigbee-network-key-sniffing/
+
 ### Wireshark comands to filter
 zbee.sec.key_id
 zbee.sec.decryption_key (Allows you to find the Transport Key)
@@ -54,3 +65,11 @@ Once we have the relevant keys, the decryption process is straightforward:
 3 Add the network key and any link keys in our possession.
 4 Wireshark will then show decrypted APS payloads and higher-level Zigbee packets.
 After successful decryption, packet types and readable application commands will be visible, such as Link Status or on/off cluster commands:
+
+#### Xbee working with Zigbee2MQTT
+https://www.digi.com/support/knowledge-base/can-digi-s-xbee-zb-modules-communicate-with-other
+
+https://www.digi.com/support/knowledge-base/zigbee-home-automation
+https://docs.digi.com/resources/documentation/digidocs/pdfs/90001539.pdf
+
+#### Sending spoofed packets via nRF52480
