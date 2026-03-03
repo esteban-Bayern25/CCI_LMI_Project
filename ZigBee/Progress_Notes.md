@@ -94,4 +94,7 @@ Commands to get the Digi Xbee module to join again from the console log are show
 
 #### Sending spoofed packets via nRR52480
 Setting up the nRF5280 Dongle to perform a WHAD (Wireless Hacking Device) to be able to spoof the end device with butterfly tool
-
+**Note** would strongly recommend doing in a virtual enviornment
+steps to setup virtual enviornment can be referenced [here](https://docs.python.org/3/tutorial/venv.html)
+For more information and setup with the dongle and WHAD [please refer to here](https://whad.readthedocs.io/en/latest/install.html)
+![WHAD setup on other device](/assets/images/zigbee/progress_zigbee/buttefly_WHAD.png)
