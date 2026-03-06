@@ -17,11 +17,12 @@ This was able to capture the information of the network in which it was able to 
 ![Wireshark capture of the Zigbee Network](/assets/images/zigbee/progress_zigbee/wireshark_capture_deviceJoin.png)
 
 In Wireshark you are able to apply filters to get the information you are looking for with these key words:
-``` zbee.sec.key_id ```
-``` zbee.sec.decryption_key ``` Allows you to find the Transport Key
-``` zbee_nwk.addr == ADDRESS ``` Allows you to narrow the primary device
+- ``` zbee.sec.key_id ```
+- ``` zbee.sec.decryption_key ``` Allows you to find the Transport Key
+- ``` zbee_nwk.addr == ADDRESS ``` Allows you to narrow the primary device
 
 With these filters able to narrow down to which specific packet has the transport key (pkt 31) contains the standard network key transmitted at transport key
+
 ![Wireshark capture of transport key](/assets/images/zigbee/progress_zigbee/wireshark_capture_transportKey.png)
 
 ## 02/24/2026
@@ -99,7 +100,7 @@ steps to setup virtual enviornment can be referenced [here](https://docs.python.
 For more information and setup with the dongle and WHAD [please refer to here](https://whad.readthedocs.io/en/latest/install.html)
 ![WHAD setup on other device](/assets/images/zigbee/progress_zigbee/buttefly_WHAD.png)
 
-![Investigate futher](https://whad.readthedocs.io/en/latest/cli/generic/wsniff.html)
+[Investigate futher](https://whad.readthedocs.io/en/latest/cli/generic/wsniff.html)
 https://medium.com/@biero-llagas/poc-modified-replay-attack-on-zigbee-in-2026-how-hard-can-it-be-2da75901fc7d
 
 ## 03/04/2026
@@ -112,8 +113,8 @@ Some sites to point the way:
 
  [This (adding zigbee to zigbee2MQTT)](https://www.digi.com/support/knowledge-base/zigbee-home-automation) is imporant as it allows you to configure the Zigbee 3.0 Xbee module to be added to the network
 
- Extra steps to help
- Because you deleted the device from the Z2M dashboard, the Coordinator has "forgotten" the XBee. You must force a fresh association:
+Extra steps to help
+Because you deleted the device from the Z2M dashboard, the Coordinator has "forgotten" the XBee. You must force a fresh association:
 
 Open the Window: In your Zigbee2MQTT dashboard, click "Permit join (All)".
 
@@ -147,3 +148,35 @@ Able to configure all Digi Xbee Device to create the ZigBee Mesh Network as show
 ![Digi XBee ZigBee Network](/assets/images/zigbee/progress_zigbee/DigiXbee_ZigBee_MeshNetwork.png)
 
 A test to confirm if the sniffer will be able to pick up the Digi Xbee Mesh network (yes maybe, need further investigation into pcap)
+
+## 03/06/2026
+Further investigation into the pcap file 
+
+So far what you are able to see is the devices that are communcating with the mesh network
+In the pcap file capture we have MAC address of the Xbee Modules as well as the DST PAN IDs
+![Pcap Capture of Digi Xbee Mesh Network](/assets/images/zigbee/progress_zigbee/Wireshark_DigiXbee_captureTest1.png)
+
+What this also means in the pcap analysis is that 
+1. **Mesh Logic:** Even though the final target is the End Device (0xFF8E), the Coordinator is physically sending this packet to ROUTER_1. This proves that your configuration worked—the Coordinator is using the Router as a "next hop" rather than talking to the End Device directly.
+2. **APS Layer vs. MAC Layer ACKs:**
+    - MAC ACKs (Rows 12-20): These are "hop-by-hop" confirmations. They only prove the radio signal made it to the next immediate neighbor.
+    - APS ACKs (Row 11): These are "end-to-end" confirmations. This is the Coordinator telling the End Device, "I received your data and processed it at the application level."
+
+You are able to see the Address of the Xbee Modules being used in the Mesh network
+- 0x0000 = Coordinator
+- 0x3c1c = Router 1
+- 0x621b = Router 2
+- 0xFF8E = End device
+
+commands to narrow down what you are looking for 
+``` zbee_nwk.addr == ADDRESS ```
+
+Need to enable encryption to be able to read transport keys, key parameters
+- EE = 1
+- EO = 1
+- KY = 0x59 (KeyAlliance09 "standard")
+
+These allow you to be able to from an encrupted mesh network that can then be sniffed with the dongle device then you can narrow down with the previous commands
+An image of the keys captured:
+
+![Key Captured via the Digi Xbee Zigbee Mesh network](/assets/images/zigbee/progress_zigbee/Wireshark_DigiXbee_Key_captured.png)
