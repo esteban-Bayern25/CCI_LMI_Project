@@ -98,3 +98,52 @@ Setting up the nRF5280 Dongle to perform a WHAD (Wireless Hacking Device) to be 
 steps to setup virtual enviornment can be referenced [here](https://docs.python.org/3/tutorial/venv.html)
 For more information and setup with the dongle and WHAD [please refer to here](https://whad.readthedocs.io/en/latest/install.html)
 ![WHAD setup on other device](/assets/images/zigbee/progress_zigbee/buttefly_WHAD.png)
+
+![Investigate futher](https://whad.readthedocs.io/en/latest/cli/generic/wsniff.html)
+https://medium.com/@biero-llagas/poc-modified-replay-attack-on-zigbee-in-2026-how-hard-can-it-be-2da75901fc7d
+
+## 03/04/2026
+
+Is there a way to get the Xbee module communicting with the Zigbee2MQTT, I have it on the network but there is a communication issue
+Some sites to point the way:
+ - [Xbee Guide from other members in community](https://community.hubitat.com/t/everything-xbee/2328)
+ - [Hackday project look into more depth](https://hackaday.io/project/178435-mr-miffy-rgb-led-module/log/190831-communicating-with-zigbee2mqtt)
+ - [Might prove useful for the configuration](https://www.zigbee2mqtt.io/guide/configuration/)
+
+ [This (adding zigbee to zigbee2MQTT)](https://www.digi.com/support/knowledge-base/zigbee-home-automation) is imporant as it allows you to configure the Zigbee 3.0 Xbee module to be added to the network
+
+ Extra steps to help
+ Because you deleted the device from the Z2M dashboard, the Coordinator has "forgotten" the XBee. You must force a fresh association:
+
+Open the Window: In your Zigbee2MQTT dashboard, click "Permit join (All)".
+
+Reset the Network: In the XCTU console (after typing +++), type ATNR0.
+
+Note: If ATNR is still missing from your view, use the physical reset button or type ATFR to reboot the radio.
+
+Watch the Logs: As soon as the XBee reboots, look at the Z2M logs. You should see:
+
+info: z2m: Device '0x0013a200425e914e' joined.
+
+info: z2m: Successfully interviewed 'Xbee_router1'.
+
+https://www.youtube.com/watch?v=BJ-jw_O3YF8
+
+## 03/05/2026
+
+Getting the other Xbee Modules configured to be routers for the mesh network topology
+
+Xbee Module configued with the Zigbee2MQTT
+CE 0
+ZS 2
+EE 1
+E0 2
+KY zigbeealliance
+AP 1
+AO 3
+
+Able to configure all Digi Xbee Device to create the ZigBee Mesh Network as shown below
+
+![Digi XBee ZigBee Network](/assets/images/zigbee/progress_zigbee/DigiXbee_ZigBee_MeshNetwork.png)
+
+A test to confirm if the sniffer will be able to pick up the Digi Xbee Mesh network (yes maybe, need further investigation into pcap)
