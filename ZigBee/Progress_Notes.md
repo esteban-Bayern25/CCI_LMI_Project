@@ -180,3 +180,34 @@ These allow you to be able to from an encrupted mesh network that can then be sn
 An image of the keys captured:
 
 ![Key Captured via the Digi Xbee Zigbee Mesh network](/assets/images/zigbee/progress_zigbee/Wireshark_DigiXbee_Key_captured.png)
+
+END_DEVICE1 Configurations parameters:
+- CE = 0
+- ID 2015
+- JV = 1
+- EE = 1
+- EO = 1
+- SM = Cyclic Sleep [4]
+- SP = 1F4
+
+Able to configure the end device to broadcast GPS coordinates via MicroPython
+[GPRMC Strucutre](https://docs.novatel.com/OEM7/Content/Logs/GPRMC.htm)
+
+## 03/07/2026
+
+Had to reset all the devices and try again
+All devices now connceted to the mesh network
+
+## 03/09/2026
+
+All devices are communicating with one another
+
+| Line Color  | Meaning | 
+| ------------- | ------------- |
+| Solid Green  | Active, high-quality routing path. |
+| Dashed Grey  | Known neighbor, but no recent data.  |
+| Inactive     | Device was seen but is now unreachable. |
+
+![Setup Configurations](/assets/images/zigbee/progress_zigbee/DigiXbee_representation_configWCoord.png)
+
+End device to connect to the router 
