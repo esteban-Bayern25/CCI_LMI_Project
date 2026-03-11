@@ -211,3 +211,23 @@ All devices are communicating with one another
 ![Setup Configurations](/assets/images/zigbee/progress_zigbee/DigiXbee_representation_configWCoord.png)
 
 End device to connect to the router 
+
+## 03/10/2026
+
+For sniffing packets via the WHAD 
+```
+wsniff -i uart0 -w dot15d4 --channel 19 
+```
+
+Looking into for packet injection 
+[Packet Injection](https://whad.readthedocs.io/en/latest/cli/generic/winject.html)
+[Insightfull](https://www.youtube.com/watch?v=TZb6WDAmbnE)
+
+## 03/11/2026
+
+Network visualizer issue
+Wanting to reset the network issue an AT Command NR
+Allows device to retry and join the Coord Zigbee network
+[Another experiment with sniffer](https://www.zigbee2mqtt.io/advanced/zigbee/04_sniff_zigbee_traffic.html#using-zsmart-systems-sniffer)
+
+![New version of Xbee Studio](/assets/images/zigbee/progress_zigbee/DigiXbee_Studio_Zigbee_topology_better.png)
