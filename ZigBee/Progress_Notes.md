@@ -231,3 +231,5 @@ Allows device to retry and join the Coord Zigbee network
 [Another experiment with sniffer](https://www.zigbee2mqtt.io/advanced/zigbee/04_sniff_zigbee_traffic.html#using-zsmart-systems-sniffer)
 
 ![New version of Xbee Studio](/assets/images/zigbee/progress_zigbee/DigiXbee_Studio_Zigbee_topology_better.png)
+
+So far the packet sniffer allows for capture offline 
