@@ -22,7 +22,7 @@ Objective: Extract AppKey and DevEUI if they are stored in plaintext on the end 
 2. Dump device's flash memory with esptool.py.
 4. Identify the serial port using `mode`, for me it was COM8
 
-![Esptool_size_output](\..\assets\images\lorawan\device_manager_showing_wireless_tracker_com8.png)  
+![Esptool_size_output](../assets/images/lorawan/device_manager_showing_wireless_tracker_com8.png)  
 5. Dump the entire flash.
 ```bash
 # First detect boot size
@@ -32,15 +32,15 @@ python -m esptool --port COM8 read-flash 0x00000000 0x800000 flash_dump.bin
 ```
 
 This was my output:
-![Esptool_size_output](\..\assets\images\lorawan\esptool_size_output.png)  
+![Esptool_size_output](../assets/images/lorawan/esptool_size_output.png)  
 
 3. If the dump is successful, find the AppKey and DevEUI. In my case, the dump was successful:
-![flash_dump](\..\assets\images\lorawan\flash_dump.png)  
+![flash_dump](../assets/images/lorawan/flash_dump.png)  
 However, I needed to look through the binary file that was generated. I chose to use Ghidra since it is a well-known software reverse engineering framework. 
 I opened Ghidra and searched for the AppKey that I used when I configured the AppKey using Arduino:
-![flash_dump](\..\assets\images\lorawan\app_key_in_dump.png)  
+![flash_dump](../assets/images/lorawan/app_key_in_dump.png)  
 The AppKey, as well as the devEui and appEui were all stored in plaintext. After finding the specific address where these were found, I dumped the other device's flash memory and found that the keys were also stored in plaintext in the exact same addresses as before, which is a serious security vulnerability.  
-![flash_dump_2](\..\assets\images\lorawan\other_dump.png) 
+![flash_dump_2](../assets/images/lorawan/other_dump.png) 
 
 
 ## Device Cloning
