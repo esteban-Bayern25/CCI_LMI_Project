@@ -31,7 +31,7 @@ python -m esptool --port COM8 flash-id
 python -m esptool --port COM8 read-flash 0x00000000 0x800000 flash_dump.bin
 ```
 
-This was my output:
+This was my output:  
 ![Esptool_size_output](../assets/images/lorawan/esptool_size_output.png)  
 
 3. If the dump is successful, find the AppKey and DevEUI. In my case, the dump was successful:
