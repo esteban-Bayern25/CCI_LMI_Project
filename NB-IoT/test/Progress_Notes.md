@@ -8,6 +8,8 @@ Preparing Linux VM System (VMware Workstation Pro) on device
    - 8 GB RAM
    - Bridged networking
    - USB passthrough enabled
+3. Download Windows 11 ISO through the Microsoft Website https://www.microsoft.com/en-us/software-download/windows11
+4. Setup and create a Virtual Machine on Windows https://www.youtube.com/watch?v=3cK8YHO0fWo&t=74s
 
 ## 02/26/2026
 Prepare Documentation for User Setup for Digi Xbee 3 
