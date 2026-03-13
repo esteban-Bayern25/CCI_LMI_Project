@@ -37,7 +37,7 @@ This was my output:
 3. If the dump is successful, find the AppKey and DevEUI. In my case, the dump was successful:
 ![flash_dump](../assets/images/lorawan/flash_dump.png)  
 However, I needed to look through the binary file that was generated. I chose to use Ghidra since it is a well-known software reverse engineering framework. 
-I opened Ghidra and searched for the AppKey that I used when I configured the AppKey using Arduino:
+I opened Ghidra and searched for the AppKey that I used when I configured the AppKey using Arduino IDE:
 ![flash_dump](../assets/images/lorawan/app_key_in_dump.png)  
 The AppKey, as well as the devEui and appEui were all stored in plaintext. After finding the specific address where these were found, I dumped the other device's flash memory and found that the keys were also stored in plaintext in the exact same addresses as before, which is a serious security vulnerability.  
 ![flash_dump_2](../assets/images/lorawan/other_dump.png) 
@@ -60,6 +60,9 @@ After the baseline was done, I flashed identical credentials on the devices usin
 3. Attempt to authenticate over the air on both devices, this is done automatically from the C++ program.
 4. Observe if the server validates each device, or if any error logs are generated.
 
+In my case, no error logs were generated. Both devices successfully joined using the same credentials. 
+![device_clone](../assets/images/lorawan/device_clone.png) 
+This highlights another serious vulnerability, where a rogue device can join the network once it has the same devEUI, appEUI, and appKey when joining with Over the Air Authentication (OTAA). 
 
 ## DevNonce Handling
 Objective: Make sure that the network server rejects reused DevNonce values during Over The Air Authentication (OTAA). Specifically, demonstrate that LoRaWAN has replay protection to prevent reused DevNonce values.
