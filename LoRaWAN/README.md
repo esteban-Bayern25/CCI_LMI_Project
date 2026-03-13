@@ -67,12 +67,19 @@ This highlights another serious vulnerability, where a rogue device can join the
 ## DevNonce Handling
 Objective: Make sure that the network server rejects reused DevNonce values during Over The Air Authentication (OTAA). Specifically, demonstrate that LoRaWAN has replay protection to prevent reused DevNonce values.
 
+For some devices, the DevNonce is stored in RAM and not persistent storage, which means the DevNonce value may reset if the device is reset. To test this, I captured join requests with ChirpStack and hit the reset button on the wireless tracker over and over again to see if there would be a different DevNonce value each time, and there was. This meant that the device did correctly create a new DevNonce everytime it wanted to join. This behavior helps prevent replay attacks since the network will reject any request to join that has the same DevNonce value as a prior attempt. This also meant that I had to change the firmware manually to send the same DevNonce for every join request.
+
 ### Setup:
 In order to target the join procedure between an end-device and the COTS gateway:
-1. Capture the join request through the network server logs, specifically recording DevEUI, DevNonce, and JoinEUI.
-2. Force the device to reboot without incrementing the DevNonce. Modify the firmware to send the same DevNonce as the last join request.
+1. Capture the join request through the network server logs, specifically recording the DevNonce.
+2. Force the device to reboot without incrementing the DevNonce. Modify the firmware to send the same DevNonce as the last join request. I did this through changing the source code for the Arduino IDE library that I was using to flash the wireless trackers. In the source code, there is a file called `LoRaMac.c`, which specifically sets the DevNonce value. 
+![devnonce_default](../assets/images/lorawan/devnonce_default.png) 
+I changed this to be a static value, specifically a DevNonce value that I observed in the logs when the end-device sent a JoinRequest.
+![modified_devnonce](../assets/images/lorawan/modified_devnonce.png) 
+I flashed the wireless tracker with the new code. 
 3. Transmit the join request with the DevNonce.
-4. Observe if the network server accepted or rejected the request.
+4. Observe if the network server accepted or rejected the request. I found that the server did not accept the request, which demonstrates how LoRaWAN prevents replay attacks by keeping track of DevNonce values.
+![join_requests](../assets/images/lorawan/join_requests.png) 
 
 ## Malicious Gateway
 Objective: Figure out if a malicious gateway that pretends to be legitimate can alter traffic from an end device to a real gateway.
@@ -97,9 +104,15 @@ Objective: Evaluate whether the LoRaWAN network (gateway + ChirpStack server) is
 - Prevent legitimate devices from successfully joining
 
 ### Setup:
-1. Configure one end device to repeatedly send OTAA join requests by modifying its firmware
+1. Configure one end device to repeatedly send OTAA join requests by modifying its firmware. I did this with Arduino IDE and the following code:
+![join_request](../assets/images/lorawan/modified_code.png)
 2. Have one other end device join legitimately
-3. Observe logs on server to check if the device that was joining legitimately could join, or if the other device prevented it from joining
+3. Observe logs on server to check if the device that was joining legitimately could join, or if the other device prevented it from joining. In my case, it didn't seem to impact legitimate traffic even though many join requests were sent. I also compared the time between each uplink and downlink during join flooding and without it, and didn't find much of a difference between the timing.   
+This was the normal tracker with legitimate traffic:  
+![join_request](../assets/images/lorawan/normal_tracker_during_joins.png)
+And this was the device that was sending join requests every couple seconds: 
+![join_request](../assets/images/lorawan/multiple_join_request_device.png)
+Overall, it didn't seem to have much of an impact, so I would say that LoRaWAN does defend well against this attack. 
 
 ## Resilience to Malformed Frames
 Objective: Make sure malformed frames do not crash the gateway or server.
