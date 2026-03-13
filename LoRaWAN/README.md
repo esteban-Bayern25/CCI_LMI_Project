@@ -46,11 +46,20 @@ The AppKey, as well as the devEui and appEui were all stored in plaintext. After
 ## Device Cloning
 Objective: Ensure that LoRaWAN has protection against cloned identities, specifically devices with the same DevEUI and AppKey. 
 
+Before setup, I made sure to capture packets of legitimate traffic as a baseline to compare to for this test. Below are screenshots of the logs in ChirpStack for both wireless trackers.
+![flash_dump_2](../assets/images/lorawan/wireless_tracker_1_logs.png) 
+![flash_dump_2](../assets/images/lorawan/wireless_tracker_2_logs.png) 
+There are many instances of Confirmed Data Up, which means that the device sends packets and expects an ACK from the network server. There are also a few instances of Unconfirmed Data Down, which means that the server sent a downlink without requiring the device tto acknowledge it. This is the default for downlinks because it saves batery and airtime. The MultiTech Gateway was set up as a packet forwarder, which means it does not enforce reliability rules. 
+
+After the baseline was done, I flashed identical credentials on the devices using these steps. 
+
 ### Setup:
-1. Flash identical credentials on two end devices.
-2. Power on both devices.
-3. Attempt to authenticate over the air on both devices.
+1. Flash identical credentials on two end devices using the C++ file in this folder. The AppKey, DevEUI, and AppEUI are all the same. 
+![flash_dump_2](../assets/images/lorawan/flashing_identical_keys.png) 
+2. Power on both devices with batteries. 
+3. Attempt to authenticate over the air on both devices, this is done automatically from the C++ program.
 4. Observe if the server validates each device, or if any error logs are generated.
+
 
 ## DevNonce Handling
 Objective: Make sure that the network server rejects reused DevNonce values during Over The Air Authentication (OTAA). Specifically, demonstrate that LoRaWAN has replay protection to prevent reused DevNonce values.

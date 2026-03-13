@@ -43,8 +43,19 @@ In order for the packets from the gateway to be seen by ChirpStack, it must  hav
 
 ## 4. Set up the End-Devices (Wireless Trackers)
 
-1. Install Arduino IDE
-
-2. Follow 
+1. Install Arduino IDE.
 
 2. Connect antennas BEFORE plugging the device into a PC via a usb-a to usb-c cable.
+
+3. Follow the documentation here: https://docs.heltec.org/en/node/esp32/esp32_general_docs/lorawan/config_parameter.html to load LoRaWAN code onto the wireless tracker using Arduino IDE. The devEUI, appKey, and appEUI can all be configured using the example provided in the documentation. 
+
+## 5. Set up the End-Devices in ChirpStack
+In order to receive LoRaWAN packets from the end-devices, the server must know the 
+
+1. In ChirpStack go to `Tenant` > `Device Profiles` and `Add Device Profile`. Make sure to choose the correct region, MAC version that the end-devices are running, and the ADR algorithm. Once all configurations have been set, `Submit`. 
+
+2. Go to `Tenant` > `Applications` and choose `Add Application`. Create a name for the application and `Submit`.
+
+3. In the application, add a device. The Device EUI, Join EUI, and Device profile must be chosen. The Device EUI and Join EUI corresponds to the DevEUI and AppEUI set in Arduino IDE. 
+
+4. If successful, the devices should be shown as `Active` in the `Dashboard` when powered. 
