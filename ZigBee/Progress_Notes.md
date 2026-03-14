@@ -233,3 +233,37 @@ Allows device to retry and join the Coord Zigbee network
 ![New version of Xbee Studio](/assets/images/zigbee/progress_zigbee/DigiXbee_Studio_Zigbee_topology_better.png)
 
 So far the packet sniffer allows for capture offline 
+
+## 03/12/2026
+
+analysis of the packet caputre from the Digi Xbee mesh network reset
+[Useful Zigbee Analysus Wireshark link](https://www.exploitsecurity.io/post/zigbee-protocol)
+
+- To see only Data Frames: ``` wpan.frame_type == 0x01 ```
+- To see only Beacon Requests: ``` wpan.cmd.id == 0x07 ```
+
+[Investigate into more](https://www.digi.com/support/knowledge-base/can-digi-s-xbee-zb-modules-communicate-with-other)
+look into more: https://community.hubitat.com/t/everything-xbee/2328
+
+Trying the WHAD device on the commerical zigbee network (it works with capturing the commerical grade equipment ZigBee Mesh Network)
+Does work for capturing commerical grade routers via WHAD device and open source information
+
+## 03/13/2025
+
+Using the WHAD device we are able to use if as a sniffer for when the commerical grade equipment joins 
+
+Before capture shows the device encrypted and not able to see the in detail information
+
+![WHAD_device_capture_inforamtion](/assets/images/zigbee/progress_zigbee/WHAD_device_capture_before.png)
+
+filter using the ``` zbee.sec.description_key ```
+
+Then observing the info column you see a transport key and inspect the packet
+
+![Capture of Commerical grade router 3](/assets/images/zigbee/progress_zigbee/WHAD_device_action_capture3Router.png)
+
+Able to use the Key to then decrypt the traffic and information
+![Information gathering](/assets/images/zigbee/progress_zigbee/WHAD_device_after_decryption.png)
+
+Starting to test packet injection to perform the spoof disconnect
+

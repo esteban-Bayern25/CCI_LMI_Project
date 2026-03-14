@@ -8,3 +8,9 @@ Kali Linux OS
 ``` /dev/ttyUSB0 ```
 
 able to get the login 
+
+``` sudo picocom -b 115200 /dev/ttyUSB0 ```
+
+Able to get into u-boot via using a jumper cap on "U-Boot" pins 
+
+Get into the image 
