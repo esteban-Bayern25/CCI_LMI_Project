@@ -50,7 +50,7 @@ In order for the packets from the gateway to be seen by ChirpStack, it must  hav
 3. Follow the documentation here: https://docs.heltec.org/en/node/esp32/esp32_general_docs/lorawan/config_parameter.html to load LoRaWAN code onto the wireless tracker using Arduino IDE. The devEUI, appKey, and appEUI can all be configured using the example provided in the documentation. 
 
 ## 5. Set up the End-Devices in ChirpStack
-In order to receive LoRaWAN packets from the end-devices, the server must know the 
+In order to receive LoRaWAN packets from the end-devices, the server must know the DevEUI and JoinEUI of the end-device. This must be configured in the server before the device is powered on. 
 
 1. In ChirpStack go to `Tenant` > `Device Profiles` and `Add Device Profile`. Make sure to choose the correct region, MAC version that the end-devices are running, and the ADR algorithm. Once all configurations have been set, `Submit`. 
 
