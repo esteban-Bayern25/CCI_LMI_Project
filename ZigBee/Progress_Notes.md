@@ -5,21 +5,26 @@ Setting up the ZigBee network with a raspberry pi 5 device, ZigBee MQTT mosquito
 
 ![Image of the Zigbee Setup with Commerical Products](/assets/images/zigbee/progress_zigbee/zigbee_setup_commerical.png)
 
-
 ```bash
 ssh hostname@IPaddress
 ```
 you will have to enter a password
 
-once in need to cd into the zigbee2mqtt
+Once in need to cd into the zigbee2mqtt directory:
 
 ```bash
-cd /opt/zigbee2mqtt/
+cd /opt/zigbee2mqtt
 ```
-to start the process for the zigbee network
+To start the process for the zigbee network
 
 ```bash
 sudo npm start
+```
+
+Open a brower and go to the following link to open the Zigbee2MQTT dashboard 
+
+```bash
+http://X.X.X.X:8080/#/
 ```
 
 ![Zigbee2MQTT logs](/assets/images/zigbee/progress_zigbee//Zigbee2MQTT_logs.png)
@@ -303,3 +308,5 @@ From the packet injection the network is acknowledgeing it however the thirdreal
 - Extended Nonce
 - MIC verificaiton (security mechanism used to ensure that data packets have not been altered or corrupted during transmission)
 - Frame Counter (The counter field used to provide frame freshness and to prevent the processing of duplicate frames.)
+
+[try to see if you can from command line](https://www.youtube.com/watch?v=xTNpUBiBfNY)
