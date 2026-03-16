@@ -4,6 +4,24 @@
 Setting up the ZigBee network with a raspberry pi 5 device, ZigBee MQTT mosquito, and a ZigBee Dongle P
 
 ![Image of the Zigbee Setup with Commerical Products](/assets/images/zigbee/progress_zigbee/zigbee_setup_commerical.png)
+
+
+```bash
+ssh hostname@IPaddress
+```
+you will have to enter a password
+
+once in need to cd into the zigbee2mqtt
+
+```bash
+cd /opt/zigbee2mqtt/
+```
+to start the process for the zigbee network
+
+```bash
+sudo npm start
+```
+
 ![Zigbee2MQTT logs](/assets/images/zigbee/progress_zigbee//Zigbee2MQTT_logs.png)
 ![Zigbee2MQTT logs diconnect](/assets/images/zigbee/progress_zigbee/Zigbee2MQTT_disconnect_log.png)
 ![Zigbee2MQTT logs end device](/assets/images/zigbee/progress_zigbee/Zigbee1MQTT_log_endDevice.png)
@@ -215,8 +233,8 @@ End device to connect to the router
 ## 03/10/2026
 
 For sniffing packets via the WHAD 
-```
-wsniff -i uart0 -w dot15d4 --channel 19 
+```bash
+wsniff -i uart0 -w dot15d4 --channel 11 
 ```
 
 Looking into for packet injection 
@@ -267,3 +285,21 @@ Able to use the Key to then decrypt the traffic and information
 
 Starting to test packet injection to perform the spoof disconnect
 
+## 03/16/2026
+
+When getting an xbee module device to connect to the zigbee2MQTT its imporant to set AO = 0 in which it allows it to be sucessfully connected to the zigbee network
+
+Here you can see the device join the network 
+- [Setup advice](https://www.digi.com/support/knowledge-base/can-digi-s-xbee-zb-modules-communicate-with-other)
+- [Configration advice](https://www.digi.com/support/knowledge-base/zigbee-home-automation)
+
+![Digi XBee joins Zigbee2MQTT network](/assets/images/zigbee/progress_zigbee/Xbee_router_join_Zigbee2MQTT.png)
+
+Log informaiton sayings its sucessfully
+
+![Log information confirming it joins](/assets/images/zigbee/progress_zigbee/Xbee_router_join_log_info.png)
+
+From the packet injection the network is acknowledgeing it however the thirdreality plug did not turn off, something involving the frame counter
+- Extended Nonce
+- MIC verificaiton (security mechanism used to ensure that data packets have not been altered or corrupted during transmission)
+- Frame Counter (The counter field used to provide frame freshness and to prevent the processing of duplicate frames.)
