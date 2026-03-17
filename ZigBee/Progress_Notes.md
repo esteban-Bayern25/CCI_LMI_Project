@@ -310,3 +310,17 @@ From the packet injection the network is acknowledgeing it however the thirdreal
 - Frame Counter (The counter field used to provide frame freshness and to prevent the processing of duplicate frames.)
 
 [try to see if you can from command line](https://www.youtube.com/watch?v=xTNpUBiBfNY)
+
+## 03/17/2026
+
+The ThirdReality plug sent an ACK! This confirms that winject command successfully hit the radio of the smart plug. The hardware "heard", but the reason it didn't turn off is that it hit the Zigbee Network Layer Security wall.
+
+```bash
+winject -i uart0 dot15d4 -c 11 [HEX STREAM VALUE]
+```
+
+![command to run the packet injection](/assets/images/zigbee/progress_zigbee/packet_injection_cmd_terminal.png)
+
+![Packet Injection into Commerical Grade component (router 3)](/assets/images/zigbee/progress_zigbee/packet_injection_confirmed.png)
+
+The MIC (Message Integrity Code) tied to the Frame Counter (ZigBee Encryption) is preventing the actural command to turn off
