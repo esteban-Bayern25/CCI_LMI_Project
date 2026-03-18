@@ -1,41 +1,75 @@
-# Proposed Course
+# ZigBee Security Evaluation
+
+### Overview
+This project evaluates the security and resilience of ZigBee networks by simulating real-world attack scenarios against a coordinator-based architecture. The goal is to analyze how centralized trust models in ZigBee compare to more decentralized architectures (e.g., Mist) under adversarial conditions.
 
 1. Application-Level Attack
 2. Denial of Service Attacks
 
-## Objective
-To quantify the operational resilience and security-depth of Mist compared to Zigbee Pro by simulating high-impact failure and attack scenarios.[^1] This plan evaluates the "Total Network Surrender" that occurs when a Zigbee Trust Center is compromised or lost, versus the Mist architecture's decentralized resilience.[^4]
+### Objective
+The primary objective is to quantify the operational resilience and security depth of ZigBee networks by simulating high-impact failure and attack scenarios. [^4]
+
+Specifically, this project investigates:
+- The impact of centralized trust (ZigBee Trust Center) on network stability
+- The feasibility of network takeover and device eviction attacks
+- The risk of key compromise and command injection
 
 ## Test 1: Architectural Resilience (Availability + Denial of Service)
-- **Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization. A single spoofed management frame from a rogue coordinator can force nodes to abandon the legitimate network.
+**Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization. A single spoofed management frame from a rogue coordinator can force nodes to abandon the legitimate network.
 
 **The Scenario:** Network Realignment Attack
 
-- **Target:** A specific Router with several child End Devices
+**Target:** A specific Router with several child End Devices
 
-- **The Attack:** 
+**The Attack:** 
     1. Recon: Identify the 16-bit Short Address and PAN ID of the legitimate network. 
     2. The Spoof: Use an nRF52840 Dongle (Sniffer/Attacker) to send a spoofed Coordinator Realignment (0x07) command. 
     3. The Payload: The frame contains a new, rogue PAN ID
 
-- **Goal:** Prove that Zigbee’s centralized logic allows an attacker to "evict" the legitimate owner and take control of the topology, whereas Mist’s Local Survival Mode prevents such shifts because "Trust" is not tied to a single, spoofable PAN ID. The Router follows the spoofed command to the new PAN ID, orphaning its child devices and causing a localized Denial of Service (DoS)
+**Goal:** Prove that Zigbee’s centralized logic allows an attacker to "evict" the legitimate owner and take control of the topology, whereas Mist’s Local Survival Mode prevents such shifts because "Trust" is not tied to a single, spoofable PAN ID. The Router follows the spoofed command to the new PAN ID, orphaning its child devices and causing a localized Denial of Service (DoS)
 
-## Test 2: Trust Center Compromise (Confidentiality + Integrity)[^5]
-- **Thesis:** Zigbee’s security often relies on a "Master Key" (Link Key) that is vulnerable during initial exchange; Mist uses identity-based unique keys.
+## Test 2: Trust Center Compromise (Confidentiality + Integrity)
+**Thesis:** ZigBee security depends on shared keys that may be exposed during device joining, whereas stronger systems use per-device identity-based keys.[^5]
 
-**Scenario:** Key Extraction & Command Injection
- - Recon: Use the nRF Sniffer to capture the Transport Key during a device join or reconnection event.
- - The Exploit: Attempt to decrypt the Transport Key using the default "ZigBeeAlliance09" Link Key.
+### **Scenario:** Key Extraction & Command Injection
+
+**Part 1 Packet Capture (Recon):** Use the nRF Sniffer to capture the Transport Key during a device join or reconnection event.
+
+#### Setup:
+Using the nRF52840 dongle and Wireshark:
+1. Capture traffic during a device join event
+
+![Screenshot of the Wireshark screen with sniffer](/assets/images/zigbee/progress_zigbee/wireshark_screenshot_nrf52_dongle.png)
+
+![Nordic Sniffing device in action](/assets/images/zigbee/progress_zigbee/sniffer_device_inAction.jpg)
+
+2. Observe encrypted packets
+
+![Wireshark capture of the Zigbee Network](/assets/images/zigbee/progress_zigbee/wireshark_capture_deviceJoin.png)
+
+3. Filter in Wireshark to find the Transport Key ```zbee.sec.decryption_key```
+
+![Wireshark capture of transport key](/assets/images/zigbee/progress_zigbee/first_capture_of_transport_keys_with_nrf52.png)
+
+**Part 2 Exploit:** Attempt to decrypt the Transport Key using the default "ZigBeeAlliance09" Link Key.
+
+Once the keys are obtained add them in the Wireshark via 
+
+``` preferences > Protocols > Zigbee > Pre-configured Keys [click Edit] > add the keys captured```
+
+![Wireshark Setting shows of adding the key](/assets/images/zigbee/progress_zigbee/wireshark_adding_keys.png)
+
+
+#### Setup:
+Once the transport keys are found go into 
+
  - The Payload: Once the Network Key is obtained, use a laptop and Scapy/Python to inject unauthorized application-level commands.
  - The Goal: Prove that compromised integrity allows an attacker to "Spoof" sensor data or control commands across the entire network
 
-## Test Optional Defensive Longevity (Battery Exhaustion) - MAYBE??
-**Thesis:** Zigbee’s CSMA-CA (Always-Listening) routers are vulnerable to "Energy Depletion" attacks. Mist’s Request-Response (Scheduled-Sleep) model provides a "Temporal Firewall" against RF noise.
 
-- Experiment: Introduce "Rogue Node" noise—high-volume, non-network traffic meant to trigger the radio's "Listen" state.
-- Key Metrics:
-    - Radio Duty Cycle: Ratio of active RX/TX time vs. deep sleep.
-    - Estimated Battery Lifespan Delta: Calculated reduction in years of life when under a 50% RF-interference load.
+
+
+
 
 ## Notes
 Qualitative methods involve observing and interpreting the impact of attacks through direct observation and network scans. Quantitative methods measure the effect of attacks numerically, such as the number of packets received or dropped during DoS attacks.
@@ -46,45 +80,6 @@ Qualitative methods involve observing and interpreting the impact of attacks thr
 - [Network Realignment Attack](https://pmc.ncbi.nlm.nih.gov/articles/PMC12349651/#B9-sensors-25-04606)
 - Spoofing or compromising TC 
 [Home Assistant](https://www.home-assistant.io/integrations/sensor/)
-
-**Equipement list**
-
-| Commerical | Development Hardware | 
-| --- | --- | 
-| ZigBee coordinator ([SONOFF ZigBee 3.0 USB DonglePlus](https://sonoff.tech/en-us/products/sonoff-zigbee-3-0-usb-dongle-plus-zbdongle-p?srsltid=AfmBOoq05n5bl2pB1xAz3aOx3RIwYfIqM_I8NbOEmXzF3O2efw0Ij0s7))[^3] & [Another option for Coordinator](https://www.amazon.com/SMLIGHT-SLZB-07-Coordinator-Zigbee2MQTT-Assistant/dp/B0D737SJ5G?dib=eyJ2IjoiMSJ9.ppEgVhHKzbBp2a7RAhwpKX6zOrDh5UNGyvyNEn3H8PcEgEU3sqjH5ArnFaR6rVdX.pkkkl2FxHrIR1luYNXO4iFdPaTO-r5mrSv_TGE252qA&dib_tag=se&keywords=SLZB-07&qid=1741067435&s=electronics&sr=1-1&linkCode=sl1&tag=smarthomescen-20&linkId=2d3a69d903fbd973ba5ec0f5371f7774&language=en_US&ref_=as_li_ss_tl&th=1) | [RaspberryPi 5](https://www.digikey.com/en/products/detail/raspberry-pi/SC1432/21658257) | 
-| ZigBee routers x2-4 (IoT smart Plug/ [Sonoff S31 Lite zb](https://sonoff.tech/en-us/products/sonoff-s31-lite-zb-smart-plug-us-type-zigbee-version?srsltid=AfmBOoouOWD-7qDYsYzVtx6ROJP727KxYbj710cNZLtBlKKkP0D6Rc7Z) or [ZBBridge-P](https://sonoff.tech/en-us/products/sonoff-zigbee-bridge-pro?pr_prod_strat=pinned&pr_rec_id=67b491ac0&pr_rec_pid=8812959826161&pr_ref_pid=8812958646513&pr_seq=uniform)) | [XBee 3 Pro Module](https://www.digi.com/products/embedded-systems/digi-xbee/rf-modules/2-4-ghz-rf-modules/xbee3-zigbee-3) | 
-| |[End devices](https://www.digi.com/products/models/xb3-24z8st) |
-
-**Gateways** 
--[SONOFF Zigbee Bridge Pro Gateway](https://itead.cc/product/sonoff-zigbee-bridge-pro/?srsltid=AfmBOopXQ3b47qvAfyGV_-eSJeZtgb6j_NytEKZ2EIwDkoR5dRlr4Iu4JOQ)
-- Raspberry-pi-5
--[Digi IX15 IoT Gateway and Cellular Router](https://www.digi.com/products/embedded-systems/digi-xbee/digi-xbee-gateways/digi-xbee-gateways/digi-ix15-xbee-gateway) **most likely not though**
-
-**Digi Key Parts**
-- [Digi XBee 3 Zigbee Mesh Kit](https://www.digikey.com/en/products/detail/digi/XK3-Z8S-WZM/8130956?utm_source=ecia&utm_medium=aggregator&utm_campaign=digiintl)
-- nRF Sniffer for 802.15.4 [^2]
-    - [nRF52840 Dongle](https://www.digikey.com/en/products/detail/nordic-semiconductor-asa/NRF52840-DONGLE/9491124?utm_source=oemsecrets&utm_medium=aggregator&utm_campaign=buynow) 
-- [ZigBee startup kits/ home guide](https://www.youtube.com/watch?v=fHq2Bzrsnr8)
-
-**Company Provided**
-- 1 Mist Gateway (Maybe not we provide our own gateway)
-- 1 Mist Extender
-- 2-3x Mist Tags
-
-
-**software/ logger tools**
-- python
-- wireshark
-- scapy
-- Zephyr RTOS
-- ![API](https://docs.zephyrproject.org/apidoc/latest/structieee802154__radio__api.html) 
-- nRF Connect for Desktop
-- zperf (Zephyr Utility)
-- Pyserial
-- Zigbee2MQTT or Home Assistant (ZHA)
-- ![ApiMote](http://apimote.com/)
-- ![nRF Sniffer for 802.15.4](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/intro_802154.html)
-
 
 
 ### References
