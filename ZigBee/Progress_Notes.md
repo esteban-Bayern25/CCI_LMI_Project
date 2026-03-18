@@ -324,3 +324,23 @@ winject -i uart0 dot15d4 -c 11 [HEX STREAM VALUE]
 ![Packet Injection into Commerical Grade component (router 3)](/assets/images/zigbee/progress_zigbee/packet_injection_confirmed.png)
 
 The MIC (Message Integrity Code) tied to the Frame Counter (ZigBee Encryption) is preventing the actural command to turn off
+
+## 03/18/2026
+
+Pivoted from the router to end device to foce it to leave the zigbee2mqtt network
+
+for filter sequnce numbers ``` wpan.seq_no == # ```
+
+Successful MAC-layer injection was verified using a dual-dongle setup. A spoofed frame (Source 0xEDFE, Seq 170) was transmitted via the ButteRFly dongle. A secondary sniffer captured immediate IEEE 802.15.4 Acknowledgement (ACK) frames from the target ThirdReality smart plug (0xE702). This confirms that the target device radio accepted the spoofed frame as a valid physical-layer transmission.
+
+python file, while having both the sniffer dongle device and running in wireshark and the WHAD dongle device plugged in and already configured then run the following python file
+
+```bash
+python test_both_capture_and_inject.py
+```
+
+Then based on the [PCAP file capture of the injection](/assets/images/zigbee/zigbee_pcap_captures/packet_injection_capture_with_sniffer__dongle_test1.pcap)
+
+able to see the packet injeciton that was performed on the Third Reality 3RSP02028BZ (router3_commerical) with narrowing it down to sequence number 170 as shown below
+
+![packet injection via running python script towards router 3](/assets/images/zigbee/progress_zigbee/confirmation_of_packet_injection_whad.png)
