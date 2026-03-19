@@ -344,3 +344,24 @@ Then based on the [PCAP file capture of the injection](/assets/images/zigbee/zig
 able to see the packet injeciton that was performed on the Third Reality 3RSP02028BZ (router3_commerical) with narrowing it down to sequence number 170 as shown below
 
 ![packet injection via running python script towards router 3](/assets/images/zigbee/progress_zigbee/confirmation_of_packet_injection_whad.png)
+
+## 03/19
+
+Packet Injection on the xbee router to leave the zigbee2mqtt network
+
+Analysis of the Capture
+Frame 1 (The Attack): You can see a Data frame (actually the spoofed MAC Command) with Source: 0x0000 (the Coordinator) and Destination: 0x77fb (the XBee Router). This is your injected Coordinator Realignment (0x07) command.
+
+Frame 2 (The Reaction): Immediately following your injection, the sniffer captured an IEEE 802.15.4 Beacon Request.
+
+The Significance: A router only sends a Beacon Request when it is "orphaned" or searching for a network. This proves the XBee accepted your rogue command, moved to the Rogue PAN ID (0xDEAD), and—finding no legitimate hub there—began frantically searching for a new parent.
+
+```bash
+python packet_injection_on_xbee_router.py
+```
+
+![Running the python file](/assets/images/zigbee/progress_zigbee/cmd_line_running_script_inject_xbee_router.png)
+
+Then you see from the packet sniffer captures information
+
+![xbee router wireshark capture informaition](/assets/images/zigbee/progress_zigbee/wireshark_capture_xbee_router_leaving_network.png)

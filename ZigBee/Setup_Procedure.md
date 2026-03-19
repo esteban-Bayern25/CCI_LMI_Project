@@ -71,7 +71,8 @@ sudo npm start
 ```
 Expected result: You should see output similar to:
 
-``` Starting Zigbee2MQTT...
+```bash  
+Starting Zigbee2MQTT...
 Zigbee2MQTT started!
 ```
 

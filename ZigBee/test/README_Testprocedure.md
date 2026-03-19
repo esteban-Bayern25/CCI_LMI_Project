@@ -14,21 +14,7 @@ Specifically, this project investigates:
 - The feasibility of network takeover and device eviction attacks
 - The risk of key compromise and command injection
 
-## Test 1: Architectural Resilience (Availability + Denial of Service)
-**Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization. A single spoofed management frame from a rogue coordinator can force nodes to abandon the legitimate network.
-
-**The Scenario:** Network Realignment Attack
-
-**Target:** A specific Router with several child End Devices
-
-**The Attack:** 
-    1. Recon: Identify the 16-bit Short Address and PAN ID of the legitimate network. 
-    2. The Spoof: Use an nRF52840 Dongle (Sniffer/Attacker) to send a spoofed Coordinator Realignment (0x07) command. 
-    3. The Payload: The frame contains a new, rogue PAN ID
-
-**Goal:** Prove that Zigbee’s centralized logic allows an attacker to "evict" the legitimate owner and take control of the topology, whereas Mist’s Local Survival Mode prevents such shifts because "Trust" is not tied to a single, spoofable PAN ID. The Router follows the spoofed command to the new PAN ID, orphaning its child devices and causing a localized Denial of Service (DoS)
-
-## Test 2: Trust Center Compromise (Confidentiality + Integrity)
+## Test 1: Trust Center Compromise (Confidentiality + Integrity)
 **Thesis:** ZigBee security depends on shared keys that may be exposed during device joining, whereas stronger systems use per-device identity-based keys.[^5]
 
 ### **Scenario:** Key Extraction & Command Injection
@@ -99,7 +85,7 @@ Command for looking in wireshark the sequence number: ```wpan.seq_no == ```
 
 ![Packet Injection into Commerical Grade component (router 3)](/assets/images/zigbee/progress_zigbee/packet_injection_confirmed.png)
 
-3. Running the python file allows you to continuously inject packets into the network
+3. Running the python file allows you to continuously inject packets into the network and observe
 
 **Note:** Must have WHAD configured and setup and might need to end up adjusting some parameters such as the 'Visible' Hex
 
@@ -107,14 +93,58 @@ Command for looking in wireshark the sequence number: ```wpan.seq_no == ```
 python test_both_capture_and_inject.py
 ```
 
+With the captured information via the sniffer able to find those packets that were injected 
+
 ![packet injection via running python script towards router 3](/assets/images/zigbee/progress_zigbee/confirmation_of_packet_injection_whad.png)
 
 The Goal: Prove that compromised integrity allows an attacker to "Spoof" sensor data or control commands across the entire network
 
 
+## Test 2: Architectural Resilience (Availability + Denial of Service)
+**Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization. A single spoofed management frame from a rogue coordinator can force nodes to abandon the legitimate network.
+
+**The Scenario:** Network Realignment Attack
+
+**Target:** A specific Router with several child End Devices
+
+**The Attack:** 
+### *Part 1 Recon:** Identify the 16-bit Short Address and PAN ID of the legitimate network. 
+
+#### Setup:
+Using the nRF52840 dongle and Wireshark or with the WHAD device either works:
+
+1. Capture traffic (Similar to Test 1 examples)
 
 
 
+2. The Spoof: Use an nRF52840 Dongle (Sniffer/Attacker) with WHAD configured to send a spoofed Coordinator Realignment (0x07) command. 
+
+**Note:** Important parameters to have are
+- Target NWK Address
+- Target IEEE
+- Legitimate PAN ID
+- Coordinator IEEE
+- Rogue PAN ID 
+
+Then you get edit/ make adjustments to the [python script](/ZigBee/test/python_scripts/packet_injection_on_xbee_router.py)
+
+Running the script:
+
+```bash
+python packet_injection_on_xbee_router.py
+```
+
+![Running the python file](/assets/images/zigbee/progress_zigbee/cmd_line_running_script_inject_xbee_router.png)
+
+3. The Payload: The frame contains a new, rogue PAN ID
+
+![Xbee Router packet injection](/assets/images/zigbee/progress_zigbee/wireshark_capture_xbee_router_leaving_network.png)
+
+Immediately following the injection, the sniffer captured an IEEE 802.15.4 Beacon Request. A router only sends a Beacon Request when it is "orphaned" or searching for a network. This proves the XBee accepted the rogue command, moved to the Rogue PAN ID (0xdead), and—finding no legitimate hub there—began frantically searching for a new parent.
+
+To observe the pcap capture look [here](/assets/images/zigbee/zigbee_pcap_captures/test_1_packet_injection_on_xbee_router.pcap)
+
+**Goal:** Prove that Zigbee’s centralized logic allows an attacker to "evict" the legitimate owner and take control of the topology, whereas Mist’s Local Survival Mode prevents such shifts because "Trust" is not tied to a single, spoofable PAN ID. The Router follows the spoofed command to the new PAN ID, orphaning its child devices and causing a localized Denial of Service (DoS)
 
 ## Notes
 Qualitative methods involve observing and interpreting the impact of attacks through direct observation and network scans. Quantitative methods measure the effect of attacks numerically, such as the number of packets received or dropped during DoS attacks.
