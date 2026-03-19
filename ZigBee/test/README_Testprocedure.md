@@ -53,18 +53,47 @@ Using the nRF52840 dongle and Wireshark:
 
 **Part 2 Exploit:** Attempt to decrypt the Transport Key using the default "ZigBeeAlliance09" Link Key.
 
-Once the keys are obtained add them in the Wireshark via 
+1. Once the keys are obtained add them in the Wireshark Settings via 
 
 ``` preferences > Protocols > Zigbee > Pre-configured Keys [click Edit] > add the keys captured```
 
 ![Wireshark Setting shows of adding the key](/assets/images/zigbee/progress_zigbee/wireshark_adding_keys.png)
 
+2. From there you are able to see the information or decrupt the informaiton from the packet capture
+
+![Information of Zigbee Network exposed]()
+
+![Able to see what commands are doing what]()
+
+
+**Part 3 Payload:** Once the Network Key is obtained, use a laptop and Scapy/Python to inject unauthorized application-level commands.
 
 #### Setup:
-Once the transport keys are found go into 
+Using the nRF52840 dongle configured with the wireless hacking tool [WHAD](https://whad.readthedocs.io/en/latest/intro.html)
 
- - The Payload: Once the Network Key is obtained, use a laptop and Scapy/Python to inject unauthorized application-level commands.
- - The Goal: Prove that compromised integrity allows an attacker to "Spoof" sensor data or control commands across the entire network
+1. Winject allows you to To inject packets into the 802.15.4 network run this command:
+```bash
+winject -i uart0 dot15d4 -c 11 [HEX STREAM VALUES]
+```
+![command to run the packet injection](/assets/images/zigbee/progress_zigbee/packet_injection_cmd_terminal.png)
+
+2. Run the wireshark sniffer and you will see the packet injected into the network towards a specific zigbee device by looking for key properties. Example is its seqence number
+
+Command for looking in wireshark the sequence number: ```wpan.seq_no == ```
+
+![Packet Injection into Commerical Grade component (router 3)](/assets/images/zigbee/progress_zigbee/packet_injection_confirmed.png)
+
+3. Running the python file allows you to contintulsue inject packets into the network
+
+**Note:** Must have WHAD configured and setup and might need to end up adjusting some parameters such as the 'Visible' Hex
+
+```bash
+python test_both_capture_and_inject.py
+```
+
+![packet injection via running python script towards router 3](/assets/images/zigbee/progress_zigbee/confirmation_of_packet_injection_whad.png)
+
+The Goal: Prove that compromised integrity allows an attacker to "Spoof" sensor data or control commands across the entire network
 
 
 
