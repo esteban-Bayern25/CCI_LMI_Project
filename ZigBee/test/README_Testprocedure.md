@@ -36,12 +36,20 @@ Specifically, this project investigates:
 **Part 1 Packet Capture (Recon):** Use the nRF Sniffer to capture the Transport Key during a device join or reconnection event.
 
 #### Setup:
-Using the nRF52840 dongle and Wireshark:
+Using the nRF52840 dongle and Wireshark or with the WHAD device either works:
 1. Capture traffic during a device join event
 
 ![Screenshot of the Wireshark screen with sniffer](/assets/images/zigbee/progress_zigbee/wireshark_screenshot_nrf52_dongle.png)
 
 ![Nordic Sniffing device in action](/assets/images/zigbee/progress_zigbee/sniffer_device_inAction.jpg)
+
+Example using the WHAD device to sniff the network
+
+Run the command:
+```bash
+wsniff -i uart0 -w dot15d4 -c 11
+```
+![WHAD_device_capture_inforamtion](/assets/images/zigbee/progress_zigbee/WHAD_device_capture_before.png)
 
 2. Observe encrypted packets
 
@@ -51,7 +59,11 @@ Using the nRF52840 dongle and Wireshark:
 
 ![Wireshark capture of transport key](/assets/images/zigbee/progress_zigbee/first_capture_of_transport_keys_with_nrf52.png)
 
-**Part 2 Exploit:** Attempt to decrypt the Transport Key using the default "ZigBeeAlliance09" Link Key.
+Example using the WHAD configuration on the nRF52840 dongle device:
+
+![Capture of Commerical grade router 3](/assets/images/zigbee/progress_zigbee/WHAD_device_action_capture3Router.png)
+
+**Part 2 Exploit:** Attempt to decrypt the Transport Key using the default "ZigBeeAlliance09" Link Key or with the WHAD device.
 
 1. Once the keys are obtained add them in the Wireshark Settings via 
 
@@ -59,12 +71,16 @@ Using the nRF52840 dongle and Wireshark:
 
 ![Wireshark Setting shows of adding the key](/assets/images/zigbee/progress_zigbee/wireshark_adding_keys.png)
 
-2. From there you are able to see the information or decrupt the informaiton from the packet capture
+2. From there you will have successful decryption, packet types and readable application commands will be visible, such as Link Status or on/off cluster commands
 
-![Information of Zigbee Network exposed]()
+![Information is Decrypted](/assets/images/zigbee/progress_zigbee/wireshark_keysObtained_InfoUnlocked.png)
 
-![Able to see what commands are doing what]()
+![Information on end device Door sensor](/assets/images/zigbee/progress_zigbee/commerical_endDevice_info.png)
 
+
+Information using WHAD device able to see the packets information (no longer encrypted):
+
+![Information gathering](/assets/images/zigbee/progress_zigbee/WHAD_device_after_decryption.png)
 
 **Part 3 Payload:** Once the Network Key is obtained, use a laptop and Scapy/Python to inject unauthorized application-level commands.
 
@@ -83,7 +99,7 @@ Command for looking in wireshark the sequence number: ```wpan.seq_no == ```
 
 ![Packet Injection into Commerical Grade component (router 3)](/assets/images/zigbee/progress_zigbee/packet_injection_confirmed.png)
 
-3. Running the python file allows you to contintulsue inject packets into the network
+3. Running the python file allows you to continuously inject packets into the network
 
 **Note:** Must have WHAD configured and setup and might need to end up adjusting some parameters such as the 'Visible' Hex
 
