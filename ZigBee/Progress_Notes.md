@@ -365,3 +365,24 @@ python packet_injection_on_xbee_router.py
 Then you see from the packet sniffer captures information
 
 ![xbee router wireshark capture informaition](/assets/images/zigbee/progress_zigbee/wireshark_capture_xbee_router_leaving_network.png)
+
+tried it again but this time the xbee router address changed so I needed to update the code pase
+
+![xbee router cmd lind](/assets/images/zigbee/progress_zigbee/cmd_line_2_xbee_router_injection.png)
+
+![wireshark capture of packets sent to xbee module](/assets/images/zigbee/progress_zigbee/wireshark_capture_packet_injection_2_on_xbee_router.png)
+
+##03/20
+
+The fact that you see an ACK in your latest capture (Frame 19) is a massive breakthrough for your experiment. It proves that your timing was perfect and the door_sensor_endDevice (0x1df4) physically "heard" and accepted your packet at the radio level.
+
+However, the reason the sensor stayed on the network is the difference between Hardware Acceptance and Protocol Execution.
+
+1. Analysis of the "Silent Failure"
+In your screenshot image_b6df21.png, the sequence of events tells the whole story:
+
+Frame 18 (The Injection): Your ButteRFly dongle sent the Realignment command to 0x1df4.
+
+Frame 19 (The ACK): The door sensor's radio chip immediately sent a hardware acknowledgement. This confirms you hit the "wake-up window" while you were opening/closing the door.
+
+The Discard: Even though the radio chip said "I got it," the Zigbee 3.0 Stack inside the Third Reality sensor likely discarded the command. Unlike the XBee Router, which is often more permissive with legacy commands, modern Zigbee 3.0 end devices typically ignore MAC-layer management frames (like 0x07 Realignment) unless they are encrypted with the Network Key.

@@ -71,7 +71,7 @@ sudo npm start
 ```
 Expected result: You should see output similar to:
 
-```bash  
+``` 
 Starting Zigbee2MQTT...
 Zigbee2MQTT started!
 ```
@@ -91,6 +91,11 @@ Please refer to [nRF52840 Dongle Documentation](https://docs.nordicsemi.com/bund
 Please refer to [nRF52840 Dongle Sniffer Documentaiton for 802.15.4](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/intro_802154.html)
 
 **Note** The Dongle is already configured and flash you just need to install the dependencies onto your computer and test via wireshark.
+
+### Configuration of the Digi Xbee Router Module for Test 2
+
+To proberly configure the Digi Xbee router module for 
+
 
 ### Setting up the Digi Xbee Zigbee Mesh Network
 

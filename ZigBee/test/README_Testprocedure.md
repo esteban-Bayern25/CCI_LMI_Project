@@ -85,7 +85,7 @@ Command for looking in wireshark the sequence number: ```wpan.seq_no == ```
 
 ![Packet Injection into Commerical Grade component (router 3)](/assets/images/zigbee/progress_zigbee/packet_injection_confirmed.png)
 
-3. Running the python file allows you to continuously inject packets into the network and observe
+3. Running the python file allows you to continuously inject packets into the network and observe, best run the ```.py``` in the WHAD virtual environment
 
 **Note:** Must have WHAD configured and setup and might need to end up adjusting some parameters such as the 'Visible' Hex
 
@@ -97,25 +97,36 @@ With the captured information via the sniffer able to find those packets that we
 
 ![packet injection via running python script towards router 3](/assets/images/zigbee/progress_zigbee/confirmation_of_packet_injection_whad.png)
 
+Another example for packet injection on the commerical grade of the [Third Reality](https://thirdreality.com/) door contact sensor and with the nRF52 dongle sniffer able to see the packets being sent
+
+```bash
+python packet_injection_on_end_device_door_contact_sensor.py
+```
+
+**Note:** The image below shows the python file run under a different name in testing, but the function is the same. The name changed to give a better description
+
+![Python file running in command line terminal](/assets/images/zigbee/cmd_line_run_end_device_packet_injection.png)
+
+![Wireshark capture of the end contact device sensor](/assets/images/zigbee/progress_zigbee/wireshark_capture_end_device_door_contact_spoof.png)
+
+Above [pcap shows](/assets/images/zigbee/zigbee_pcap_captures/end_device_packet_injection_door_contact_test2_see_ack.pcap)the packets being sent from packets 101-109, in which is demonstrates  a probabilistic resilience. While the MAC layer is "brittle" (it accepted the spoofed command), the higher-layer firmware is "resilient" because it detects the loss of a parent and automatically recovers.
+
 The Goal: Prove that compromised integrity allows an attacker to "Spoof" sensor data or control commands across the entire network
 
 
 ## Test 2: Architectural Resilience (Availability + Denial of Service)
 **Thesis:** Zigbee is "brittle" due to its Centralized State Model; Mist is "resilient" due to Decentralized Synchronization. A single spoofed management frame from a rogue coordinator can force nodes to abandon the legitimate network.
 
-**The Scenario:** Network Realignment Attack
+### Scenario: Network Realignment Attack
 
-**Target:** A specific Router with several child End Devices
-
-**The Attack:** 
-### *Part 1 Recon:** Identify the 16-bit Short Address and PAN ID of the legitimate network. 
+**Part 1 Recon:** Identify the 16-bit Short Address and PAN ID of the legitimate network. 
 
 #### Setup:
 Using the nRF52840 dongle and Wireshark or with the WHAD device either works:
 
 1. Capture traffic (Similar to Test 1 examples)
 
-
+[Observe Test 1 Part 1 Recon, very similar steps](#Setup)
 
 2. The Spoof: Use an nRF52840 Dongle (Sniffer/Attacker) with WHAD configured to send a spoofed Coordinator Realignment (0x07) command. 
 
@@ -140,7 +151,7 @@ python packet_injection_on_xbee_router.py
 
 ![Xbee Router packet injection](/assets/images/zigbee/progress_zigbee/wireshark_capture_xbee_router_leaving_network.png)
 
-Immediately following the injection, the sniffer captured an IEEE 802.15.4 Beacon Request. A router only sends a Beacon Request when it is "orphaned" or searching for a network. This proves the XBee accepted the rogue command, moved to the Rogue PAN ID (0xdead), and—finding no legitimate hub there—began frantically searching for a new parent.
+Immediately following the injection, the sniffer captured an IEEE 802.15.4 Beacon Request. A router only sends a Beacon Request when it is "orphaned" or searching for a network. This proves the XBee accepted the rogue command, moved to the Rogue PAN ID (0xdead), and—finding no legitimate hub there—began searching for a new parent.
 
 To observe the pcap capture look [here](/assets/images/zigbee/zigbee_pcap_captures/test_1_packet_injection_on_xbee_router.pcap)
 
