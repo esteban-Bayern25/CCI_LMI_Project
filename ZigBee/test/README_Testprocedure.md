@@ -109,7 +109,7 @@ python packet_injection_on_end_device_door_contact_sensor.py
 
 ![Wireshark capture of the end contact device sensor](/assets/images/zigbee/progress_zigbee/wireshark_capture_end_device_door_contact_spoof.png)
 
-Above [pcap shows](/assets/images/zigbee/zigbee_pcap_captures/end_device_packet_injection_door_contact_test2_see_ack.pcap)the packets being sent from packets 101-109, in which is demonstrates  a probabilistic resilience. While the MAC layer is "brittle" (it accepted the spoofed command), the higher-layer firmware is "resilient" because it detects the loss of a parent and automatically recovers.
+Above [pcap shows](/assets/images/zigbee/zigbee_pcap_captures/end_device_packet_injection_door_contact_test2_see_ack.pcap)the packets being sent from packets 101-109, in which demonstrates  a probabilistic resilience. While the MAC layer is "brittle" (it accepted the spoofed command), the higher-layer firmware is "resilient" because it detects the loss of a parent and automatically recovers.
 
 The Goal: Prove that compromised integrity allows an attacker to "Spoof" sensor data or control commands across the entire network
 

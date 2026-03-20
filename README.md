@@ -4,12 +4,12 @@ Notes and Preparation with the CCI Project Base Learning Program with partnershi
 
 ## ZigBee Protocol
 
-Information regarding ZigBee is here: [ZigBee](ZigBee/README_ZigBee.md)
+Information regarding ZigBee is here: [ZigBee](ZigBee/)
 
 
 ## Mist Protocol
 
-Information regarding Mist is here: [Mist](Mist/README_Mist.md)
+Information regarding Mist is here: [Mist](Mist/)
 
 ## LoRaWAN Protocol
 
