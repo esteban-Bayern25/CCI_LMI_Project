@@ -90,13 +90,17 @@ Objective: Figure out if a malicious gateway that pretends to be legitimate can 
 3. Observe if the server recieves the traffic as legitimate. 
 
 ## Frame Counter Persistence
-Objective: Determine whether the end device persists FCntUp across power cycles, and correctly resumes session state after being rebooted. LoRaWAN prevents replay attacks with FCntUp, an uplink frame counter, and FCntDown, a downlink counter. If FCntUp resets to 0 after power is lost, it could lead to the server rejecting packets, battery drain, or the device may become unavailable. 
+Objective: Determine whether the end device persists FCntUp across power cycles, and correctly resumes session state after being rebooted. LoRaWAN prevents replay attacks with FCntUp, an uplink frame counter, and FCntDown, a downlink counter. If FCntUp resets to 0 after power is lost, it could lead to the server to be susceptible to join flooding or consume more battery than a normal uplink. 
 
 ### Setup:
 1. Let the device reach a stable FCntUp.
 2. Physically disconnect power and wait 10-20 seconds.
 3. Restore power.
 4. Observe the next uplink, and whether the server resumes count of the uplink, or resets.
+
+In my case, I disconnected the wireless tracker from power for about 21 minutes. After reconnecting, it sent a join request to the server which the server accepted, and it reset the FCntUp to 0. After a device joins the network, the count is always reset to 0 and it starts adding one for each uplink. 
+![fcnt](../assets/images/lorawan/fcnt_after_join.png) 
+After reconnecting after several different time intervals ranging from 5 seconds to 5 minutes, I found that the wireless tracker always sends a join request when power is connected, which meants the FCnt never resumes after disconnecting since it is always intialized to 0 after joining. However, the dashboard on ChirpStack still indicates that the device is active even if it isn't powered. This is the expected behavior of LoRaWAN since a new session is created and each session uses new session key, which enforces replay protection. 
 
 ## Join Flooding
 Objective: Evaluate whether the LoRaWAN network (gateway + ChirpStack server) is resilient against excessive or malicious join attempts that attempt to exhaust network resources. Specifically, determine whether repeated OTAA Join Requests can:
@@ -118,8 +122,13 @@ Overall, it didn't seem to have much of an impact, so I would say that LoRaWAN d
 Objective: Make sure malformed frames do not crash the gateway or server.
 
 ### Setup:
-1. Modify the end device's firmware to send an invalid MIC or corrupted MAC commands.
+1. Modify the end device's firmware to send an invalid MIC.
+In order to modify the firmware, I modified the source code of the LoRaWAN library that I was using to flash the wireless trackers. Specifically, I modified the `LoRaMacComputeMic` function in `LoRaMacCrypto.c`. After the MIC is computed, I flip all of the bits, which produces an invalid MIC. 
+![modified_mic_code](../assets/images/lorawan/modified_mic_code.png)
 2. Observe how the gateway and server handle the malformed frames, whether they crash or if memory leaks occur. 
+After flashing one of the wireless trackers with the modified code, this is what the logs in ChirpStack Docker containers looked like:
+![invalid_mic_logs](../assets/images/lorawan/chirpstack_logs_invalid_mic.png)
+Although there were no errors present in the dashboard, after the device successfully joined, there were no uplinks or downlinks that were shown in the logs. This meant that the packet was dropped immediately, which resulted in no errors taking place. I also tried this with a slight corruption where only the last byte is flipped (`*mic ^= 0x000000FF;`), and had the same results. This is what is expected in LoRaWAN, since LoRaWAN defines the MIC as the message integrity protection mechanism. If the MIC is computed to be invalid, there may have been packet tampering. If the MIC is invalid, it should drop the uplink without forwarding it. This helps protect LoRaWAN against packet tampering attacks, MAC command injection, and replay attacks. This helps ensure the security and resilience of the network. 
 
 ## Mapping Vulnerabilities with STRIDE
 | STRIDE Category  | LoRaWAN Vulnerability | Technical Impact |
