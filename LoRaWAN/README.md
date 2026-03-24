@@ -110,6 +110,7 @@ Objective: Evaluate whether the LoRaWAN network (gateway + ChirpStack server) is
 ### Setup:
 1. Configure one end device to repeatedly send OTAA join requests by modifying its firmware. I did this with Arduino IDE and the following code:
 ![join_request](../assets/images/lorawan/modified_code.png)
+
 2. Have one other end device join legitimately
 3. Observe logs on server to check if the device that was joining legitimately could join, or if the other device prevented it from joining. In my case, it didn't seem to impact legitimate traffic even though many join requests were sent. I also compared the time between each uplink and downlink during join flooding and without it, and didn't find much of a difference between the timing.   
 This was the normal tracker with legitimate traffic:  
@@ -128,7 +129,7 @@ In order to modify the firmware, I modified the source code of the LoRaWAN libra
 2. Observe how the gateway and server handle the malformed frames, whether they crash or if memory leaks occur. 
 After flashing one of the wireless trackers with the modified code, this is what the logs in ChirpStack Docker containers looked like:
 ![invalid_mic_logs](../assets/images/lorawan/chirpstack_logs_invalid_mic.png)
-Although there were no errors present in the dashboard, after the device successfully joined, there were no uplinks or downlinks that were shown in the logs. This meant that the packet was dropped immediately, which resulted in no errors taking place. I also tried this with a slight corruption where only the last byte is flipped (`*mic ^= 0x000000FF;`), and had the same results. This is what is expected in LoRaWAN, since LoRaWAN defines the MIC as the message integrity protection mechanism. If the MIC is computed to be invalid, there may have been packet tampering. If the MIC is invalid, it should drop the uplink without forwarding it. This helps protect LoRaWAN against packet tampering attacks, MAC command injection, and replay attacks. This helps ensure the security and resilience of the network. 
+Although there were no errors present in the dashboard, after the device successfully joined, there were no uplinks or downlinks that were shown in the logs. This meant that the packet was dropped immediately, which resulted in no errors taking place. I also tried this with a slight corruption where only the last byte is flipped (`*mic ^= 0x000000FF;`), and had the same results. This is what is expected in LoRaWAN, since LoRaWAN defines the MIC as the message integrity protection mechanism. If the MIC is computed to be invalid, there may have been packet tampering. If the MIC is invalid, the server should drop the uplink without forwarding it. This helps protect LoRaWAN against packet tampering attacks, MAC command injection, and replay attacks. This helps ensure the security and resilience of the network. 
 
 ## Mapping Vulnerabilities with STRIDE
 | STRIDE Category  | LoRaWAN Vulnerability | Technical Impact |

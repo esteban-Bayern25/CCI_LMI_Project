@@ -1,15 +1,18 @@
-MultiTech Gateway:
+### MultiTech Gateway:
 The gateway was set up according to the product page documentation. The web interface includes many different configurations, which were changed to allow ssh and connect wirelessly to the network for any updates. According to ChirpStack documentation, the ChirpStack Gateway Bridge was installed on the gateway, which is used to convert LoRa Packet Forwarder protocols into a ChirpStack common data-format. A Packet Forwarder has also been configured using the web interface, and it currently sends packets to the local Gateway Bridge. The gateway was added to ChirpStack, and it forwards LoRaWAN packets from the end-devices to the server. 
 
-ChirpStack Server:
+### ChirpStack Server:
 The ChirpStack server currently uses a Docker Compose file from the ChirpStack GitHub repository: https://github.com/chirpstack/chirpstack-docker. 
 
-End-device:
+### End-device:
 Have been set up and connected to the ChirpStack server by adding an application to the ChirpStack server. The application allows devices to be added, but only if a device profile containing specific information like the region and MAC version is added. This device profile was used for both of the wireless trackers since they both run the same firmware. The application key and device EUI were both uploaded to the wireless trackers using Arduino IDE. By using Arduino IDE, the software on the trackers can be changed to run security tests. The ChirpStack server has very detailed logging of both uplinks and downlinks from each end-device. 
 
-DIY LoRaWAN Gateway:
+### DIY LoRaWAN Gateway:
 There are some compatibility issues with the newer hardware of the raspberry pi 4 and the firmware, which is outdated since it is based on an older model. Currently, I am attempting to use the default Raspberry Pi OS image and use the git repository from RAKwireless to see if I can install the firmware without using the image.
 
+In order to get the gateway working, I attempted to use the default Raspberry Pi OS image, but after cloning the [RAK Wireless repository](https://github.com/RAKWireless/rak_common_for_gateway) and using `install.sh`, I found that the installation script didn't work because there were dependencies that were satisfied by an older OS. Specifically, it was the `hciuart.service`, since I got an error that said `Failed to disable unit: Unit hciuart.service does not exist`. In order to fix this issue, I tried an older OS, one with Bullseye since that is what the installation script was used for. When I flashed this legacy OS, I couldn't set default credentials, which led to another problem. I could not SSH or connect to the Raspberry Pi any other way since it was prompting me for a password that I didn't set. In order to solve this issue, I looked for the last Raspberry Pi OS image that includes Bullseye that did allow default credentials. This image was the `2022-01-28-raspios-bullseye-armhf-lite`. I flashed this image onto the Raspberry Pi OS and successfully connected to it with SSH. After that, the installation went through without any errors and I was able to connect to the ChirpStack server that I set up. 
+
+### Conclusions:
 After some security tests have been done, the results show that security is not enforced on the gateway-side, especially when the gateway is set up as a packet forwarder. No errors have been seen in the server logs despite running 3 security tests. The only places where security is enforced is on the server-side, where it must have the correct devEUI and appKey of the end-devices, and the EUI of the gateway. If any of these are incorrect, then the server will refuse to accept packets from these devices. The most important thing is having access to the server. If there was a privilege escalation attack on the server-side, the entire network may comprimised because the person trying to break in would be able to view all of the logs, and have access to all of the keys that are connected to the server. They would also have permission to add as many end-devices or gateways as they would like, which seriously comprimises the system. A lot of these issues also stem from the hardware itself, like the end-devices storing keys in plaintext, which makes it easier to know where they are stored and leads to issues like device cloning, which can cause packet injections. 
 
 LoRaWAN does very well against replay attacks due to DevNonce and making sure a new session is started after the end device loses power. For each session, new session keys are generated. 
