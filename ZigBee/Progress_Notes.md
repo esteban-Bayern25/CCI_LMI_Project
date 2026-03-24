@@ -389,7 +389,13 @@ The Discard: Even though the radio chip said "I got it," the Zigbee 3.0 Stack in
 
 ## 03/23
 
-Testing with the digi xbee mesh kit, throuhgput
+Testing with the digi xbee mesh kit, throuhgput and test range
+
+![Testing of the test range of the coord and router via digi xbee](/assets/images/zigbee/progress_zigbee/digi_xbee_test_range_coord_router1.png)
+
+- RSSI Chart represents the RSSI values of the local and remote devices during the range test session. The chart also contains the percentage of success for the total packets sent.
+- Local and Remote instant RSSI value display the instant RSSI value of the local and remote devices. This value is retrieved for the last packet sent/received.
+- Packet summary displays the total number of packets sent, packets received, transmission errors, and packets lost. It also displays the percentage of success sending and receiving packets during the range test session.
 
 https://www.digi.com/solutions/by-technology/zigbee-wireless-standard
 
@@ -398,3 +404,5 @@ https://www.digi.com/solutions/by-technology/zigbee-wireless-standard
 https://docs.digi.com//resources/documentation/digidocs/90001942-13/concepts/c_zb_security_on_the_xbee.htm?TocPath=_____14
 
 https://www.digi.com/resources/examples-guides/measure-digi-xbee-network-throughput-with-digi-xct
+
+## 03/24
