@@ -386,3 +386,15 @@ Frame 18 (The Injection): Your ButteRFly dongle sent the Realignment command to 
 Frame 19 (The ACK): The door sensor's radio chip immediately sent a hardware acknowledgement. This confirms you hit the "wake-up window" while you were opening/closing the door.
 
 The Discard: Even though the radio chip said "I got it," the Zigbee 3.0 Stack inside the Third Reality sensor likely discarded the command. Unlike the XBee Router, which is often more permissive with legacy commands, modern Zigbee 3.0 end devices typically ignore MAC-layer management frames (like 0x07 Realignment) unless they are encrypted with the Network Key.
+
+## 03/23
+
+Testing with the digi xbee mesh kit, throuhgput
+
+https://www.digi.com/solutions/by-technology/zigbee-wireless-standard
+
+https://www.digi.com/solutions/by-technology/zigbee-wireless-standard
+
+https://docs.digi.com//resources/documentation/digidocs/90001942-13/concepts/c_zb_security_on_the_xbee.htm?TocPath=_____14
+
+https://www.digi.com/resources/examples-guides/measure-digi-xbee-network-throughput-with-digi-xct

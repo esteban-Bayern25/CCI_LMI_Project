@@ -61,7 +61,7 @@ Zigbee2MQTT repository is cloned and dependencies are installed to allow startin
 sudo nano /opt/zigbee2mqtt/data/configuration.yaml
 ```
     
-**Note** The configuration.yaml should already be setup up, please observe 
+**Note** The configuration.yaml should already be setup up, please observe or if you would like to make changes edit the .yaml file
 
 6. Launch Zigbee2MQTT and watch it initialize.
 
@@ -83,6 +83,9 @@ In a browser on your local network go to the Pi IP and port 8080.
 http://<your_pi_ip>:8080
 ```
 
+Add devices to the Zigbee2MQTT and can get a network as shown below: 
+
+![Network Visual of Zigbee2MQTT](/assets/images/zigbee/progress_zigbee/zigbee2mqtt_network_visual.png)
 
 ### Setting up the nRF52840 Dongle for Sniffing
 
@@ -94,12 +97,58 @@ Please refer to [nRF52840 Dongle Sniffer Documentaiton for 802.15.4](https://doc
 
 ### Configuration of the Digi Xbee Router Module for Test 2
 
-To proberly configure the Digi Xbee router module for 
+To get an xbee module properly configur and join the Zigbee2MQTT network (configured with the rasbperry pi and SonOFF Dongle Plus), similar to the router configuration
+
+**Note** The modules should already be flashed with the lastest Zigbee firmware
+
+These are the following parameters that need to change:
+- CE Device Role: Join Network [0]
+- ZS Zigbee Stack Profile: 2
+- JV Coordinator Verification: Enabled[1]
+- NI Node Identifer: router_xbee
+- EE Encryption Enable: Enabled[1]
+- EO Encryption Options: 2
+- SM Sleep Mode: No Sleep (Router)[0]
+- SP Sleep Time: 1F4
+- AP API Enable: API Mode Without Escapes [1]
+
+For addtional informaiton please refer to the link below on xbee working with Zigbee2MQTT
+- [digi xbee modules communicate with other](https://www.digi.com/support/knowledge-base/can-digi-s-xbee-zb-modules-communicate-with-other)
+- [zigbee home automation](https://www.digi.com/support/knowledge-base/zigbee-home-automation)
+- [pdf documentation](https://docs.digi.com/resources/documentation/digidocs/pdfs/90001539.pdf)
 
 
-### Setting up the Digi Xbee Zigbee Mesh Network
+## Setting up the Digi Xbee Zigbee Mesh Network
 
+[Refer to Documentation on the Xbee Zigbee Mesh Kit User Guide](https://docs.digi.com//resources/documentation/digidocs/90001942-13/#concepts/c_xbee_zigbee_mesh_kit.htm?TocPath=XBee%2520Zigbee%2520Mesh%2520Kit%2520User%2520Guide%257C_____0)
 
+Would also recommend installing the [Digi Xbee Studio Application](https://www.digi.com/products/embedded-systems/digi-xbee/digi-xbee-tools/digi-xbee-studio)
+
+For configuration parameters on the digi xbee modules:
+- CE (Device Role): Defines the node’s function within the Zigbee stack. One node was designated as the
+Network Coordinator [1] to initialize the network, while the remaining three were configured as Routers [0]
+to facilitate multi-hop communication and mesh redundancy..
+- ID (Extended PAN ID): A specific identifier (2026) was assigned to all modules. This ensures all nodes join
+the same logical network and prevents cross-talk with other 2.4 GHz deployments in the vicinity
+- ZS (Zigbee Stack Profile): Set to 2 (Zigbee PRO). This profile is mandatory for Zigbee 3.0 compatibility,
+enabling advanced routing algorithms and support for larger node populations.
+- JV (Channel Verification): Enabled on all Router nodes. This forces the routers to verify the presence of the
+Coordinator on a specific operating channel before joining, ensuring a stable connection to the Trust Center.
+- EE (Encryption Enable): Set to Enabled [1] to activate 128-bit AES symmetric encryption. This ensures data
+confidentiality across both the Network (NWK) and Application Support Sub-layer (APS) layers.
+- AP (API Enable): Configured to API Mode with Escapes [2]. This mode allows the host workstation to interact
+with raw data frames rather than simple transparent text. This is a prerequisite for capturing the detailed packet
+metadata required for the subsequent security and latency analysis.
+- Baseline Configuration: All auxiliary parameters not explicitly listed—including Radio Frequency (RF) power
+levels (PL), scan durations (SD), and network hop limits (NH)—were maintained at their factory default values.
+This ensures that the performance results reflect the standard operational behavior of the Zigbee 3.0 protocol
+without specialized optimization
+
+### Setting up the WHAD device
+
+**Note:** The nrf52840 dongle should already be flashed with the WHAD butterfly properties
+
+For more informaiton please refer to the [open source whad docs](https://whad.readthedocs.io/en/latest/cli/generic/winject.html)
 
 
 ### **Equipement list**
@@ -110,34 +159,24 @@ To proberly configure the Digi Xbee router module for
 | ZigBee routers x2-4 (IoT smart Plug/ [Sonoff S31 Lite zb](https://sonoff.tech/en-us/products/sonoff-s31-lite-zb-smart-plug-us-type-zigbee-version?srsltid=AfmBOoouOWD-7qDYsYzVtx6ROJP727KxYbj710cNZLtBlKKkP0D6Rc7Z) or [ZBBridge-P](https://sonoff.tech/en-us/products/sonoff-zigbee-bridge-pro?pr_prod_strat=pinned&pr_rec_id=67b491ac0&pr_rec_pid=8812959826161&pr_ref_pid=8812958646513&pr_seq=uniform)) | [XBee 3 Pro Module](https://www.digi.com/products/embedded-systems/digi-xbee/rf-modules/2-4-ghz-rf-modules/xbee3-zigbee-3) | 
 | |[End devices](https://www.digi.com/products/models/xb3-24z8st) |
 
-**Gateways** 
--[SONOFF Zigbee Bridge Pro Gateway](https://itead.cc/product/sonoff-zigbee-bridge-pro/?srsltid=AfmBOopXQ3b47qvAfyGV_-eSJeZtgb6j_NytEKZ2EIwDkoR5dRlr4Iu4JOQ)
-- Raspberry-pi-5
--[Digi IX15 IoT Gateway and Cellular Router](https://www.digi.com/products/embedded-systems/digi-xbee/digi-xbee-gateways/digi-xbee-gateways/digi-ix15-xbee-gateway) **most likely not though**
-
 **Digi Key Parts**
 - [Digi XBee 3 Zigbee Mesh Kit](https://www.digikey.com/en/products/detail/digi/XK3-Z8S-WZM/8130956?utm_source=ecia&utm_medium=aggregator&utm_campaign=digiintl)
 - nRF Sniffer for 802.15.4 [^2]
     - [nRF52840 Dongle](https://www.digikey.com/en/products/detail/nordic-semiconductor-asa/NRF52840-DONGLE/9491124?utm_source=oemsecrets&utm_medium=aggregator&utm_campaign=buynow) 
 - [ZigBee startup kits/ home guide](https://www.youtube.com/watch?v=fHq2Bzrsnr8)
 
-**Company Provided**
-- 1 Mist Gateway (Maybe not we provide our own gateway)
-- 1 Mist Extender
-- 2-3x Mist Tags
-
-
 **software/ logger tools**
 - python
 - wireshark
 - scapy
+- [WHAD](https://whad.readthedocs.io/en/latest/cli/generic/winject.html)
 - Zephyr RTOS
-- ![API](https://docs.zephyrproject.org/apidoc/latest/structieee802154__radio__api.html) 
+- [API](https://docs.zephyrproject.org/apidoc/latest/structieee802154__radio__api.html) 
 - nRF Connect for Desktop
 - zperf (Zephyr Utility)
 - Pyserial
 - Zigbee2MQTT or Home Assistant (ZHA)
-- ![ApiMote](http://apimote.com/)
-- ![nRF Sniffer for 802.15.4](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/intro_802154.html)
+- [ApiMote](http://apimote.com/)
+- [nRF Sniffer for 802.15.4](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/intro_802154.html)
 
 

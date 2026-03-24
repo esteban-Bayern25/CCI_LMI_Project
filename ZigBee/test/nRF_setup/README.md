@@ -1,4 +1,10 @@
-# Setting up nRF52840 Dongle for Coordinator
+# Configuration of nRF52840 Dongle for sniffing
+
+This folder contain the .py file that worked with my host machince (Ubuntu Linux 22.04 LTS) to be able to sniff packets on the Zigbbe network. To see how to setup the configuration please refer to [nRF_sniffer folder](/ZigBee/nRF_sniffer/nRF-Sniffer-for-802.15.4/)
+
+Below are additional links if you would like to change the function of the dongle device other than a sniffer.
+
+#### Setting up nRF52840 Dongle for Coordinator
 [Setting up nRF Sniffer](https://academy.nordicsemi.com/topic/test/)
 [Wireshark information with sniffer guide](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/running_sniffer_802154_ws.html)
 
@@ -25,19 +31,7 @@ https://github.com/ffenix113/zigbee_home/discussions/8
 
 https://shillehtek.com/blogs/news/raspberry-pi-zigbee-dongle-plus-e-zigbee2mqtt
 
-
 https://www.youtube.com/watch?v=xvVvBKk9dN4
-
-#### Want GPS?
-https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/425/109020022_Web.pdf
-https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/109020022/12323450
-https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/110990031/5482557
-
-#### Micropython Programming Approach
-https://docs.digi.com/resources/documentation/digidocs/90002219/#reference/r_syntax.htm?TocPath=Differences%2520between%2520MicroPython%2520and%2520other%2520programming%2520languages%257CSyntax%257C_____0
-
-**https://docs.digi.com/resources/documentation/digidocs/rf-docs/blu/blu-appdev-develop-micropython_t.html**
-https://www.youtube.com/watch?v=ewImad6YckE
 
 #### Setting up nRF52840 to be able to send pacekts links
 https://www.home-assistant.io/integrations/zha/
@@ -51,11 +45,8 @@ https://forums.digi.com/t/decrypting-encrypted-xbee3-traffic-wireshark/23700
 https://digiblur.com/2021/08/21/zigbee-network-key-sniffing/
 
 
-
 #### Xbee working with Zigbee2MQTT
 https://www.digi.com/support/knowledge-base/can-digi-s-xbee-zb-modules-communicate-with-other
 
 https://www.digi.com/support/knowledge-base/zigbee-home-automation
 https://docs.digi.com/resources/documentation/digidocs/pdfs/90001539.pdf
-
-#### Sending spoofed packets via nRF52480
