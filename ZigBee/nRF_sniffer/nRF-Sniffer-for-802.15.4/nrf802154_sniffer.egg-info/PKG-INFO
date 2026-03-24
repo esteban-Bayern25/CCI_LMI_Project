@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: nrf802154_sniffer
+Version: 0.0.0
+Summary: Wireshark extcap and firmware that can be used with nRF52840 chip as 802.15.4 sniffer.
+Home-page: https://github.com/NordicPlayground/nRF-802.15.4-sniffer/
+Author: Nordic Semiconductor
+License-File: LICENSE
+Requires-Dist: pyserial
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
