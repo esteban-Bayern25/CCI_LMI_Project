@@ -192,8 +192,6 @@ Another test in which both routers are transmitting GPS data to the coordinator 
 
 ![Throughput Test Router 2](/assets/images/zigbee/progress_zigbee/router2_throughput_test.png)
 
-
-
 **Part 2 The Attack (Exploit):** Introduce a Rogue Router (Attacker) designed to "Flood" the Coordinator with high-frequency, maximum-payload traffic.
 
 #### Setup:
@@ -201,14 +199,23 @@ Using a second XBee module connected and integrated into the Xbee Zigbee Network
 
 1. Configure the Rogue Router to send Unidirectional traffic to the Coordinator's 64-bit address.
 
-2. Modify the injection script to remove all delays (time.sleep(0)) and use the maximum allowable payload (72–100 bytes).
+In this case Router 2 is configured to send random max payloads of 255 bytes, with a transmit timeout of 200 ms, and to loop infinitely to be able to see the the impact on the good router
 
 **Part 3 Impact Analysis (Payload):** Observe the failure of legitimate network services under the pressure of the flood.
 
 #### Setup:
-1. While the Rogue Router is flooding, attempt to view the legitimate GPS data in the Coordinator’s serial console.
+1. While the Rogue Router (router 2) is flooding, attempt to view the legitimate GPS data in the Coordinator’s serial console.
 
-2. Monitor the XCTU Throughput graph for the legitimate device.
+![Protocol Flooding the Coordinator](/assets/images/zigbee/progress_zigbee/coord_viewpoint_from_protocol_flooding.png)
+
+2. Monitor the Xbee Studio Throughput graph for the legitimate device.
+
+![Decrease in the average transfer ratio](/assets/images/zigbee/progress_zigbee/router1_throughput_test_with_protocol_flooding.png)
+
+Able to see that the Average transfer ratio decreases when a rouge router floods the network with random bytes of information 
+
+**Goal:** Prove that ZigBee’s lack of per-node rate limiting allows a single malicious or malfunctioning device to "crowd out" critical traffic.
+
 
 ### References
 [^1]:[Security Assesesment Reference](https://securelist.com/zigbee-protocol-security-assessment/118373/)
