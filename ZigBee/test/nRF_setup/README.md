@@ -44,9 +44,3 @@ https://docs.nordicsemi.com/bundle/ncs-2.9.2/page/nrf/samples/zigbee/shell/READM
 https://forums.digi.com/t/decrypting-encrypted-xbee3-traffic-wireshark/23700
 https://digiblur.com/2021/08/21/zigbee-network-key-sniffing/
 
-
-#### Xbee working with Zigbee2MQTT
-https://www.digi.com/support/knowledge-base/can-digi-s-xbee-zb-modules-communicate-with-other
-
-https://www.digi.com/support/knowledge-base/zigbee-home-automation
-https://docs.digi.com/resources/documentation/digidocs/pdfs/90001539.pdf

@@ -180,3 +180,22 @@ For more informaiton please refer to the [open source whad docs](https://whad.re
 - [nRF Sniffer for 802.15.4](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/intro_802154.html)
 
 
+
+Join status from the FMG
+evidence of the tags are are joined and operating under the configurations'=
+protocol testing, 
+
+validate end to end tag to FMG
+
+Monitor and join authenticaiton status of the devices, any relates status -> nodes are connected and whats that like 
+
+read telemtry status live status, temp, light, no GPS
+
+Able to get a command respond, ask through the FMG, 
+
+able to see the signal strength, and kbps, transmissons (to find, tbd)
+
+Able to modify the end equipments tags to dissaccaotie with the FMG-W network to another network 
+ 
+picocom to sudo into the boot
+ 

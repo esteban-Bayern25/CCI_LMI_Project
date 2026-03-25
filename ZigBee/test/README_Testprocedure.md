@@ -157,16 +157,58 @@ To observe the pcap capture look [here](/assets/images/zigbee/zigbee_pcap_captur
 
 **Goal:** Prove that Zigbee’s centralized logic allows an attacker to "evict" the legitimate owner and take control of the topology, whereas Mist’s Local Survival Mode prevents such shifts because "Trust" is not tied to a single, spoofable PAN ID. The Router follows the spoofed command to the new PAN ID, orphaning its child devices and causing a localized Denial of Service (DoS)
 
-## Notes
-Qualitative methods involve observing and interpreting the impact of attacks through direct observation and network scans. Quantitative methods measure the effect of attacks numerically, such as the number of packets received or dropped during DoS attacks.
 
-- [PAN ID](https://docs.digi.com//resources/documentation/digidocs/90002002/concepts/c_zb_pan_id.htm?tocpath=Zigbee%20networks%7CZigbee%20networking%20concepts%7CPAN%20ID%7C_____0)
-- [Joining Zigbee Networks](https://docs.digi.com/resources/documentation/digidocs/90001399-13/references/r-create-join-zigbee-network.htm)
+## Test 3: Resource Exhaustion (Availability)
 
-- [Network Realignment Attack](https://pmc.ncbi.nlm.nih.gov/articles/PMC12349651/#B9-sensors-25-04606)
-- Spoofing or compromising TC 
-[Home Assistant](https://www.home-assistant.io/integrations/sensor/)
+**Thesis:** ZigBee networks are vulnerable to "Protocol Flooding" because the Coordinator acts as a centralized data sink. A single rogue router can exhaust the Coordinator's limited processing buffers or saturate the 802.15.4 bandwidth, causing legitimate sensor data (e.g., GPS coordinates) to be dropped or delayed.
 
+### Scenario: Malicious Traffic Saturation
+
+**Part 1 Baseline (Recon):** Establish the "Normal" state of the network. Identify the average latency and throughput of a legitimate device while the network is quiet.
+
+![Normal State Network](/assets/images/zigbee/progress_zigbee/baseline_state_zigbee_network_test3.png)
+
+#### Setup:
+
+1. Run or Configure one of the Xbee routers to acts a legitimate GPS simulation (sending 58-byte packets every millisecond).
+
+![Configure payload with GPS simulation](/assets/images/zigbee/progress_zigbee/configuration_of_router_to_coordinator.png)
+
+![Coord receiving the payload](/assets/images/zigbee/progress_zigbee/payload_sent_to_coordinator.png)
+
+2. Use the Xbee Studio Throughput Test tool to monitor the "Average transfer ratio"
+
+![Recording of data of Kbps with GPS](/assets/images/zigbee/progress_zigbee/recording_kbps_with_gps_router.png)
+
+- The black dotted line (Average) is very flat, which means your link is stable and there is very little interference in your current environment.
+
+- pushing about 368 bytes per second ( approx. 6.3 GPS packets per second). This perfectly simulates a high-frequency GPS tracker (5Hz–10Hz).
+
+- At 2.94 Kbps, =only using about 5% to 10% of a typical Zigbee link's actual capacity. This gives you plenty of "headroom" to observe the impact of an attack.
+
+Another test in which both routers are transmitting GPS data to the coordinator simultaneosuly for about 60 seconds
+
+![Throughput Test Router 1](/assets/images/zigbee/progress_zigbee/router1_throughput_test.png)
+
+![Throughput Test Router 2](/assets/images/zigbee/progress_zigbee/router2_throughput_test.png)
+
+
+
+**Part 2 The Attack (Exploit):** Introduce a Rogue Router (Attacker) designed to "Flood" the Coordinator with high-frequency, maximum-payload traffic.
+
+#### Setup:
+Using a second XBee module connected and integrated into the Xbee Zigbee Network:
+
+1. Configure the Rogue Router to send Unidirectional traffic to the Coordinator's 64-bit address.
+
+2. Modify the injection script to remove all delays (time.sleep(0)) and use the maximum allowable payload (72–100 bytes).
+
+**Part 3 Impact Analysis (Payload):** Observe the failure of legitimate network services under the pressure of the flood.
+
+#### Setup:
+1. While the Rogue Router is flooding, attempt to view the legitimate GPS data in the Coordinator’s serial console.
+
+2. Monitor the XCTU Throughput graph for the legitimate device.
 
 ### References
 [^1]:[Security Assesesment Reference](https://securelist.com/zigbee-protocol-security-assessment/118373/)

@@ -101,3 +101,13 @@ Despite their different designs, both protocols share risks inherent to low-powe
 [^5]:[IEEE perfromance on ZigBee Pro](https://ieeexplore.ieee.org/document/6673344/authors#authors)
 [^6]: [ZigBee wireless standard](https://www.digi.com/solutions/by-technology/zigbee-wireless-standard)
 [^7]: [Cross-Layer Security Assessment in IoT Ecosystems: Analyzing Vulnerabilities in the Zigbee Protocol](https://ieeexplore.ieee.org/document/11239104)
+
+## Notes
+Qualitative methods involve observing and interpreting the impact of attacks through direct observation and network scans. Quantitative methods measure the effect of attacks numerically, such as the number of packets received or dropped during DoS attacks.
+
+- [PAN ID](https://docs.digi.com//resources/documentation/digidocs/90002002/concepts/c_zb_pan_id.htm?tocpath=Zigbee%20networks%7CZigbee%20networking%20concepts%7CPAN%20ID%7C_____0)
+- [Joining Zigbee Networks](https://docs.digi.com/resources/documentation/digidocs/90001399-13/references/r-create-join-zigbee-network.htm)
+
+- [Network Realignment Attack](https://pmc.ncbi.nlm.nih.gov/articles/PMC12349651/#B9-sensors-25-04606)
+- Spoofing or compromising TC 
+[Home Assistant](https://www.home-assistant.io/integrations/sensor/)
