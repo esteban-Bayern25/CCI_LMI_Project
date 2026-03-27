@@ -57,7 +57,7 @@ Example using the WHAD configuration on the nRF52840 dongle device:
 
 ![Wireshark Setting shows of adding the key](/assets/images/zigbee/progress_zigbee/wireshark_adding_keys.png)
 
-2. From there you will have successful decryption, packet types and readable application commands will be visible, such as Link Status or on/off cluster commands
+2. From there you will have successful decryption, packet types and readable application commands will be visible, such as Link Status or on/off cluster commands. You can carry out some actions on the device (e.g., if the device is a light, turn it on/off, change the brightness, etc.) and you should see decrypted Zigbee messages in the capture window.
 
 ![Information is Decrypted](/assets/images/zigbee/progress_zigbee/wireshark_keysObtained_InfoUnlocked.png)
 
@@ -128,14 +128,18 @@ Using the nRF52840 dongle and Wireshark or with the WHAD device either works:
 
 [Observe Test 1 Part 1 Recon, very similar steps](#Setup)
 
-2. The Spoof: Use an nRF52840 Dongle (Sniffer/Attacker) with WHAD configured to send a spoofed Coordinator Realignment (0x07) command. 
+2. For setting up the Xbee Module to act as a router and connect to the Zigbee2MQTT network please refer to [Configuration of the Digi Xbee Router Module for Test 2](/ZigBee/Setup_Procedure.md)
+
+3. The Spoof: Use an nRF52840 Dongle (Sniffer/Attacker) with WHAD configured to send a spoofed Coordinator Realignment (0x07) command. 
 
 **Note:** Important parameters to have are
-- Target NWK Address
-- Target IEEE
-- Legitimate PAN ID
-- Coordinator IEEE
-- Rogue PAN ID 
+| Parameter | Description |
+| :--- | :--- |
+| Target NWK Address | The 16-bit address of the router being targeted. |
+| Target IEEE | The unique 64-bit MAC address of the target device. |
+| Legitimate PAN ID | The ID of the network the device currently belongs to. |
+| Coordinator IEEE | The MAC address of the legitimate Trust Center. |
+| Rogue PAN ID | The destination ID (e.g., 0xDEAD) to which the node will be "evicted." |
 
 Then you get edit/ make adjustments to the [python script](/ZigBee/test/python_scripts/packet_injection_on_xbee_router.py)
 
@@ -147,7 +151,7 @@ python packet_injection_on_xbee_router.py
 
 ![Running the python file](/assets/images/zigbee/progress_zigbee/cmd_line_running_script_inject_xbee_router.png)
 
-3. The Payload: The frame contains a new, rogue PAN ID
+4. The Payload: The frame contains a new, rogue PAN ID
 
 ![Xbee Router packet injection](/assets/images/zigbee/progress_zigbee/wireshark_capture_xbee_router_leaving_network.png)
 
@@ -199,7 +203,7 @@ Using a second XBee module connected and integrated into the Xbee Zigbee Network
 
 1. Configure the Rogue Router to send Unidirectional traffic to the Coordinator's 64-bit address.
 
-In this case Router 2 is configured to send random max payloads of 255 bytes, with a transmit timeout of 200 ms, and to loop infinitely to be able to see the the impact on the good router
+In this case Router 2 is configured to send random max payloads of 255 bytes, with a transmit timeout of 200 ms, and to loop infinitely to be able to see the the impact on the legitimate router (router1)
 
 **Part 3 Impact Analysis (Payload):** Observe the failure of legitimate network services under the pressure of the flood.
 

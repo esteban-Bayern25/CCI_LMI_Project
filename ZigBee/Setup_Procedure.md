@@ -87,6 +87,8 @@ Add devices to the Zigbee2MQTT and can get a network as shown below:
 
 ![Network Visual of Zigbee2MQTT](/assets/images/zigbee/progress_zigbee/zigbee2mqtt_network_visual.png)
 
+## Setting up the dongle sniffer 
+
 ### Setting up the nRF52840 Dongle for Sniffing
 
 Please refer to [nRF52840 Dongle Documentation](https://docs.nordicsemi.com/bundle/ug_nrf52840_dongle/page/UG/nrf52840_Dongle/intro.html)
@@ -94,6 +96,13 @@ Please refer to [nRF52840 Dongle Documentation](https://docs.nordicsemi.com/bund
 Please refer to [nRF52840 Dongle Sniffer Documentaiton for 802.15.4](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/intro_802154.html)
 
 **Note** The Dongle is already configured and flash you just need to install the dependencies onto your computer and test via wireshark.
+
+### Setting up the WHAD device
+
+**Note:** The nrf52840 dongle should already be flashed with the WHAD butterfly properties
+
+For more informaiton please refer to the [open source whad docs](https://whad.readthedocs.io/en/latest/cli/generic/winject.html)
+
 
 ### Configuration of the Digi Xbee Router Module for Test 2
 
@@ -144,13 +153,6 @@ levels (PL), scan durations (SD), and network hop limits (NH)—were maintained 
 This ensures that the performance results reflect the standard operational behavior of the Zigbee 3.0 protocol
 without specialized optimization
 
-### Setting up the WHAD device
-
-**Note:** The nrf52840 dongle should already be flashed with the WHAD butterfly properties
-
-For more informaiton please refer to the [open source whad docs](https://whad.readthedocs.io/en/latest/cli/generic/winject.html)
-
-
 ### **Equipement list**
 
 | Commerical | Development Hardware | 
@@ -165,7 +167,7 @@ For more informaiton please refer to the [open source whad docs](https://whad.re
     - [nRF52840 Dongle](https://www.digikey.com/en/products/detail/nordic-semiconductor-asa/NRF52840-DONGLE/9491124?utm_source=oemsecrets&utm_medium=aggregator&utm_campaign=buynow) 
 - [ZigBee startup kits/ home guide](https://www.youtube.com/watch?v=fHq2Bzrsnr8)
 
-**software/ logger tools**
+**Software/ Logger Tools**
 - python
 - wireshark
 - scapy
@@ -180,22 +182,4 @@ For more informaiton please refer to the [open source whad docs](https://whad.re
 - [nRF Sniffer for 802.15.4](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/intro_802154.html)
 
 
-
-Join status from the FMG
-evidence of the tags are are joined and operating under the configurations'=
-protocol testing, 
-
-validate end to end tag to FMG
-
-Monitor and join authenticaiton status of the devices, any relates status -> nodes are connected and whats that like 
-
-read telemtry status live status, temp, light, no GPS
-
-Able to get a command respond, ask through the FMG, 
-
-able to see the signal strength, and kbps, transmissons (to find, tbd)
-
-Able to modify the end equipments tags to dissaccaotie with the FMG-W network to another network 
- 
-picocom to sudo into the boot
  
