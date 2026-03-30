@@ -59,3 +59,12 @@ In order to receive LoRaWAN packets from the end-devices, the server must know t
 3. In the application, add a device. The Device EUI, Join EUI, and Device profile must be chosen. The Device EUI and Join EUI corresponds to the DevEUI and AppEUI set in Arduino IDE. 
 
 4. If successful, the devices should be shown as `Active` in the `Dashboard` when powered. 
+
+## 6. Set up the RAK Wireless Gateway (DIY)
+1. Install the hat onto the Raspberry Pi 4, and install the module onto the hat, as seen in https://store.rakwireless.com/products/wislink-concentrator-module-sx1302-rak2287-lorawan?variant=44510641815750&country=US&currency=USD
+
+2. Flash the `2022-01-28-raspios-bullseye-armhf-lite` onto the SD card, which is found on https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-2022-01-28/. Note that this image is different than the image used in the module's quick start guide, which is due to the image in the guide being outdated.
+
+3. SSH into the gateway using default credentials and clone the [rak_common_for_gateway](https://github.com/RAKWireless/rak_common_for_gateway) repository onto the Raspberry Pi.
+
+4. Make sure to keep the same region that is used for the entire network and change the frequency in `/opt/ttn-gateway/packet_forwarder/lora_pkt_fwd/global_conf.json` to match the frequency used by the end-devices. I used `"tx_freq_min": 923000000, "tx_freq_max": 923300000`. If this isn't done, the gateway will not be able to receive packets from the end-devices. 

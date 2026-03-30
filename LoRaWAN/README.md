@@ -20,10 +20,10 @@ Objective: Extract AppKey and DevEUI if they are stored in plaintext on the end 
 ### Setup:
 1. Connect the end device to laptop.
 2. Dump device's flash memory with esptool.py.
-4. Identify the serial port using `mode`, for me it was COM8
+3. Identify the serial port using `mode`, for me it was COM8
 
 ![Esptool_size_output](../assets/images/lorawan/device_manager_showing_wireless_tracker_com8.png)  
-5. Dump the entire flash.
+4. Dump the entire flash.
 ```bash
 # First detect boot size
 python -m esptool --port COM8 flash-id
@@ -34,7 +34,7 @@ python -m esptool --port COM8 read-flash 0x00000000 0x800000 flash_dump.bin
 This was my output:  
 ![Esptool_size_output](../assets/images/lorawan/esptool_size_output.png)  
 
-3. If the dump is successful, find the AppKey and DevEUI. In my case, the dump was successful:
+5. If the dump is successful, find the AppKey and DevEUI. In my case, the dump was successful:
 ![flash_dump](../assets/images/lorawan/flash_dump.png)  
 However, I needed to look through the binary file that was generated. I chose to use Ghidra since it is a well-known software reverse engineering framework. 
 I opened Ghidra and searched for the AppKey that I used when I configured the AppKey using Arduino IDE:
@@ -86,8 +86,14 @@ Objective: Figure out if a malicious gateway that pretends to be legitimate can 
 
 ### Setup:
 1. Deploy both gateways, connect them to the same ChirpStack server.
-2. Configure the Pi gateway to modify RSSI values, drop packets, and inject latency.
+2. Configure the Pi gateway to modify RSSI values, drop packets, and inject latency. I did this through `malicous_gateway.py`.
 3. Observe if the server recieves the traffic as legitimate. 
+After modifying the ports that the packet forwarder uses, I used `malicious_gateway.py` to change the RSSI value to make the server think it's much closer than it is, and also inject latency by making the packet late by 2 seconds. If the malicious gateway is the only gateway that is received by the server, the server receives them as legitimate packets. 
+
+I also tested whether these packets would throw errors on the server if there were multiple gateways that were online and near the end device at the same time. Since the RSSI value was changed to make the malicious gateway the most optimal gateway that is used for packet forwarding in the LoRaWAN protocol, the other gateway saw these packets from the end-device as legitimate packets. More specifically, these were labeled as duplicated packets that were already sent by another gateway, which meant that the authorized gateway did not check whether these packets had been tampered with.
+![duplicated_packets](../assets/images/lorawan/duplicated_packets.png) 
+
+ This means that the malicious gateway does successfully carry out this attack, especially when the RSSI value is changed to make the malicious gateway the most optimal to send the packets to the server.
 
 ## Frame Counter Persistence
 Objective: Determine whether the end device persists FCntUp across power cycles, and correctly resumes session state after being rebooted. LoRaWAN prevents replay attacks with FCntUp, an uplink frame counter, and FCntDown, a downlink counter. If FCntUp resets to 0 after power is lost, it could lead to the server to be susceptible to join flooding or consume more battery than a normal uplink. 
