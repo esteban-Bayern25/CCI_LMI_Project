@@ -164,7 +164,9 @@ To observe the pcap capture look [here](/assets/images/zigbee/zigbee_pcap_captur
 
 ## Test 3: Resource Exhaustion (Availability)
 
-**Thesis:** ZigBee networks are vulnerable to "Protocol Flooding" because the Coordinator acts as a centralized data sink. A single rogue router can exhaust the Coordinator's limited processing buffers or saturate the 802.15.4 bandwidth, causing legitimate sensor data (e.g., GPS coordinates) to be dropped or delayed.
+**Thesis:** Zigbee networks are inherently vulnerable to Protocol Flooding due to the Coordinator’s role as a 
+centralized data sink. This experiment demonstrates that a single rogue router can exhaust the Coordinator's processing buffers and 
+saturate the IEEE 802.15.4 bandwidth. The result is the catastrophic dropping or delaying of critical, legitimate sensor data (e.g., GPS telemetry).
 
 ### Scenario: Malicious Traffic Saturation
 

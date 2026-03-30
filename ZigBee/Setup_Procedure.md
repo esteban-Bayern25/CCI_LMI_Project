@@ -1,3 +1,15 @@
+# Purpose of the README file
+This file, Setup_Procedure.md, serves as the foundational technical guide for establishing the ZigBee environment used in this project. It provides step-by-step instructions for configuring the hardware and software required for network creation, device interaction, and traffic analysis.
+
+**Key Sections of the File:**
+- ZigBee Coordinator Setup: Detailed walkthrough for building a commercial-grade coordinator using a Raspberry Pi 5 and a Sonoff Zigbee 3.0 USB Dongle Plus. It covers the installation of Zigbee2MQTT and the Mosquitto MQTT broker.
+
+- Packet Sniffing Infrastructure: Instructions for configuring nRF52840 Dongles as sniffers. It includes references for flashing the devices with WHAD (Wireless Hacking Adventure) properties for integration with Wireshark.
+
+- Digi XBee Configuration: Specific parameter settings (such as PAN ID, Encryption, and API Mode) required to configure XBee 3 modules as routers or coordinators within a Zigbee 3.0 mesh network.
+
+- Hardware & Software Inventory: A comprehensive list of all equipment—from development boards to smart plugs—along with the necessary software libraries like Scapy, pyserial, and the Zephyr RTOS.
+
 # Configuration and Setup for ZigBee Network
 
 **Note** All equipments that are involved in the creation of the zigbee network and tests are listed at the bottom of this README.

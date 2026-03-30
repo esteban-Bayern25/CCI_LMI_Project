@@ -3,7 +3,7 @@
 There are different folders and files to support the work that was perfromed on the ZigBee IoT protocol testing. This README provides an outline on how to best nativate this folder and look into the different realted work
 
 
-## Test Folder
+## test Folder
 
 Within the folder is the the test procedure read me file, 2 addtionla folders, and the test outline in power point format
 
@@ -11,12 +11,23 @@ Within the folder is the the test procedure read me file, 2 addtionla folders, a
 
 - [python_scripts](/ZigBee/test/python_scripts/) folder contains all the python scrupts that were used to perfrom the packet injection within the test experiment for Zigbee each being named respecltily, refer to the README in that folder to better understand the different scripts and purpose. 
 
--[Test Procedure Outline](/ZigBee/test/README_Testprocedure.md) README file provides an indepth explainaiton on how the experiments was setup along with visuially and guides to recreates or follow allong these tests
+- [Test Procedure Outline](/ZigBee/test/README_Testprocedure.md) README file provides an indepth explainaiton on how the experiments was setup along with visuially and guides to recreates or follow allong these tests
 
--[Test Outline Powerpoint](/ZigBee/test/test_outline.pptx) file was used to present our rough draft on our test appraoch and receives feedback on any imporvemtns or changed that may need be
+- [Test Outline Powerpoint](/ZigBee/test/test_outline.pptx) file was used to present our rough draft on our test appraoch and receives feedback on any imporvemtns or changed that may need be
 
-## nRF sniffer Folder
+## nRF_sniffer Folder
 
 - [nRF sniffer setup](/ZigBee/nRF_sniffer/nRF-Sniffer-for-802.15.4/) within this folder provides the outline and necssary information if your would like to start form scratch and how to setup the nRF52840 dongle device for sniffing and flashing the device
 
-## Setup Procedure README file
+## Setup_Procedure README file
+
+This document contains the comprehensive technical requirements and step-by-step instructions for initializing the test environment. It covers:
+
+- Building the ZigBee Coordinator using Raspberry Pi and Zigbee2MQTT.
+
+- Configuring nRF52840 dongles for 802.15.4 packet sniffing and traffic injection.
+
+- Fine-tuning Digi XBee 3 module parameters for mesh network stability and security testing.
+
+- A complete Equipment List of all commercial and development hardware utilized in the project.
+
