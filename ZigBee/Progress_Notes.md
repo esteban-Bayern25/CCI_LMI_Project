@@ -406,3 +406,8 @@ https://docs.digi.com//resources/documentation/digidocs/90001942-13/concepts/c_z
 https://www.digi.com/resources/examples-guides/measure-digi-xbee-network-throughput-with-digi-xct
 
 ## 03/24
+
+## 03/30
+Focus on writing the technical report and executiative summary 
+
+Testing packet sniffer on Mist IoT protocol
