@@ -157,7 +157,7 @@ python packet_injection_on_xbee_router.py
 
 Immediately following the injection, the sniffer captured an IEEE 802.15.4 Beacon Request. A router only sends a Beacon Request when it is "orphaned" or searching for a network. This proves the XBee accepted the rogue command, moved to the Rogue PAN ID (0xdead), and—finding no legitimate hub there—began searching for a new parent.
 
-To observe the pcap capture look [here](/assets/images/zigbee/zigbee_pcap_captures/test_1_packet_injection_on_xbee_router.pcap)
+To observe the pcap capture look [here](/assets/images/zigbee/zigbee_pcap_captures/test_2_packet_injection_on_xbee_router.pcap)
 
 **Goal:** Prove that Zigbee’s centralized logic allows an attacker to "evict" the legitimate owner and take control of the topology, whereas Mist’s Local Survival Mode prevents such shifts because "Trust" is not tied to a single, spoofable PAN ID. The Router follows the spoofed command to the new PAN ID, orphaning its child devices and causing a localized Denial of Service (DoS)
 
