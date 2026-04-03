@@ -12,7 +12,7 @@ Information regarding LoRaWAN is here: [LoRaWAN](LoRaWAN/)
 
 Information regarding Mist is here: [Mist](Mist/)
 
-## NB-IOT Protocol
+## NB-IoT Protocol
 
 Information regarding NB-IoT is here: [NB-IoT](NB-IoT/)
 
