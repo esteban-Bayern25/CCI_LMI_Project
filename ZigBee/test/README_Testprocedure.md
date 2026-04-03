@@ -1,13 +1,13 @@
 # ZigBee Security Evaluation
 
 ### Overview
-This project evaluates the security and resilience of ZigBee networks by simulating real-world attack scenarios against a coordinator-based architecture. The goal is to analyze how centralized trust models in ZigBee compare to more decentralized architectures (e.g., Mist) under adversarial conditions.[^1-5]
+This project evaluates the security and resilience of ZigBee networks by simulating real-world attack scenarios against a coordinator-based architecture. The goal is to analyze how centralized trust models in ZigBee compare to more decentralized architectures (e.g., Mist) under adversarial conditions.
 
 1. Application-Level Attack
 2. Denial of Service Attacks
 
 ### Objective
-The primary objective is to quantify the operational resilience and security depth of ZigBee networks by simulating high-impact failure and attack scenarios. [^4]
+The primary objective is to quantify the operational resilience and security depth of ZigBee networks by simulating high-impact failure and attack scenarios. [^1]
 
 Specifically, this project investigates:
 - The impact of centralized trust (ZigBee Trust Center) on network stability
@@ -15,7 +15,7 @@ Specifically, this project investigates:
 - The risk of key compromise and command injection
 
 ## Test 1: Trust Center Compromise (Confidentiality + Integrity)
-**Thesis:** ZigBee security depends on shared keys that may be exposed during device joining, whereas stronger systems use per-device identity-based keys.[^5]
+**Thesis:** ZigBee security depends on shared keys that may be exposed during device joining, whereas stronger systems use per-device identity-based keys.[^2]
 
 ### **Scenario:** Key Extraction & Command Injection
 
@@ -224,8 +224,5 @@ Able to see that the Average transfer ratio decreases when a rouge router floods
 
 
 ### References
-[^1]:[Security Assesesment Reference](https://securelist.com/zigbee-protocol-security-assessment/118373/)
-[^2]: [Setup Dongle Tutorial](https://youtu.be/ptY3lrboV-c?si=IevqJVBHtRSsnEBb)
-[^3]:[Setup for another ZigBee Coordinator slzb06](https://smlight.tech/global/slzb06)
-[^4]: [Setup for ZigBee network](https://smarthomescene.com/guides/how-to-build-a-stable-and-robust-zigbee-network/)
-[^5]: [ZigBee Vulnerabilites](https://payatu.com/blog/zigbee-security-101-architecture-and-security-issues/#ZigBee_Vulnerabilities)
+[^1]: [Setup for ZigBee network](https://smarthomescene.com/guides/how-to-build-a-stable-and-robust-zigbee-network/)
+[^2]: [ZigBee Vulnerabilites](https://payatu.com/blog/zigbee-security-101-architecture-and-security-issues/#ZigBee_Vulnerabilities)

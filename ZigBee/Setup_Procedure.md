@@ -1,5 +1,5 @@
-# Purpose of the README file
-This file, Setup_Procedure.md, serves as the foundational technical guide for establishing the ZigBee environment used in this project. It provides step-by-step instructions for configuring the hardware and software required for network creation, device interaction, and traffic analysis.
+# Purpose
+This document serves as the foundational technical guide for establishing the Zigbee and Mist environments used in this project. It provides step-by-step instructions for configuring hardware and software for network creation, device interaction, and traffic analysis.
 
 **Key Sections of the File:**
 - ZigBee Coordinator Setup: Detailed walkthrough for building a commercial-grade coordinator using a Raspberry Pi 5 and a Sonoff Zigbee 3.0 USB Dongle Plus. It covers the installation of Zigbee2MQTT and the Mosquitto MQTT broker.
@@ -99,9 +99,17 @@ http://<your_pi_ip>:8080
 
 Add devices to the Zigbee2MQTT and can get a network as shown below: 
 
-![Network Visual of Zigbee2MQTT](/assets/images/zigbee/progress_zigbee/zigbee2mqtt_network_visual.png)
+![Zigbee Mesh Network IRL](/assets/images/zigbee/progress_zigbee/zigbee_meshNetwork_IRL.png)
 
-## Setting up nRF52840 Dongle sniffer 
+You will also be able to see the logs through the terminal as shown below: 
+
+![Zigbee2MQTT logs](/assets/images/zigbee/progress_zigbee//Zigbee2MQTT_logs.png)
+
+![Zigbee2MQTT logs diconnect](/assets/images/zigbee/progress_zigbee/Zigbee2MQTT_disconnect_log.png)
+
+![Zigbee2MQTT logs end device](/assets/images/zigbee/progress_zigbee/Zigbee1MQTT_log_endDevice.png)
+
+## 2. Packet Sniffing & Injection Infrastructure
 
 ### Setting up the nRF52840 Dongle for Sniffing
 
@@ -109,18 +117,50 @@ Please refer to [nRF52840 Dongle Documentation](https://docs.nordicsemi.com/bund
 
 Please refer to [nRF52840 Dongle Sniffer Documentaiton for 802.15.4](https://docs.nordicsemi.com/bundle/ug_sniffer_802154/page/UG/sniffer_802154/intro_802154.html)
 
+In Wireshark you are able to apply filters to get the information you are looking for with these key words:
+- ``` zbee.sec.key_id ```
+- ``` zbee.sec.decryption_key ``` Allows you to find the Transport Key
+- ``` zbee_nwk.addr == ADDRESS ``` Allows you to narrow the primary device
+
 **Note** The Dongle is already configured and flash you just need to install the dependencies onto your computer and test via wireshark.
 
 ### Setting up the WHAD device
 
-**Note:** The nrf52840 dongle should already be flashed with the WHAD butterfly properties
+The dongle must be flashed with the WHAD (Wireless Hacking Action Distribution) firmware to support both interception and injection.
+
+Virtual Environment Requirement: It is strongly recommended to run all sniffing and injection tools within a Python virtual environment to avoid library conflicts.
+
+Sniffing Command:
+```bash
+wsniff -i uart0 -w dot15d4 --channel 11
+```
+Injection Command (winject):
+```bash
+winject -i uart0 dot15d4 -c 11 [HEX STREAM VALUE]
+```
 
 For more informaiton please refer to the [open source whad docs](https://whad.readthedocs.io/en/latest/cli/generic/winject.html)
 
+Once a "Join" event is captured, follow these steps to unlock encrypted application data:
+
+1. Open Capture: Load the .pcap file and locate the "Transport Key" using the filter zbee.sec.decryption_key.
+
+2. Configure Protocols: Navigate to Edit -> Preferences -> Protocols -> Zigbee.
+
+3. Add Keys: Insert the 128-bit Network Key into the "Pre-configured Keys" list.
+
+4. Verify: Confirm decryption by checking for readable ZCL On/Off or Link Status commands.
+
+- Injection Validation: Use ```wpan.seq_no == #``` to confirm that injected packets were physically accepted and acknowledged by the target hardware.
+
+- Performance Analysis: Use Statistical → Conversations to analyze communication duration and byte payloads between specific network nodes.
+
+
+## 3. Digi XBee 3 Configuration
 
 ### Configuration of the Digi Xbee Router Module for Test 2
 
-To get an xbee module properly configur and join the Zigbee2MQTT network (configured with the rasbperry pi and SonOFF Dongle Plus), similar to the router configuration
+To ensure compatibility with Zigbee 3.0 and the visualization tools, the following parameters are mandatory:
 
 **Note** The modules should already be flashed with the lastest Zigbee firmware
 
@@ -134,6 +174,23 @@ These are the following parameters that need to change:
 - SM Sleep Mode: No Sleep (Router)[0]
 - SP Sleep Time: 1F4
 - AP API Enable: API Mode Without Escapes [1]
+
+1. Critical XBee Troubleshooting & Reset Commands
+The setup guide lists parameters for the XBee modules but lacks the specific commands needed when a device fails to join the network.
+
+- **Network Reset:** Add the ATNR0 command to the XBee section. This is vital for forcing a fresh association if the Coordinator "forgets" the device.
+
+- **Software Reset:** Include ATFR as the method for rebooting the radio if the physical reset button is inaccessible.
+
+2. Practical Hardware Conflicts
+
+- Hardware Conflict Warning: Do not attempt to run XCTU and PyCharm simultaneously on the same workstation. Both applications occupy the same serial USB port, causing connection failures.
+
+- Network Reset: If a module fails to join or the Coordinator "forgets" the device, use the command ATNR0 to force a fresh network association.
+
+- Software Reboot: If the physical reset button is inaccessible, use ATFR to reboot the radio via the terminal.
+
+![Testing for microPython](/assets/images/zigbee/progress_zigbee/DigiXbee_microPython_example.png)
 
 For addtional informaiton please refer to the link below on xbee working with Zigbee2MQTT
 - [digi xbee modules communicate with other](https://www.digi.com/support/knowledge-base/can-digi-s-xbee-zb-modules-communicate-with-other)
@@ -173,7 +230,7 @@ without specialized optimization
 | --- | --- | 
 | ZigBee coordinator ([SONOFF ZigBee 3.0 USB DonglePlus](https://sonoff.tech/en-us/products/sonoff-zigbee-3-0-usb-dongle-plus-zbdongle-p?srsltid=AfmBOoq05n5bl2pB1xAz3aOx3RIwYfIqM_I8NbOEmXzF3O2efw0Ij0s7))[^3] & [Another option for Coordinator](https://www.amazon.com/SMLIGHT-SLZB-07-Coordinator-Zigbee2MQTT-Assistant/dp/B0D737SJ5G?dib=eyJ2IjoiMSJ9.ppEgVhHKzbBp2a7RAhwpKX6zOrDh5UNGyvyNEn3H8PcEgEU3sqjH5ArnFaR6rVdX.pkkkl2FxHrIR1luYNXO4iFdPaTO-r5mrSv_TGE252qA&dib_tag=se&keywords=SLZB-07&qid=1741067435&s=electronics&sr=1-1&linkCode=sl1&tag=smarthomescen-20&linkId=2d3a69d903fbd973ba5ec0f5371f7774&language=en_US&ref_=as_li_ss_tl&th=1) | [RaspberryPi 5](https://www.digikey.com/en/products/detail/raspberry-pi/SC1432/21658257) | 
 | ZigBee routers x2-4 (IoT smart Plug/ [Sonoff S31 Lite zb](https://sonoff.tech/en-us/products/sonoff-s31-lite-zb-smart-plug-us-type-zigbee-version?srsltid=AfmBOoouOWD-7qDYsYzVtx6ROJP727KxYbj710cNZLtBlKKkP0D6Rc7Z) or [ZBBridge-P](https://sonoff.tech/en-us/products/sonoff-zigbee-bridge-pro?pr_prod_strat=pinned&pr_rec_id=67b491ac0&pr_rec_pid=8812959826161&pr_ref_pid=8812958646513&pr_seq=uniform)) | [XBee 3 Pro Module](https://www.digi.com/products/embedded-systems/digi-xbee/rf-modules/2-4-ghz-rf-modules/xbee3-zigbee-3) | 
-| |[End devices](https://www.digi.com/products/models/xb3-24z8st) |
+| [nRF52840 Dongle] (https://www.nordicsemi.com/Products/Development-hardware/nRF52840-Dongle)|[End devices](https://www.digi.com/products/models/xb3-24z8st) |
 
 **Digi Key Parts**
 - [Digi XBee 3 Zigbee Mesh Kit](https://www.digikey.com/en/products/detail/digi/XK3-Z8S-WZM/8130956?utm_source=ecia&utm_medium=aggregator&utm_campaign=digiintl)
