@@ -1,7 +1,7 @@
 # ZigBee Security Evaluation
 
 ### Overview
-This project evaluates the security and resilience of ZigBee networks by simulating real-world attack scenarios against a coordinator-based architecture. The goal is to analyze how centralized trust models in ZigBee compare to more decentralized architectures (e.g., Mist) under adversarial conditions.
+This project evaluates the security and resilience of ZigBee networks by simulating real-world attack scenarios against a coordinator-based architecture. The goal is to analyze how centralized trust models in ZigBee compare to more decentralized architectures (e.g., Mist) under adversarial conditions.[^1-5]
 
 1. Application-Level Attack
 2. Denial of Service Attacks
@@ -229,9 +229,3 @@ Able to see that the Average transfer ratio decreases when a rouge router floods
 [^3]:[Setup for another ZigBee Coordinator slzb06](https://smlight.tech/global/slzb06)
 [^4]: [Setup for ZigBee network](https://smarthomescene.com/guides/how-to-build-a-stable-and-robust-zigbee-network/)
 [^5]: [ZigBee Vulnerabilites](https://payatu.com/blog/zigbee-security-101-architecture-and-security-issues/#ZigBee_Vulnerabilities)
-
-[ZigBee 4.0 news](https://www.silabs.com/blog/zigbee-4-0-improves-security-commissioning-and-efficiency)
-
-[ZigBee 4.0](https://csa-iot.org/newsroom/the-connectivity-standards-alliance-announces-zigbee-4-0-and-suzi-empowering-the-next-generation-of-secure-interoperable-iot-devices/)
-
-[DigiMesh vs Zigbee Mesh](https://www.digi.com/blog/post/what-are-the-differences-between-digimesh-and-zigb)

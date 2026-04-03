@@ -16,6 +16,6 @@ def encrypt_zigbee_payload(payload, nwk_key, frame_counter, source_addr):
     
     return ciphertext + mic
 
-# Example usage for your Management Leave command
-target_ieee = 0xfffb40e06053b9a # From your pcap
+# Example usage for  Management Leave command
+target_ieee = 0xfffb40e06053b9a # From pcap
 key = bytes.fromhex("7f4ab05ec85396ee07d8693d565c7209") #

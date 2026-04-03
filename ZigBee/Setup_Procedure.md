@@ -10,7 +10,7 @@ This file, Setup_Procedure.md, serves as the foundational technical guide for es
 
 - Hardware & Software Inventory: A comprehensive list of all equipment—from development boards to smart plugs—along with the necessary software libraries like Scapy, pyserial, and the Zephyr RTOS.
 
-# Configuration and Setup for ZigBee Network
+## Configuration and Setup for ZigBee Network
 
 **Note** All equipments that are involved in the creation of the zigbee network and tests are listed at the bottom of this README.
 
@@ -20,6 +20,8 @@ This file, Setup_Procedure.md, serves as the foundational technical guide for es
 
 Using a Raspberry Pi 5 and the Sonoff Zigbee 3.0 USB Dongle Plus, you can create a ZigBee network and interact with devices through Zigbee2MQTT.
 Begin by setting up the Raspberry Pi 5 as you normally would: install the operating system onto a microSD card, insert it into the device, and power it on. Once the system is running, enable SSH so you can remotely access and configure the Raspberry Pi from another computer. This will allow you to complete the remaining setup steps and interact with the terminal more easily. Next, follow a setup guide to configure the Raspberry Pi with the Sonoff Zigbee 3.0 USB Dongle Plus-E and a ZigBee motion sensor. This process will install and run Zigbee2MQTT, which creates an open MQTT bridge for ZigBee devices, allowing them to communicate with other systems and applications.
+
+![Image of the Zigbee Setup with Commerical Products](/assets/images/zigbee/progress_zigbee/zigbee_setup_commerical.png=100x100)
 
 1. Plug in the Zigbee 3.0 USB Dongle Plus into one of the USB ports of the Rasberry Pi 5
 
@@ -99,7 +101,7 @@ Add devices to the Zigbee2MQTT and can get a network as shown below:
 
 ![Network Visual of Zigbee2MQTT](/assets/images/zigbee/progress_zigbee/zigbee2mqtt_network_visual.png)
 
-## Setting up the dongle sniffer 
+## Setting up nRF52840 Dongle sniffer 
 
 ### Setting up the nRF52840 Dongle for Sniffing
 

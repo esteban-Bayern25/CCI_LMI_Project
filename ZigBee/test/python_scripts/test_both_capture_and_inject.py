@@ -7,16 +7,16 @@ import time
 dev = WhadDevice.create("uart0")
 connector = Dot15d4(dev)
  
-# 2. Craft the 'Visible' Hex (Seq 170, Src 0xFEED)
-# This is the exact hex from our 'Visible' craft earlier
+# 2. Craft the 'Visible' Hex 
+# will need to change the HEX value
 visible_hex = bytes.fromhex("6188AA19C702E7FEEDDE1A0000F41D1E3C6E03DE39004B120013EDE6FF0F060EB4287FB20000E5925E4200A213000063B78BEB47788271")
  
 print("[*] Firing Visible Packet (Seq: 170, Src: 0xFEED)...")
  
 # 3. Fire and Listen Loop
 try:
-    # Set the channel before we start
-    # Note: If your version lacks .set_channel, ensure hardware is preset via wsniff
+    # Set the channel before starting
+    # Note: If the version lacks .set_channel, ensure hardware is preset via wsniff
     
     # Fire 5 copies of the packet to ensure one lands
     for _ in range(5):
