@@ -1,5 +1,5 @@
 # Purpose
-This document serves as the foundational technical guide for establishing the Zigbee and Mist environments used in this project. It provides step-by-step instructions for configuring hardware and software for network creation, device interaction, and traffic analysis.
+This document serves as the foundational technical guide for establishing the Zigbee environment used in this project. It provides step-by-step instructions for configuring hardware and software for network creation, device interaction, and traffic analysis.
 
 **Key Sections of the File:**
 - ZigBee Coordinator Setup: Detailed walkthrough for building a commercial-grade coordinator using a Raspberry Pi 5 and a Sonoff Zigbee 3.0 USB Dongle Plus. It covers the installation of Zigbee2MQTT and the Mosquitto MQTT broker.
@@ -21,7 +21,7 @@ This document serves as the foundational technical guide for establishing the Zi
 Using a Raspberry Pi 5 and the Sonoff Zigbee 3.0 USB Dongle Plus, you can create a ZigBee network and interact with devices through Zigbee2MQTT.
 Begin by setting up the Raspberry Pi 5 as you normally would: install the operating system onto a microSD card, insert it into the device, and power it on. Once the system is running, enable SSH so you can remotely access and configure the Raspberry Pi from another computer. This will allow you to complete the remaining setup steps and interact with the terminal more easily. Next, follow a setup guide to configure the Raspberry Pi with the Sonoff Zigbee 3.0 USB Dongle Plus-E and a ZigBee motion sensor. This process will install and run Zigbee2MQTT, which creates an open MQTT bridge for ZigBee devices, allowing them to communicate with other systems and applications.
 
-![Image of the Zigbee Setup with Commerical Products](/assets/images/zigbee/progress_zigbee/zigbee_setup_commerical.png=100x100)
+![Image of the Zigbee Setup with Commerical Products](/assets/images/zigbee/progress_zigbee/zigbee_setup_commerical.png)
 
 1. Plug in the Zigbee 3.0 USB Dongle Plus into one of the USB ports of the Rasberry Pi 5
 
@@ -230,11 +230,11 @@ without specialized optimization
 | --- | --- | 
 | ZigBee coordinator ([SONOFF ZigBee 3.0 USB DonglePlus](https://sonoff.tech/en-us/products/sonoff-zigbee-3-0-usb-dongle-plus-zbdongle-p?srsltid=AfmBOoq05n5bl2pB1xAz3aOx3RIwYfIqM_I8NbOEmXzF3O2efw0Ij0s7))[^3] & [Another option for Coordinator](https://www.amazon.com/SMLIGHT-SLZB-07-Coordinator-Zigbee2MQTT-Assistant/dp/B0D737SJ5G?dib=eyJ2IjoiMSJ9.ppEgVhHKzbBp2a7RAhwpKX6zOrDh5UNGyvyNEn3H8PcEgEU3sqjH5ArnFaR6rVdX.pkkkl2FxHrIR1luYNXO4iFdPaTO-r5mrSv_TGE252qA&dib_tag=se&keywords=SLZB-07&qid=1741067435&s=electronics&sr=1-1&linkCode=sl1&tag=smarthomescen-20&linkId=2d3a69d903fbd973ba5ec0f5371f7774&language=en_US&ref_=as_li_ss_tl&th=1) | [RaspberryPi 5](https://www.digikey.com/en/products/detail/raspberry-pi/SC1432/21658257) | 
 | ZigBee routers x2-4 (IoT smart Plug/ [Sonoff S31 Lite zb](https://sonoff.tech/en-us/products/sonoff-s31-lite-zb-smart-plug-us-type-zigbee-version?srsltid=AfmBOoouOWD-7qDYsYzVtx6ROJP727KxYbj710cNZLtBlKKkP0D6Rc7Z) or [ZBBridge-P](https://sonoff.tech/en-us/products/sonoff-zigbee-bridge-pro?pr_prod_strat=pinned&pr_rec_id=67b491ac0&pr_rec_pid=8812959826161&pr_ref_pid=8812958646513&pr_seq=uniform)) | [XBee 3 Pro Module](https://www.digi.com/products/embedded-systems/digi-xbee/rf-modules/2-4-ghz-rf-modules/xbee3-zigbee-3) | 
-| [nRF52840 Dongle] (https://www.nordicsemi.com/Products/Development-hardware/nRF52840-Dongle)|[End devices](https://www.digi.com/products/models/xb3-24z8st) |
+| [nRF52840 Dongle](https://www.nordicsemi.com/Products/Development-hardware/nRF52840-Dongle)|[End devices](https://www.digi.com/products/models/xb3-24z8st) |
 
 **Digi Key Parts**
 - [Digi XBee 3 Zigbee Mesh Kit](https://www.digikey.com/en/products/detail/digi/XK3-Z8S-WZM/8130956?utm_source=ecia&utm_medium=aggregator&utm_campaign=digiintl)
-- nRF Sniffer for 802.15.4 [^2]
+- nRF Sniffer for 802.15.4
     - [nRF52840 Dongle](https://www.digikey.com/en/products/detail/nordic-semiconductor-asa/NRF52840-DONGLE/9491124?utm_source=oemsecrets&utm_medium=aggregator&utm_campaign=buynow) 
 - [ZigBee startup kits/ home guide](https://www.youtube.com/watch?v=fHq2Bzrsnr8)
 
