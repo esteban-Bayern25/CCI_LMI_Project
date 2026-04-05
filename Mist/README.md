@@ -6,6 +6,9 @@ This README provides an outline on how to best nativate this folder and look int
 
 Please refer to the Word RSAE Mist LMI Documentation attached as this has alot of screen captures and explanations along the process for how we went about Mist.
 
+There is also pcap captures of the Mist Network that was done with the nRF52 sniffer located [here](/assets/images/mist/pcap_captures/) across different channels
+
+
 
 
 
