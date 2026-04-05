@@ -22,7 +22,7 @@ Information regarding NB-IoT is here: [NB-IoT](NB-IoT/)
 
 Information regarding ZigBee is here: [ZigBee](ZigBee/)
 
-### [assets](/assets/images/) Folder
+### Assets Folder
 
 [assets](/assets/images/): This directory serves as a central repository for supplemental documentation and visual evidence. It contains high-resolution images of hardware configurations, network topologies, and raw PCAP files detailing specific experimental findings and protocol vulnerabilities.
 
